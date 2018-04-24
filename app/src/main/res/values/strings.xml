@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Menu Principal strings -->
+    <string name="app_name">Reversi</string>
+    <string name="comenca_partida">Començar Partida</string>
+    <string name="sortir">Sortir</string>
+    <string name="menu_principal">Menu Principal</string>
+    <string name="ayuda">Ayuda</string>
+
+    <!-- Ayuda  strings -->
+    <string name="ajuda">Ajuda</string>
+    <string name="hello_message">Benvingut al joc de REVERSI!</string>
+    <string name="info_message">
+        El joc consisteix en omplir el tauler amb el màxim nombre de fitxes del teu color (negre), fent girar les fitxes de l\'oponent (l\'app) que són blanques.
+        A cada torn, el jugador col·loca una fitxa en una casella budia, de manera que entre aquesta i una altra del mateix color s\'encercli una o més fitxes de l\'oponent. Les fitxes entre ambdues queden automàticament convertides al color de qui ha tirat.
+        Les línies compten en horitzontal, vertical i diagonal. Una mateixa fitxa pot capturar peces en diferent línies, si aconsegueix encerclar-les d\'aquest maiteix color.
+        Si un jugador no pot col·locar cap fitxa de la manera descrita, perd el torn. Continua l\'alternança fins que cap dels dos pot col·locar una fitxa o bé tot el tauler ha quedat cobert de fitxes.
+        Guanya el jugadro que ha conseguit col·locar més fitxes del seu color.
+    </string>
+    <string name="anar_joc">Anar al joc</string>
+
+    <!--- Sortir -->
+    <string name="sortir_joc">Reversi s\'ha tancat correctament</string>
+
+    <!--- Configuració -->
+    <string name="comenca">Començar</string>
+    <string name="configuracio">Configuració</string>
+    <string name="alias">Alias Identificatiu:</string>
+    <string name="mida_graella">Mida graella:</string>
+    <string name="control_temps">Control del temps:</string>
+    <string name="nom_usuari">Nom Usuari</string>
+    <string name="opcio_1">8</string>
+    <string name="opcio_2">6</string>
+    <string name="opcio_3">4</string>
+
+
+</resources>
