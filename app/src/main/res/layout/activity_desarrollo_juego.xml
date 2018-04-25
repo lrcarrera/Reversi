@@ -32,7 +32,19 @@
             android:text="@string/partida"
             android:textSize="@dimen/text_size"
             android:textStyle="bold"/>
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:text="Lo estamos viendo"/>
+
+    <GridView
+        android:id="@+id/grid_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"></GridView>
 
 </RelativeLayout>

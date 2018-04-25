@@ -14,7 +14,6 @@ public class Ayuda extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ayuda);
 
-        final Intent in = new Intent(this, Ayuda.class);
 
         tornar = (Button) findViewById(R.id.button_anar_joc);
         tornar.setOnClickListener(new View.OnClickListener() {
