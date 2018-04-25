@@ -4,6 +4,7 @@
     <dimen name="margin_for_config">40dp</dimen>
     <dimen name="margin_top">10dp</dimen>
     <dimen name="text_size">27dp</dimen>
+    <dimen name="text_size2">12dp</dimen>
     <dimen name="image_reverse_size">40dp</dimen>
 
 

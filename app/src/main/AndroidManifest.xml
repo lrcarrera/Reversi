@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Ayuda" />
-        <activity android:name=".Configuracio"></activity>
+        <activity android:name=".Configuracio" />
+        <activity android:name=".DesarrolloJuego" />
+        <activity android:name=".Resultados"></activity>
     </application>
 
 </manifest>

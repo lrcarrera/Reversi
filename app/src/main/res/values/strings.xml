@@ -33,5 +33,20 @@
     <string name="opcio_2">6</string>
     <string name="opcio_3">4</string>
 
+    <!--- Desarrollo Juego -->
+    <string name="partida">Partida</string>
+
+    <!--- Resultados Juego -->
+    <string name="resultados">Resultat</string>
+    <string name="resultados_partida">Resultats Partida</string>
+    <string name="dia_hora">Dia i hora:</string>
+    <string name="valores_log">Resultat de la partida:</string>
+    <string name="email">Email:</string>
+    <string name="email_defecto">pepitogrillo@gmail.com</string>
+    <string name="nova_paritda">Nova Partida</string>
+    <string name="enviar_email">Enviar e-mail</string>
+
+
+
 
 </resources>

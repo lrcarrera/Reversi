@@ -35,6 +35,7 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(partida_in);
+                finish();
             }
         });
 

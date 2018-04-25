@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.radu.reversi.Ayuda">
+
+
+    <!-- Header aligned to top -->
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/DarkSeaGreen"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_ajuda"
+            android:layout_width="@dimen/image_reverse_size"
+            android:layout_height="@dimen/image_reverse_size"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/help_icon" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/image_reverse"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:text="@string/ajuda"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/header">
+
+        <TextView
+            android:id="@+id/hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header"
+            android:layout_marginTop="@dimen/margin_left"
+            android:text="@string/hello_message" />
+
+        <TextView
+            android:id="@+id/game_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hello"
+            android:layout_marginTop="@dimen/margin_left"
+            android:text="@string/info_message"
+            android:textAlignment="inherit"/>
+
+        <ImageView
+            android:id="@+id/decor_image"
+            android:layout_width="@dimen/image_reverse_size"
+            android:layout_height="@dimen/image_reverse_size"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_explain"
+            android:layout_marginTop="@dimen/margin_left"
+            android:src="@drawable/reverse_icon" />
+
+        <Button
+            android:id="@+id/button_anar_joc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/decor_image"
+            android:layout_centerHorizontal="true"
+            android:text="@string/anar_joc"
+            android:layout_marginTop="@dimen/margin_left"
+            android:drawableLeft="@drawable/left_arrow" />
+
+    </LinearLayout>
+</RelativeLayout>
+
+
