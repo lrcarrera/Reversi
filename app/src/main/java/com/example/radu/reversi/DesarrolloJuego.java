@@ -23,7 +23,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
         GridView gv = (GridView) findViewById(R.id.grid_custom);
         gv.setNumColumns(grid_dimension);
-        CustomAdapter adapter =  new CustomAdapter(this);
+        CustomAdapter adapter =  new CustomAdapter(this, grid_dimension);
         gv.setAdapter(adapter);
     }
 }

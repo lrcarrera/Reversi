@@ -5,18 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 public class CustomAdapter extends BaseAdapter {
     private final Context context;
+    private final int grid_size;
 
-    public CustomAdapter (Context c){
+    public CustomAdapter (Context c, int grid_size){
         this.context = c;
+        this.grid_size = grid_size;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        //return 0;
+        return this.grid_size * this.grid_size;
     }
 
     @Override
@@ -35,21 +40,32 @@ public class CustomAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         convertView = inflater.inflate(R.layout.row, null);
-        //View row;
 
-       /* if (type.equals("grid")){
-            rowView = inflater.inflate(R.layout.rowlayoutgrid, parent, false);
+        View cell;
+        if (convertView == null) {
+            // if it's not recycled, initialize some attributes
+            cell = new View(context);
         } else {
-            rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-        }*/
+            cell = (View) convertView;
+        }
+        //cell.setLayoutParams(new GridView.LayoutParams(getCellSize() - grid_size, getCellSize()));
+        cell.setTag(position);
+        /*cell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //handle clicks
+                ReversiLogic.Coord c = game_model.parsePosition((Integer) v.getTag());
+                lstnr.onPlay(c);
+                game_model.playSelected(c);
+                UpdateStats();
+                notifyDataSetChanged();
+            }
+        });*/
+        //call the model to return the cell
+        //this.setCell(cell, position);
 
-       // TextView textView = (TextView) rowView.findViewById(R.id.label);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imaginacion);
+        return cell;
 
-       // imageView.setImageResource(R.draw);
-
-       // checkLogo(s, imageView);
-
-        return convertView;
+        //return convertView;
     }
 }

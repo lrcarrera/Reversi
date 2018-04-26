@@ -15,6 +15,8 @@ public class Configuracio extends AppCompatActivity {
 
     Button comenca;
     Bundle bundle;
+    CheckBox check_box;
+    int timer_checked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,9 @@ public class Configuracio extends AppCompatActivity {
         final Intent in = new Intent(this, DesarrolloJuego.class);
         final RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_buttons);
         final EditText alias = (EditText) findViewById(R.id.edit_text);
+        check_box = (CheckBox) findViewById(R.id.check);
+
+
 
 
         comenca = (Button) findViewById(R.id.button_comenca);
@@ -33,6 +38,8 @@ public class Configuracio extends AppCompatActivity {
             public void onClick(View v) {
                 int selected_id = radio_group.getCheckedRadioButtonId();
                 int grid_dimension = getDimensionById(selected_id);
+
+                bundle.putInt("timer", timer_checked);
                 bundle.putInt("grid_dimension", grid_dimension);
                 bundle.putString("alias", alias.getText().toString());
                 in.putExtras(bundle);
@@ -42,22 +49,19 @@ public class Configuracio extends AppCompatActivity {
         });
     }
 
-    void checkBox(View view){
-
-        final CheckBox check_box = (CheckBox) view;
-
+    void checkbox_clicked(View view){
         if (check_box.isChecked()) {
-            bundle.putInt("timer", 1);
+            timer_checked = 1;
         } else {
-            bundle.putInt("timer", 0);
+            timer_checked = 0;
         }
     }
 
     public int getDimensionById(int selected) {
         int returner = 8;
-        if (selected == 1){
+        if (selected == 2){
             returner = 6;
-        } else if (selected == 2){
+        } else if (selected == 3){
             returner = 4;
         }
         return returner;
