@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -15,24 +16,33 @@ public class Configuracio extends AppCompatActivity {
 
     Button comenca;
     Bundle bundle;
-    CheckBox check_box;
-    int timer_checked;
+
+    int timer_checked = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracio);
 
+
         bundle = new Bundle();
         final Intent in = new Intent(this, DesarrolloJuego.class);
         final RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_buttons);
         final EditText alias = (EditText) findViewById(R.id.edit_text);
-        check_box = (CheckBox) findViewById(R.id.check);
-
-
-
+        CheckBox check_box = (CheckBox) findViewById(R.id.check);
 
         comenca = (Button) findViewById(R.id.button_comenca);
+
+        check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    timer_checked = 1;
+                }
+            }
+        });
+
+
         comenca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,15 +58,16 @@ public class Configuracio extends AppCompatActivity {
             }
         });
     }
-
+/*
     void checkbox_clicked(View view){
-        if (check_box.isChecked()) {
+        CheckBox ch = (CheckBox) view;
+        if (ch.isChecked()) {
             timer_checked = 1;
         } else {
             timer_checked = 0;
         }
     }
-
+*/
     public int getDimensionById(int selected) {
         int returner = 8;
         if (selected == 2){

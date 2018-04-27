@@ -50,6 +50,7 @@ public class CustomAdapter extends BaseAdapter {
         }
         //cell.setLayoutParams(new GridView.LayoutParams(getCellSize() - grid_size, getCellSize()));
         cell.setTag(position);
+        ImageView img = (ImageView) cell.findViewById(R.id.imaginacion);
         /*cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
