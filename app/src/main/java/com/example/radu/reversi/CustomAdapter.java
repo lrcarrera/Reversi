@@ -64,9 +64,7 @@ public class CustomAdapter extends BaseAdapter {
         });*/
         //call the model to return the cell
         //this.setCell(cell, position);
-
         return cell;
-
         //return convertView;
     }
 }
