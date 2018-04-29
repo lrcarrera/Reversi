@@ -1,5 +1,7 @@
 package com.example.radu.reversi;
 
+import android.widget.Toast;
+
 public class Game {
 
     private Board board;
@@ -23,6 +25,11 @@ public class Game {
     public Board getBoard(){
         return this.board;
     }
+
+    public void setState(State state){
+        this.state = state;
+    }
+
 
     public State getState(){
         return this.state;
@@ -95,6 +102,14 @@ public class Game {
         }
     }
 
+    private void reverseAll(State player, Position position, boolean[] directions){
+        for (int i = 0; i < Direction.ALL.length; i++) {
+            if (directions[i]) {
+                reverse(player, position, Direction.ALL[i]);
+            }
+        }
+    }
+
     private void reverse(State player, Position position, Direction direction) {
         position = position.move(direction);
         if (player == State.WHITE){
@@ -110,10 +125,52 @@ public class Game {
         }
     }
 
-    private void reverseAll(State player, Position position, boolean[] directions){
+    private void reverse(Position position, boolean[] directions) {
         for (int i = 0; i < Direction.ALL.length; i++) {
             if (directions[i]) {
-                reverse(player, position, Direction.ALL[i]);
+                reverse(getState(), position, Direction.ALL[i]);
+            }
+        }
+    }
+
+    private void changeTurn() {
+        State st1 = State.BLACK;
+        if (getState() == State.WHITE)
+            st1 = State.WHITE;
+
+        if (canPlay(st1)) {
+            this.state = st1;
+        } else if (!canPlay(getState())){
+            this.state = State.FINISHED;
+        }
+    }
+
+    public void move(Position position) {
+        if (this.board.isEmpty(position) || this.board.isObjective(position)) {
+            System.out.println("VAYAMIERDA");
+            return;
+        }
+
+        System.out.println("denixu");
+        boolean[] directions = this.directionsOfReverse(this.state, position);
+        if (allFalse(directions)) {
+            return;
+        }
+        System.out.println("ANDO X AKI HIJOPUTAA");
+        this.disk(getState(), position);
+        this.reverse(position, directions);
+        this.changeTurn();
+    }
+
+    public void setObjectives(int size){
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if(this.board.isObjective(new Position(i,j))){
+                    this.board.setEmpty(new Position(i,j));
+                }
+                if(canPlayPosition(getState(), new Position(i,j))){
+                    this.board.setObjective(new Position(i,j));
+                }
             }
         }
     }

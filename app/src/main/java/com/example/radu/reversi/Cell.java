@@ -28,13 +28,14 @@ public class Cell {
         return this.state == BLACK;
     }
 
-    public static  Cell white(){
-        return new Cell(WHITE);
-    }
+    public static  Cell white(){ return new Cell(WHITE); }
 
-    public boolean isWhite(){
-        return this.state == WHITE;
-    }
+    public boolean isWhite(){ return this.state == WHITE; }
+
+    public static  Cell objective(){ return new Cell(OBJECTIVE); }
+
+    public boolean isObjective(){ return this.state == OBJECTIVE; }
+
 
     public void reverse(){
         if (isBlack()){

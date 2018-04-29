@@ -45,9 +45,20 @@ public class CustomAdapter extends BaseAdapter {
 
         ImageView cell = convertView.findViewById(R.id.imaginacion);
 
+       /* ImageButton cell;
 
-        int j = position % game.getBoard().size();
-        int i = position / game.getBoard().size();
+        if (convertView == null) {
+            cell = new ImageButton(context);
+            cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() /game.getBoard().size()));
+            cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+            cell.setPadding(0, 0, 0, 0);
+        } else {
+            cell = (ImageButton) convertView;
+        }
+*/
+        int i = position % game.getBoard().size();
+        int j = position / game.getBoard().size();
 
 
 
@@ -56,12 +67,18 @@ public class CustomAdapter extends BaseAdapter {
         } else if (game.getBoard().isWhite(new Position(i,j))){
             cell.setImageResource(R.drawable.white);
         } else if (game.getBoard().isEmpty(new Position(i,j))){
+            cell.setImageResource(R.drawable.whitegreen);
+        } else if (game.getBoard().isObjective(new Position(i,j))){
             cell.setImageResource(R.drawable.green);
-        } /*else if (this.board[x][y].isHint()){
-            imageButton.setImageResource(R.drawable.hint);
-        }*/
+        }
 
-        
+
         return cell;
     }
+
+    public void UpdateGame(Game game) {
+        this.game = game;
+        notifyDataSetChanged();
+    }
+
 }

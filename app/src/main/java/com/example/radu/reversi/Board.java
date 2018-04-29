@@ -44,13 +44,19 @@ public class Board {
 
     public void inicialMiddle(){
 
-        this.cells[(this.size / 2) - 1][(this.size / 2) - 1] = Cell.white();
-        this.cells[this.size / 2][this.size / 2] = Cell.white();
-        this.cells[(this.size / 2) - 1][this.size / 2] = Cell.black();
-        this.cells[this.size / 2][(this.size / 2) - 1] = Cell.black();
+        cells[this.size/2-2][this.size/2-1] = Cell.objective();
+        cells[this.size/2+1][this.size/2] = Cell.objective();
+        cells[this.size/2-1][this.size/2-2] = Cell.objective();
+        cells[this.size/2][this.size/2+1] = Cell.objective();
 
-        this.black += 2;
-        this.white += 2;
+
+        cells[(this.size / 2) - 1][(this.size / 2) - 1] = Cell.white();
+        cells[this.size / 2][this.size / 2] = Cell.white();
+        cells[(this.size / 2) - 1][this.size / 2] = Cell.black();
+        cells[this.size / 2][(this.size / 2) - 1] = Cell.black();
+
+        black += 2;
+        white += 2;
 
     }
 
@@ -59,8 +65,16 @@ public class Board {
     }
 
     public boolean isEmpty(Position p) {
+
         return this.contains(p) && cells[p.getColumn()][p.getRow()].isEmpty();
     }
+
+    public boolean isObjective(Position p) {
+
+        return this.contains(p) && cells[p.getColumn()][p.getRow()].isObjective();
+
+    }
+
 
     public boolean isWhite(Position p) {
         return this.contains(p) && cells[p.getColumn()][p.getRow()].isWhite();
@@ -81,6 +95,14 @@ public class Board {
             cells[p.getColumn()][p.getRow()].black();
             this.black++;
         }
+    }
+
+    public void setEmpty(Position p) {
+            cells[p.getColumn()][p.getRow()].Empty();
+    }
+
+    public void setObjective(Position p) {
+        cells[p.getColumn()][p.getRow()].objective();
     }
 
     public void reverse(Position p) {
