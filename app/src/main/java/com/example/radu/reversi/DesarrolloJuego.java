@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 public class DesarrolloJuego extends AppCompatActivity {
 
+    Board board;
+    Game game;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,14 @@ public class DesarrolloJuego extends AppCompatActivity {
 
         GridView gv = (GridView) findViewById(R.id.grid_custom);
         gv.setNumColumns(grid_dimension);
-        CustomAdapter adapter =  new CustomAdapter(this, grid_dimension);
+
+        board = new Board(grid_dimension);
+        game = new Game(board);
+
+
+        CustomAdapter adapter =  new CustomAdapter(this, game);
+
+
         gv.setAdapter(adapter);
     }
 }

@@ -25,21 +25,34 @@ public class Board {
         return size;
     }
 
+    public int totalCells() {
+        return size*size;
+    }
+
     private void initBoard() {
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
                 this.cells[i][j] = Cell.Empty();
             }
         }
+
+
         incialMiddle();
     }
 
     public void incialMiddle(){
+
         int first = (size / 2) - 1;
+
         setWhite(new Position(first, first));
-        setWhite(new Position(first, first + 1));
-        setBlack(new Position(first + 1, first));
-        setBlack(new Position(first + 1 , first + 1));
+        setWhite(new Position(first+1, first + 1));
+        setBlack(new Position(first, first+1));
+        setBlack(new Position(first + 1 , first));
+
+        this.white += 2;
+        this.black += 2;
+
+
     }
 
     public boolean contains(Position p) {

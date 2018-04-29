@@ -20,6 +20,14 @@ public class Game {
         return numSteps;
     }
 
+    public Board getBoard(){
+        return this.board;
+    }
+
+    public State getState(){
+        return this.state;
+    }
+
     public boolean getFinished()
     {
         //AÑADIR CONTROL TIEMPO

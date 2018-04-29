@@ -1,27 +1,29 @@
 package com.example.radu.reversi;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class CustomAdapter extends BaseAdapter {
     private final Context context;
-    private final int grid_size;
+    private Game game;
 
-    public CustomAdapter (Context c, int grid_size){
+    public CustomAdapter (Context c, Game game){
         this.context = c;
-        this.grid_size = grid_size;
+        this.game = game;
     }
 
     @Override
     public int getCount() {
         //return 0;
-        return this.grid_size * this.grid_size;
+        return this.game.getBoard().totalCells();
     }
 
     @Override
@@ -41,16 +43,35 @@ public class CustomAdapter extends BaseAdapter {
 
         convertView = inflater.inflate(R.layout.row, null);
 
-        View cell;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            cell = new View(context);
+
+        ImageView cell = convertView.findViewById(R.id.imaginacion);
+        //ImageView cell = (ImageView) convertView.findViewById(R.id.imaginacion);
+       /* if (convertView == null) {
+            cell = new ImageButton(context);
         } else {
-            cell = (View) convertView;
-        }
+            cell = (ImageButton) convertView;
+        }*/
+
+
+       // cell.setTag(position);
+       // Cell[][] board;
+      //  board[i][j].isBlack();
+
+        int i = position % game.getBoard().size();
+        int j = position / game.getBoard().size();
+
+        if (game.getBoard().isBlack(new Position(i,j))){
+            cell.setImageResource(R.drawable.black);
+        } else if (game.getBoard().isWhite(new Position(i,j))){
+            cell.setImageResource(R.drawable.white);
+        } else if (game.getBoard().isEmpty(new Position(i,j))){
+            cell.setImageResource(R.drawable.green);
+        } /*else if (this.board[x][y].isEmpty()){
+            imageButton.setImageResource(R.drawable.cell_background);
+        }*/
         //cell.setLayoutParams(new GridView.LayoutParams(getCellSize() - grid_size, getCellSize()));
-        cell.setTag(position);
-        ImageView img = (ImageView) cell.findViewById(R.id.imaginacion);
+
+        //ImageView img = (ImageView) cell.findViewById(R.id.imaginacion);
         /*cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
