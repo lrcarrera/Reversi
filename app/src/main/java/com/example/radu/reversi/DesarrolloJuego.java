@@ -52,23 +52,9 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                 int i = position % game.getBoard().size();
                 int j = position / game.getBoard().size();
-                /*if(cela.isHint()) {
-                joc.move(posicio);
-                joc.setHints();
-                joc.display.notifyDataSetChanged();
-                joc.gridV.setAdapter(joc.display);
-                if (joc.getRival().equals("Màquina") && (joc.state == State.WHITE)) {
-                    while(joc.state == State.WHITE){
-                        joc.nivellMaquina();
-                        joc.setHints();
-                        joc.display.notifyDataSetChanged();
-                        joc.gridV.setAdapter(joc.display);
-                    }
-                }
-            }else{
-                Toast.makeText(context,R.string.novalida, Toast.LENGTH_LONG).show();
-            }
-            */
+
+                System.out.println("POSICION I: "+i);
+                System.out.println("POSICION J: "+j);
 
 
                 if(game.getBoard().isObjective(new Position(i,j))){

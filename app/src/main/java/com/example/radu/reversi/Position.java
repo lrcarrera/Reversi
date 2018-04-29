@@ -19,6 +19,6 @@ public class Position {
     }
 
     public Position move(Direction direction) {
-        return new Position(direction.getChangeInColumn(), direction.getChangeInRow());
+        return new Position(this.column + direction.getChangeInColumn(), this.row + direction.getChangeInRow());
     }
 }

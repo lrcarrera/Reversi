@@ -55,19 +55,6 @@ public class Game {
                 someSame(player, position.move(direction), direction);
     }
 
-    public boolean isReverseDirection(State player, Position position, Direction direction) {
-       Position aux =  position.move(direction);
-       return isOther(player, aux) &&
-              someSame(player, aux, direction);
-    }
-
-    public boolean[] directionsOfReverse(State player, Position position) {
-        boolean [] returner = new boolean[Direction.ALL.length];
-        for (int i = 0; i < Direction.ALL.length; i++){
-            returner[i] = isReverseDirection(player, position, Direction.ALL[i]);
-        }
-        return returner;
-    }
 
     private static boolean allFalse(boolean[] bools) {
         boolean returner = true;
@@ -145,15 +132,28 @@ public class Game {
         }
     }
 
+    public boolean isReverseDirection(State player, Position position, Direction direction) {
+        Position aux =  position.move(direction);
+        return isOther(player, aux) &&
+                someSame(player, aux, direction);
+    }
+    
+    public boolean[] directionsOfReverse(State player, Position position) {
+        boolean [] returner = new boolean[Direction.ALL.length];
+        for (int i = 0; i < Direction.ALL.length; i++){
+            returner[i] = isReverseDirection(player, position, Direction.ALL[i]);
+        }
+        return returner;
+    }
+
     public void move(Position position) {
-        if (this.board.isEmpty(position) || this.board.isObjective(position)) {
-            System.out.println("VAYAMIERDA");
+        if (/*!this.board.isEmpty(position) &&*/ !this.board.isObjective(position)) {
             return;
         }
 
-        System.out.println("denixu");
-        boolean[] directions = this.directionsOfReverse(this.state, position);
+        boolean[] directions = this.directionsOfReverse(getState(), position);
         if (allFalse(directions)) {
+            System.out.println("VAYAMIERDA");
             return;
         }
         System.out.println("ANDO X AKI HIJOPUTAA");
