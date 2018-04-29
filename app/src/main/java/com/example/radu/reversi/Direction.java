@@ -16,7 +16,7 @@ public class Direction {
     private final int changeInRow;
     private final int changeInColumn;
 
-    private Direction(int changeInRow, int changeInColumn) {
+    private Direction(int changeInColumn, int changeInRow) {
         this.changeInRow = changeInRow;
         this.changeInColumn = changeInColumn;
     }

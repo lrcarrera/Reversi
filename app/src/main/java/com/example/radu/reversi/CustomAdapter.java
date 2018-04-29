@@ -43,22 +43,13 @@ public class CustomAdapter extends BaseAdapter {
 
         convertView = inflater.inflate(R.layout.row, null);
 
-
         ImageView cell = convertView.findViewById(R.id.imaginacion);
-        //ImageView cell = (ImageView) convertView.findViewById(R.id.imaginacion);
-       /* if (convertView == null) {
-            cell = new ImageButton(context);
-        } else {
-            cell = (ImageButton) convertView;
-        }*/
 
 
-       // cell.setTag(position);
-       // Cell[][] board;
-      //  board[i][j].isBlack();
+        int j = position % game.getBoard().size();
+        int i = position / game.getBoard().size();
 
-        int i = position % game.getBoard().size();
-        int j = position / game.getBoard().size();
+
 
         if (game.getBoard().isBlack(new Position(i,j))){
             cell.setImageResource(R.drawable.black);
@@ -66,26 +57,11 @@ public class CustomAdapter extends BaseAdapter {
             cell.setImageResource(R.drawable.white);
         } else if (game.getBoard().isEmpty(new Position(i,j))){
             cell.setImageResource(R.drawable.green);
-        } /*else if (this.board[x][y].isEmpty()){
-            imageButton.setImageResource(R.drawable.cell_background);
+        } /*else if (this.board[x][y].isHint()){
+            imageButton.setImageResource(R.drawable.hint);
         }*/
-        //cell.setLayoutParams(new GridView.LayoutParams(getCellSize() - grid_size, getCellSize()));
 
-        //ImageView img = (ImageView) cell.findViewById(R.id.imaginacion);
-        /*cell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //handle clicks
-                ReversiLogic.Coord c = game_model.parsePosition((Integer) v.getTag());
-                lstnr.onPlay(c);
-                game_model.playSelected(c);
-                UpdateStats();
-                notifyDataSetChanged();
-            }
-        });*/
-        //call the model to return the cell
-        //this.setCell(cell, position);
+        
         return cell;
-        //return convertView;
     }
 }
