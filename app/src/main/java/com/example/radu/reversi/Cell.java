@@ -1,28 +1,48 @@
 package com.example.radu.reversi;
 
 public class Cell {
-    boolean isEmpty;
-    boolean color; /* 0 white 1 black*/
+    private static final String WHITE = "white";
+    private static final String BLACK = "black";
+    private static final String EMPTY = "";
+    private static final String OBJECTIVE = "objective";
 
-    public Cell(boolean isEmpty, boolean color){
-        this.isEmpty = isEmpty;
-        this.color =  color;
+    private String state;
+
+    public Cell(String state){
+        this.state = state;
+    }
+
+    public static  Cell Empty(){
+        return new Cell(EMPTY);
     }
 
     public boolean isEmpty(){
-        return this.isEmpty();
+        return this.state == EMPTY;
     }
 
-    public boolean getColor(){
-        return this.color;
+    public static  Cell black(){
+        return new Cell(BLACK);
     }
 
+    public boolean isBlack(){
+        return this.state == BLACK;
+    }
 
-    public void setColor(boolean color){
-        this.color=color;
+    public static  Cell white(){
+        return new Cell(WHITE);
+    }
+
+    public boolean isWhite(){
+        return this.state == WHITE;
     }
 
     public void reverse(){
-        this.color = !this.color;
+        if (isBlack()){
+            this.state = WHITE;
+        } else{
+            this.state = BLACK;
+        }
     }
+
+
 }
