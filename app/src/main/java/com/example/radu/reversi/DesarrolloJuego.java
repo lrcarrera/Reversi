@@ -78,7 +78,7 @@ public class DesarrolloJuego extends AppCompatActivity {
                     game.move(new Position(i,j));
                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
 
-
+//MARCA OBJETIVOS PARA LA MAQUINA
                     game.setObjectives(grid_dimension);
                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
 
@@ -90,14 +90,11 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                     //adapter.UpdateGame(game);
                     //gv.setAdapter(adapter);
-
-                    Toast.makeText(DesarrolloJuego.this, String.valueOf(game.getBoard().getCountBlack()),
-                            Toast.LENGTH_SHORT).show();
-
-
+//TURNO MAKINA
                     if(game.getState()==State.WHITE){
                         System.out.println("ENTRO O KELOKE");
                         game.phoneTurn();
+                        //MARCA OBJETIVOS PARA EL PLAYER
                         game.setObjectives(grid_dimension);
 
                         gnew.notifyDataSetChanged();
@@ -105,15 +102,17 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                     }
 
-                     if(game.getState() == State.WHITE){
-            System.out.println("ESPUTOBLANCO");
-        }else if(game.getState() == State.BLACK){
-            System.out.println("ESPUTONEGRO");
+                    if(game.getState() == State.FINISHED){
+                        game.getBoard().countAll(grid_dimension);
+                        if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
 
-        }else if(game.getState() == State.FINISHED){
-            System.out.println("esputoFINISHED!");
+                            Toast.makeText(DesarrolloJuego.this, "Has GANADO hijodela gran putA", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(DesarrolloJuego.this, "Has PERDIDO de chillin", Toast.LENGTH_SHORT).show();
 
-        }
+                        }
+                    }
 
 
 
