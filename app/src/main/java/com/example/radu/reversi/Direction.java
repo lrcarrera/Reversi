@@ -21,7 +21,7 @@ public class Direction {
         this.changeInColumn = changeInColumn;
     }
 
-    public int getChangeInRow() { return changeInRow; }
+    public int getRow() { return changeInRow; }
 
-    public int getChangeInColumn() { return changeInColumn; }
+    public int getColumn() { return changeInColumn; }
 }

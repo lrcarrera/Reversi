@@ -51,8 +51,9 @@ public class Game {
     }
 
     public boolean someSame(State player, Position position, Direction direction) {
-        return (isSame(player, position)) && !(!this.board.contains(position) || (this.board.isEmpty(position))) &&
-                someSame(player, position.move(direction), direction);
+        //return (isSame(player, position)) && !(!this.board.contains(position) || (this.board.isEmpty(position))) &&
+        //        someSame(player, position.move(direction), direction);
+        return !(!this.board.contains(position) || (this.board.isEmpty(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
     }
 
 
@@ -82,11 +83,14 @@ public class Game {
     }
 
     private void disk(State player, Position position) {
-        if (this.state == State.WHITE){
+        if (player == State.WHITE){
+            System.out.println("entro en el white");
             this.board.setWhite(position);
         } else{
+            System.out.println("entro en el black");
             this.board.setBlack(position);
         }
+        System.out.println("Salio del disk");
     }
 
     private void reverseAll(State player, Position position, boolean[] directions){
@@ -134,14 +138,14 @@ public class Game {
 
     public boolean isReverseDirection(State player, Position position, Direction direction) {
         Position aux =  position.move(direction);
-        return isOther(player, aux) &&
-                someSame(player, aux, direction);
+        return isOther(player, aux) && someSame(player, aux, direction);
     }
     
     public boolean[] directionsOfReverse(State player, Position position) {
         boolean [] returner = new boolean[Direction.ALL.length];
         for (int i = 0; i < Direction.ALL.length; i++){
             returner[i] = isReverseDirection(player, position, Direction.ALL[i]);
+            //System.out.println("Direccion: " + Direction.ALL[i].getRow() + "," + Direction.ALL[i].getRow()  + "le puso" + returner[i]);
         }
         return returner;
     }
@@ -153,10 +157,8 @@ public class Game {
 
         boolean[] directions = this.directionsOfReverse(getState(), position);
         if (allFalse(directions)) {
-            System.out.println("VAYAMIERDA");
             return;
         }
-        System.out.println("ANDO X AKI HIJOPUTAA");
         this.disk(getState(), position);
         this.reverse(position, directions);
         this.changeTurn();
@@ -170,6 +172,18 @@ public class Game {
                 }
                 if(canPlayPosition(getState(), new Position(i,j))){
                     this.board.setObjective(new Position(i,j));
+                }
+            }
+        }
+    }
+
+
+    public void phoneTurn(){
+        for (int x = 0; x < board.size(); x++) {
+            for (int z = 0; z < board.size(); z++) {
+                if (board.cells[x][z].isObjective()) {
+                    this.move(new Position(x, z));
+                    return;
                 }
             }
         }
