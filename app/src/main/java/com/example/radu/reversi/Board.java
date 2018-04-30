@@ -2,7 +2,7 @@ package com.example.radu.reversi;
 
 public class Board {
     private int size;
-    private Cell[][] cells;
+    public Cell[][] cells;
     private int black;
     private int white;
 

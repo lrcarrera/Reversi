@@ -15,6 +15,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
     Board board;
     Game game;
+    State state;
 
     GridView gv;
     CustomAdapter adapter;
@@ -33,8 +34,10 @@ public class DesarrolloJuego extends AppCompatActivity {
         gv  = (GridView) findViewById(R.id.grid_custom);
         gv.setNumColumns(grid_dimension);
 
+
         board = new Board(grid_dimension);
         game = new Game(board);
+        state = State.BLACK;
 
 
         adapter =  new CustomAdapter(this, game);
@@ -59,14 +62,13 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                 if(game.getBoard().isObjective(new Position(i,j))){
 
-
-
                     game.move(new Position(i,j));
                     game.setObjectives(grid_dimension);
                     Toast.makeText(DesarrolloJuego.this, String.valueOf(game.getBoard().getCountBlack()),
                             Toast.LENGTH_SHORT).show();
 
-
+                    game.phoneTurn();
+                    System.out.println("Llego y salio del phonwTurn");
                    /* for (int x = 0; x < grid_dimension; x++){
                         for (int y = 0; y < grid_dimension; y++){
                             game.getBoard().getCountBlack();
@@ -74,13 +76,19 @@ public class DesarrolloJuego extends AppCompatActivity {
                         }
                     })*/
 
+                    //adapter.notifyDataSetChanged();
 
                     //adapter.UpdateGame(game);
 
                     //gv.setAdapter(adapter);
                     //updateAdapter();
-
                 }
+                adapter.UpdateGame(game);
+                //adapter.notifyDataSetChanged();
+                //gv.setAdapter(adapter);
+                //adapter.getItem(position).setLiked(True);
+                //adapter.notifyDataSetChanged();
+                //gv.setAdapter(adapter);
 
 
             }

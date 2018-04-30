@@ -14,6 +14,7 @@ import android.widget.ImageView;
 public class CustomAdapter extends BaseAdapter {
     private final Context context;
     private Game game;
+    private int number = 1;
 
     public CustomAdapter (Context c, Game game){
         this.context = c;
@@ -69,7 +70,13 @@ public class CustomAdapter extends BaseAdapter {
         } else if (game.getBoard().isEmpty(new Position(i,j))){
             cell.setImageResource(R.drawable.whitegreen);
         } else if (game.getBoard().isObjective(new Position(i,j))){
+            /*if (number == 1){
+                cell.setImageResource(R.drawable.number1);
+            } else {
+                cell.setImageResource(R.drawable.green);
+            }*/
             cell.setImageResource(R.drawable.green);
+
         }
 
 
