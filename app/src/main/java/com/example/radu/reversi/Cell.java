@@ -12,36 +12,42 @@ public class Cell {
         this.state = state;
     }
 
-    public static  Cell Empty(){
+    public static  Cell empty(){
         return new Cell(EMPTY);
     }
+    public static  Cell black(){
+        return new Cell(BLACK);
+    }
+    public static  Cell white(){ return new Cell(WHITE); }
+    public static  Cell objective(){ return new Cell(OBJECTIVE); }
 
     public boolean isEmpty(){
         return this.state == EMPTY;
     }
-
-    public static  Cell black(){
-        return new Cell(BLACK);
-    }
-
     public boolean isBlack(){
         return this.state == BLACK;
     }
-
-    public static  Cell white(){ return new Cell(WHITE); }
-
     public boolean isWhite(){ return this.state == WHITE; }
-
-    public static  Cell objective(){ return new Cell(OBJECTIVE); }
-
     public boolean isObjective(){ return this.state == OBJECTIVE; }
+
+    public void setBlack() { this.state = BLACK; }
+    public void setObjective() { this.state = OBJECTIVE; }
+    public void setWhite() { this.state = WHITE; }
+    public void setEmpty() { this.state = EMPTY; }
+
+
 
 
     public void reverse(){
-        if (isBlack()){
-            this.state = WHITE;
-        } else{
+        if(this.state == WHITE){
             this.state = BLACK;
+
+        }else if(this.state == BLACK){
+            this.state = WHITE;
+
+        }else{
+            this.state = EMPTY;
+
         }
     }
 

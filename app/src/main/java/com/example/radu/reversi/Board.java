@@ -36,7 +36,7 @@ public class Board {
 
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
-                this.cells[i][j] = Cell.Empty();
+                this.cells[i][j] = Cell.empty();
             }
         }
         inicialMiddle();
@@ -84,21 +84,21 @@ public class Board {
     }
 
     public void setWhite(Position p) {
-        if (contains(p) && isEmpty(p)){
-            cells[p.getColumn()][p.getRow()].white();
+        if (contains(p) && (isEmpty(p)) || isObjective(p)){
+            cells[p.getColumn()][p.getRow()].setWhite();
             this.white++;
         }
     }
 
     public void setBlack(Position p) {
-        if (contains(p) && isEmpty(p)) {
-            cells[p.getColumn()][p.getRow()].black();
+        if (contains(p) && (isEmpty(p)) || isObjective(p))  {
+            cells[p.getColumn()][p.getRow()].setBlack();
             this.black++;
         }
     }
 
     public void setEmpty(Position p) {
-            cells[p.getColumn()][p.getRow()].Empty();
+            cells[p.getColumn()][p.getRow()].empty();
     }
 
     public void setObjective(Position p) {
@@ -106,7 +106,7 @@ public class Board {
     }
 
     public void reverse(Position p) {
-        if (contains(p) && !isEmpty(p)) {
+        if (contains(p) && !(isEmpty(p) || isObjective(p)) ) {
             cells[p.getColumn()][p.getRow()].reverse();
             if(cells[p.getColumn()][p.getRow()].isBlack()){
                 this.black++;

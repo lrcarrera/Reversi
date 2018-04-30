@@ -53,7 +53,7 @@ public class Game {
     public boolean someSame(State player, Position position, Direction direction) {
         //return (isSame(player, position)) && !(!this.board.contains(position) || (this.board.isEmpty(position))) &&
         //        someSame(player, position.move(direction), direction);
-        return !(!this.board.contains(position) || (this.board.isEmpty(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
+        return !(!this.board.contains(position) || (this.board.isEmpty(position)) || (this.board.isObjective(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
     }
 
 
@@ -84,15 +84,12 @@ public class Game {
 
     private void disk(State player, Position position) {
         if (player == State.WHITE){
-            System.out.println("entro en el white");
             this.board.setWhite(position);
         } else{
-            System.out.println("entro en el black");
             this.board.setBlack(position);
         }
-        System.out.println("Salio del disk");
     }
-
+/*
     private void reverseAll(State player, Position position, boolean[] directions){
         for (int i = 0; i < Direction.ALL.length; i++) {
             if (directions[i]) {
@@ -100,7 +97,7 @@ public class Game {
             }
         }
     }
-
+*/
     private void reverse(State player, Position position, Direction direction) {
         position = position.move(direction);
         if (player == State.WHITE){
@@ -151,7 +148,7 @@ public class Game {
     }
 
     public void move(Position position) {
-        if (/*!this.board.isEmpty(position) &&*/ !this.board.isObjective(position)) {
+        if (/*!this.board.isEmpty(position) &&*/ !(this.board.isObjective(position) || this.board.isEmpty(position))) {
             return;
         }
 
@@ -159,6 +156,8 @@ public class Game {
         if (allFalse(directions)) {
             return;
         }
+
+        System.out.println("\nPOSITIONNN:"+position.getColumn()+"ROW:"+position.getRow());
         this.disk(getState(), position);
         this.reverse(position, directions);
         this.changeTurn();
@@ -176,7 +175,6 @@ public class Game {
             }
         }
     }
-
 
     public void phoneTurn(){
         for (int x = 0; x < board.size(); x++) {

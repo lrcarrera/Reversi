@@ -56,19 +56,43 @@ public class DesarrolloJuego extends AppCompatActivity {
                 int i = position % game.getBoard().size();
                 int j = position / game.getBoard().size();
 
-                System.out.println("POSICION I: "+i);
-                System.out.println("POSICION J: "+j);
+
 
 
                 if(game.getBoard().isObjective(new Position(i,j))){
 
                     game.move(new Position(i,j));
+                   // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
                     game.setObjectives(grid_dimension);
+                   // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
+
+                    if(game.getState() == State.WHITE){
+                        System.out.println("ESPUTOBLANCO");
+                    }else if(game.getState() == State.BLACK){
+                        System.out.println("ESPUTONEGRO");
+
+                    }else{
+                        System.out.println("QUECOÑOES?¿");
+
+                    }
+
                     Toast.makeText(DesarrolloJuego.this, String.valueOf(game.getBoard().getCountBlack()),
                             Toast.LENGTH_SHORT).show();
 
                     game.phoneTurn();
-                    System.out.println("Llego y salio del phonwTurn");
+
+/*
+                    if(game.getBoard().isObjective(new Position(0, 1))){
+                        System.out.println("objetivo MECAGOENTODO\n\n\n");
+
+                    }else{
+                        System.out.println("ALFINNNN");
+                    }
+*/
+
+
+                   // System.out.println("Llego y salio del phonwTurn");
+
                    /* for (int x = 0; x < grid_dimension; x++){
                         for (int y = 0; y < grid_dimension; y++){
                             game.getBoard().getCountBlack();
@@ -83,7 +107,9 @@ public class DesarrolloJuego extends AppCompatActivity {
                     //gv.setAdapter(adapter);
                     //updateAdapter();
                 }
+
                 adapter.UpdateGame(game);
+                //gv.setAdapter(adapter);
                 //adapter.notifyDataSetChanged();
                 //gv.setAdapter(adapter);
                 //adapter.getItem(position).setLiked(True);
