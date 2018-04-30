@@ -82,10 +82,10 @@ public class CustomAdapter extends BaseAdapter {
 
         return cell;
     }
-
+/*
     public void UpdateGame(Game game) {
         this.game = game;
         notifyDataSetChanged();
-    }
+    }*/
 
 }

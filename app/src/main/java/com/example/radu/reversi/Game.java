@@ -2,6 +2,8 @@ package com.example.radu.reversi;
 
 import android.widget.Toast;
 
+import java.sql.SQLOutput;
+
 public class Game {
 
     private Board board;
@@ -47,23 +49,34 @@ public class Game {
     }
 
     public boolean isOther(State player, Position position) {
-        return (this.board.isWhite(position) && player.equals(State.BLACK)) || (this.board.isBlack(position) && player.equals(State.WHITE));
+        return (this.board.isWhite(position) && player==State.BLACK) || (this.board.isBlack(position) && player==State.WHITE);
     }
 
     public boolean someSame(State player, Position position, Direction direction) {
         //return (isSame(player, position)) && !(!this.board.contains(position) || (this.board.isEmpty(position))) &&
         //        someSame(player, position.move(direction), direction);
-        return !(!this.board.contains(position) || (this.board.isEmpty(position)) || (this.board.isObjective(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
+        return !(!this.board.contains(position) || (this.board.isEmpty(position) || this.board.isObjective(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
     }
+/*
+    public boolean someSame(State player, Position position, Direction direction) {
+        return !(!this.board.contains(position) || (this.board.isEmpty(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
+    }*/
 
-
+    public boolean[] directionsOfReverse(State player, Position position) {
+        boolean [] returner = new boolean[Direction.ALL.length];
+        for (int i = 0; i < Direction.ALL.length; i++){
+            returner[i] = isReverseDirection(player, position, Direction.ALL[i]);
+            //System.out.println("Direccion: " + Direction.ALL[i].getRow() + "," + Direction.ALL[i].getRow()  + "le puso" + returner[i]);
+        }
+        return returner;
+    }
     private static boolean allFalse(boolean[] bools) {
-        boolean returner = true;
+        //boolean returner = true;
         for (int i = 0; i < bools.length; i++){
             if (bools[i])
-                returner = false;
+                return false;
         }
-        return  returner;
+        return true;
     }
 
 
@@ -122,15 +135,9 @@ public class Game {
         return returner;
     }
 
-    public boolean canPlayPosition(State player, Position position) {
-        return !allFalse(directionsOfReverse(player, position)) && (this.board.isEmpty(position) || this.board.isObjective(position) );
-                //this.board.isBlack(position);
-    }
+
 
     private void changeTurn() {
-
-
-
 
         //State st1 = State.BLACK;
         if (getState() == State.WHITE)
@@ -138,23 +145,11 @@ public class Game {
             setState(State.BLACK);
         else{
             setState(State.WHITE);
-
-
         }
-
         if (!canPlay(getState())){
             this.state = State.FINISHED;
         }
-/*
-        if(getState() == State.WHITE){
-            System.out.println("ESPUTOBLANCO");
-        }else if(getState() == State.BLACK){
-            System.out.println("ESPUTONEGRO");
 
-        }else if(getState() == State.FINISHED){
-            System.out.println("esputoFINISHED!");
-
-        }*/
 
 
     }
@@ -165,48 +160,52 @@ public class Game {
         return isOther(player, aux) && someSame(player, aux, direction);
     }
     
-    public boolean[] directionsOfReverse(State player, Position position) {
-        boolean [] returner = new boolean[Direction.ALL.length];
-        for (int i = 0; i < Direction.ALL.length; i++){
-            returner[i] = isReverseDirection(player, position, Direction.ALL[i]);
-            //System.out.println("Direccion: " + Direction.ALL[i].getRow() + "," + Direction.ALL[i].getRow()  + "le puso" + returner[i]);
-        }
-        return returner;
-    }
+
 
     public void move(Position position) {
         if (/*!this.board.isEmpty(position) &&*/ !(this.board.isObjective(position) || this.board.isEmpty(position))) {
             return;
         }
+        System.out.println("ENTRO O KELOKE, STATE->"+getState().toString()+"POSITION COL:"+position.getColumn()+"ROW: "+position.getRow());
 
         boolean[] directions = this.directionsOfReverse(getState(), position);
         if (allFalse(directions)) {
             return;
         }
+        System.out.println("ENTRO O KELOKE");
 
-        System.out.println("\nPOSITIONNN:"+position.getColumn()+"ROW:"+position.getRow());
         this.disk(getState(), position);
         this.reverse(position, directions);
         this.changeTurn();
     }
+    public boolean canPlayPosition(State player, Position position) {
+        return (this.board.isEmpty(position) || this.board.isObjective(position)) && !allFalse(directionsOfReverse(player, position));
+        //this.board.isBlack(position);
+    }
 
     public void setObjectives(int size){
+
+
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if(this.board.isObjective(new Position(i,j))){
-                    this.board.setEmpty(new Position(i,j));
+                if(this.board.cells[i][j].isObjective()){
+                    this.board.cells[i][j] = Cell.empty();
                 }
                 if(canPlayPosition(getState(), new Position(i,j))){
-                    this.board.setObjective(new Position(i,j));
+                    this.board.cells[i][j] = Cell.objective();
                 }
             }
         }
+
+
     }
 
     public void phoneTurn(){
         for (int x = 0; x < board.size(); x++) {
             for (int z = 0; z < board.size(); z++) {
-                if (board.cells[x][z].isObjective()) {
+
+                if (board.isObjective(new Position(x,z))){
+                    System.out.println("ENTRO O KELOKE PHONETURN");
                     this.move(new Position(x, z));
                     return;
                 }

@@ -98,7 +98,7 @@ public class Board {
     }
 
     public void setEmpty(Position p) {
-            cells[p.getColumn()][p.getRow()].empty();
+        cells[p.getColumn()][p.getRow()].empty();
     }
 
     public void setObjective(Position p) {
@@ -116,6 +116,24 @@ public class Board {
                 this.black--;
             }
         }
+    }
+
+    public void countAll(int size){
+        int objective=0;
+        int empty=0;
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                if (this.isObjective(new Position(x, y))) {
+                    objective += 1;
+                }
+                if(this.isEmpty(new Position(x, y))){
+                    empty +=1;
+                }
+            }
+        }
+
+
+        System.out.println("WHITE:"+getCountWhite()+"\nBLACK:"+getCountBlack()+"\nEMPTY"+empty+"\nOBJECTIVE"+objective);
     }
 
 }

@@ -19,6 +19,8 @@ public class DesarrolloJuego extends AppCompatActivity {
 
     GridView gv;
     CustomAdapter adapter;
+    int count = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,18 @@ public class DesarrolloJuego extends AppCompatActivity {
         gv.setAdapter(adapter);
 
 
+        /*for (int x = 0; x < grid_dimension; x++) {
+            for (int y = 0; y < grid_dimension; y++) {
+                if (game.getBoard().isObjective(new Position(x, y))) {
+                    count += 1;
+
+                }
+            }
+        }
+        System.out.println("HAY "+count+" OBJECTIVOS");
+        count=0;*/
+
+
 
         //    imageButton.setOnClickListener(new CelaListener(context,new Position(x,y),this.board[x][y], joc));
 
@@ -63,17 +77,44 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                     game.move(new Position(i,j));
                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
+
+
                     game.setObjectives(grid_dimension);
                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
 
+                    game.getBoard().countAll(grid_dimension);
 
+                    CustomAdapter gnew = (CustomAdapter) parent.getAdapter();
+                    gnew.notifyDataSetChanged();
+                    gv.setAdapter(gnew);
+
+                    //adapter.UpdateGame(game);
+                    //gv.setAdapter(adapter);
 
                     Toast.makeText(DesarrolloJuego.this, String.valueOf(game.getBoard().getCountBlack()),
                             Toast.LENGTH_SHORT).show();
 
 
-                    game.phoneTurn();
-                    game.setObjectives(grid_dimension);
+                    if(game.getState()==State.WHITE){
+                        System.out.println("ENTRO O KELOKE");
+                        game.phoneTurn();
+                        game.setObjectives(grid_dimension);
+
+                        gnew.notifyDataSetChanged();
+                        gv.setAdapter(gnew);
+
+                    }
+
+                     if(game.getState() == State.WHITE){
+            System.out.println("ESPUTOBLANCO");
+        }else if(game.getState() == State.BLACK){
+            System.out.println("ESPUTONEGRO");
+
+        }else if(game.getState() == State.FINISHED){
+            System.out.println("esputoFINISHED!");
+
+        }
+
 
 
 
@@ -104,7 +145,7 @@ public class DesarrolloJuego extends AppCompatActivity {
                     //updateAdapter();
                 }
 
-                adapter.UpdateGame(game);
+
                 //gv.setAdapter(adapter);
                 //adapter.notifyDataSetChanged();
                 //gv.setAdapter(adapter);
