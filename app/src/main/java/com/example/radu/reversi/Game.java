@@ -66,21 +66,9 @@ public class Game {
         return  returner;
     }
 
-    public boolean canPlayPosition(State player, Position position) {
-        return !allFalse(directionsOfReverse(player, position)) &&
-                this.board.isBlack(position);
-    }
 
-    public boolean canPlay(State player) {
-        boolean returner = false;
-        for (int i = 0; i < this.board.size(); i++){
-            for (int j = 0; j < this.board.size(); j++){
-                if (canPlayPosition(player, new Position(i, j)))
-                    returner = true;
-            }
-        }
-        return returner;
-    }
+
+
 
     private void disk(State player, Position position) {
         if (player == State.WHITE){
@@ -121,17 +109,56 @@ public class Game {
         }
     }
 
-    private void changeTurn() {
-        State st1 = State.BLACK;
-        if (getState() == State.WHITE)
-            st1 = State.WHITE;
+    public boolean canPlay(State player) {
 
-        if (canPlay(st1)) {
-            this.state = st1;
-        } else if (!canPlay(getState())){
+
+        boolean returner = false;
+        for (int i = 0; i < this.board.size(); i++){
+            for (int j = 0; j < this.board.size(); j++){
+                if (canPlayPosition(player, new Position(i, j)))
+                    returner = true;
+            }
+        }
+        return returner;
+    }
+
+    public boolean canPlayPosition(State player, Position position) {
+        return !allFalse(directionsOfReverse(player, position)) && (this.board.isEmpty(position) || this.board.isObjective(position) );
+                //this.board.isBlack(position);
+    }
+
+    private void changeTurn() {
+
+
+
+
+        //State st1 = State.BLACK;
+        if (getState() == State.WHITE)
+            //st1 = State.WHITE;
+            setState(State.BLACK);
+        else{
+            setState(State.WHITE);
+
+
+        }
+
+        if (!canPlay(getState())){
             this.state = State.FINISHED;
         }
+/*
+        if(getState() == State.WHITE){
+            System.out.println("ESPUTOBLANCO");
+        }else if(getState() == State.BLACK){
+            System.out.println("ESPUTONEGRO");
+
+        }else if(getState() == State.FINISHED){
+            System.out.println("esputoFINISHED!");
+
+        }*/
+
+
     }
+
 
     public boolean isReverseDirection(State player, Position position, Direction direction) {
         Position aux =  position.move(direction);

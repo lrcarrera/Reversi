@@ -66,20 +66,16 @@ public class DesarrolloJuego extends AppCompatActivity {
                     game.setObjectives(grid_dimension);
                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
 
-                    if(game.getState() == State.WHITE){
-                        System.out.println("ESPUTOBLANCO");
-                    }else if(game.getState() == State.BLACK){
-                        System.out.println("ESPUTONEGRO");
 
-                    }else{
-                        System.out.println("QUECOÑOES?¿");
-
-                    }
 
                     Toast.makeText(DesarrolloJuego.this, String.valueOf(game.getBoard().getCountBlack()),
                             Toast.LENGTH_SHORT).show();
 
+
                     game.phoneTurn();
+                    game.setObjectives(grid_dimension);
+
+
 
 /*
                     if(game.getBoard().isObjective(new Position(0, 1))){
