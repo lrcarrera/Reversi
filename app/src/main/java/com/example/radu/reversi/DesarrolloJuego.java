@@ -8,8 +8,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 public class DesarrolloJuego extends AppCompatActivity {
 
@@ -19,7 +23,12 @@ public class DesarrolloJuego extends AppCompatActivity {
 
     GridView gv;
     CustomAdapter adapter;
-    int count = 0;
+
+    int BLOCK = 0;
+    int WIN = 1;
+    int LOSE = 2;
+    int DRAW = 3;
+    int TIMER = 4;
 
 
     @Override
@@ -75,14 +84,20 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                 if(game.getBoard().isObjective(new Position(i,j))){
 
-                    game.move(new Position(i,j));
-                   // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
 
-//MARCA OBJETIVOS PARA LA MAQUINA
-                    game.setObjectives(grid_dimension);
                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
+                    if(game.getState()==State.BLACK){
+                        System.out.println("ENTRO EN EL BLACK");
+                        game.move(new Position(i,j));
+                        game.setObjectives(grid_dimension);
+                        game.getBoard().countAll(grid_dimension);
+                    }
 
-                    game.getBoard().countAll(grid_dimension);
+                    //MARCA OBJETIVOS PARA LA MAQUINA
+                    /*game.setObjectives(grid_dimension);
+                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
+
+                    game.getBoard().countAll(grid_dimension);*/
 
                     CustomAdapter gnew = (CustomAdapter) parent.getAdapter();
                     gnew.notifyDataSetChanged();
@@ -90,9 +105,9 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                     //adapter.UpdateGame(game);
                     //gv.setAdapter(adapter);
-//TURNO MAKINA
+                    //TURNO MAKINA
                     if(game.getState()==State.WHITE){
-                        System.out.println("ENTRO O KELOKE");
+                        System.out.println("ENTRO O KELOKE phone turn");
                         game.phoneTurn();
                         //MARCA OBJETIVOS PARA EL PLAYER
                         game.setObjectives(grid_dimension);
@@ -101,17 +116,30 @@ public class DesarrolloJuego extends AppCompatActivity {
                         gv.setAdapter(gnew);
 
                     }
+                    System.out.println("Salio del turno makina");
 
                     if(game.getState() == State.FINISHED){
+                        System.out.println("Entro en la condicion final");
                         game.getBoard().countAll(grid_dimension);
-                        if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
 
-                            Toast.makeText(DesarrolloJuego.this, "Has GANADO hijodela gran putA", Toast.LENGTH_SHORT).show();
+                        if(game.blockFinished()){
+                            makeToast(BLOCK);
+                        } else {
+                            if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
+                                makeToast(WIN);
+                            } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
+                                makeToast(LOSE);
+                            } else {
+                                makeToast(DRAW);
+                            }
                         }
-                        else{
-                            Toast.makeText(DesarrolloJuego.this, "Has PERDIDO de chillin", Toast.LENGTH_SHORT).show();
 
-                        }
+                        /*Controlar tiempo*/
+                        /*if(){
+                             Toast.makeText(DesarrolloJuego.this, R.string.final_tiempo, Toast.LENGTH_SHORT).show();
+                        }*/
+
+
                     }
 
 
@@ -161,6 +189,39 @@ public class DesarrolloJuego extends AppCompatActivity {
 
     private void updateAdapter(){
         Toast.makeText(this,String.valueOf(game.getBoard().getCountBlack()), Toast.LENGTH_LONG).show();
+
+    }
+
+    public void makeToast(int i){
+
+        Toast imageToast = new Toast(getBaseContext());
+        LinearLayout toastLayout = new LinearLayout(getBaseContext());
+        toastLayout.setOrientation(LinearLayout.HORIZONTAL);
+        ImageView image = new ImageView(getBaseContext());
+        TextView text = new TextView(getBaseContext());
+
+        if (i == BLOCK){
+
+            image.setImageResource(R.drawable.block_icon);
+            text.setText(R.string.bloqueo);
+        } else if (i == WIN){
+            image.setImageResource(R.drawable.like_icon);
+            text.setText(R.string.victoria);
+        } else if (i == LOSE){
+            image.setImageResource(R.drawable.dislike_icon);
+            text.setText(R.string.perdida);
+        } else if (i == DRAW){
+            image.setImageResource(R.drawable.balance_icon);
+            text.setText(R.string.empate);
+        } else if (i == TIMER){
+            image.setImageResource(R.drawable.chrono_icon);
+            text.setText(R.string.final_tiempo);
+        }
+        toastLayout.addView(image);
+        toastLayout.addView(text);
+        imageToast.setView(toastLayout);
+        imageToast.setDuration(Toast.LENGTH_SHORT);
+        imageToast.show();
 
 
     }

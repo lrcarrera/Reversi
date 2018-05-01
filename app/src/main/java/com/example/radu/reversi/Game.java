@@ -8,11 +8,15 @@ public class Game {
 
     private Board board;
     private State state;
+    private boolean white_play;
+    private boolean black_play;
 
     public Game(Board board) {
 
         this.board = board;
         this.state = State.BLACK;
+        this.white_play = true;
+        this.black_play = true;
     }
 
     public int stepsToOutOfBoard(Position position, Direction direction) {
@@ -42,6 +46,10 @@ public class Game {
         //AÑADIR CONTROL TIEMPO
        // if((board.getCountBlack() + board.getCountWhite()) == (board.size() * board.size()))
         return this.state == State.FINISHED;
+    }
+
+    public boolean blockFinished(){
+        return this.white_play == false && this.black_play == false;
     }
 
     public boolean isSame(State player, Position position) {
@@ -138,18 +146,34 @@ public class Game {
 
 
     private void changeTurn() {
-
-        //State st1 = State.BLACK;
         if (getState() == State.WHITE)
             //st1 = State.WHITE;
             setState(State.BLACK);
         else{
             setState(State.WHITE);
         }
+        //State st1 = State.BLACK;
         if (!canPlay(getState())){
-            this.state = State.FINISHED;
+            System.out.println("Entro en la condicion");
+            if (getState()  == State.WHITE){
+                white_play = false;
+                //setState(State.BLACK);
+                System.out.println("Puso white a false");
+            }
+            if (getState()  == State.BLACK){
+                black_play = false;
+                //setState(State.WHITE);
+                System.out.println("Puso black a false");
+            }
+            if(white_play == false && black_play == false){
+                System.out.println("Entro en los dos a false");
+                this.state = State.FINISHED;
+            }
+            if(board.getCountBlack() + board.getCountWhite() == (board.size() * board.size())){
+                System.out.println("Todas puestisimas ");
+                this.state = State.FINISHED;
+            }
         }
-
 
 
     }
@@ -178,6 +202,7 @@ public class Game {
         this.reverse(position, directions);
         this.changeTurn();
     }
+
     public boolean canPlayPosition(State player, Position position) {
         return (this.board.isEmpty(position) || this.board.isObjective(position)) && !allFalse(directionsOfReverse(player, position));
         //this.board.isBlack(position);
@@ -211,6 +236,8 @@ public class Game {
                 }
             }
         }
+        System.out.println("Llego al final");
+        this.changeTurn();
     }
 
 

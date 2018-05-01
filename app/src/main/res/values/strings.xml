@@ -46,6 +46,12 @@
     <string name="nova_paritda">Nova Partida</string>
     <string name="enviar_email">Enviar e-mail</string>
 
+    <!--- Resultados partinda -->
+    <string name="victoria">Ben fet, has guanyat!!</string>
+    <string name="perdida">Mala sort, has perdut!!</string>
+    <string name="empate">Vaja, heu empatat!!</string>
+    <string name="final_tiempo">Temps Esgotat</string>
+    <string name="bloqueo">Bloqueig... us heu quedat sense poder moure cap dels 2.</string>
 
 
 
