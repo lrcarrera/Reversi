@@ -43,8 +43,39 @@
 
     <GridView
         android:id="@+id/grid_custom"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:horizontalSpacing="@dimen/null_spacing"
+        android:verticalSpacing="@dimen/null_spacing"
         android:layout_below="@+id/text"/>
+        <!--android:stretchMode="columnWidth"
+        android:scaleType="centerCrop"-->
+
+    <!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/grid_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:horizontalSpacing="@dimen/null_spacing"
+        android:verticalSpacing="@dimen/null_spacing"
+        android:layout_below="@+id/text"
+        android:gravity="center"
+        android:stretchMode="columnWidth">
+    </GridView>-->
+
+
+
+    <!--<GridView
+        android:layout_below="@+id/game_in_progress"
+        android:id="@+id/game_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:scaleType="centerCrop">
+    </GridView>-->
+
 
 </RelativeLayout>

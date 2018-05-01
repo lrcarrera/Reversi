@@ -6,6 +6,7 @@
     <dimen name="text_size">27dp</dimen>
     <dimen name="text_size2">12dp</dimen>
     <dimen name="image_reverse_size">40dp</dimen>
+    <dimen name="null_spacing">0dp</dimen>
 
 
 

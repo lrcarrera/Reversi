@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imaginacion"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/exit_icon"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/green"/>
 
-</RelativeLayout>
+    <!--- Para que vaya en todas bien poner tanto en width como height
+            sie es 8 - 40 dp
+                   6 - 60 dp
+                   4 - 80 dp-->
+
+</LinearLayout>
