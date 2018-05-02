@@ -19,7 +19,6 @@ public class CustomAdapter extends BaseAdapter {
     private final Context context;
     private Game game;
     private int size;
-    private int number = 1;
     int BLOCK = 0;
     int WIN = 1;
     int LOSE = 2;
@@ -40,12 +39,13 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+
         return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -56,17 +56,24 @@ public class CustomAdapter extends BaseAdapter {
         int i,j;
         
         if (convertView == null) {
+            System.out.println("TOY AQUI");
             cell = new ImageButton(context);
             cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
             cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
             cell.setScaleType(ImageButton.ScaleType.FIT_XY);
             cell.setPadding(0, 0, 0, 0);
+
         } else {
+            System.out.println("O AKI");
             cell = (ImageButton) convertView;
+
         }
 
         i = position % size;
         j = position / size;
+
+        //this.game.getBoard().countAll(this.size);
+        System.out.println("DIME LAS POSITION I:"+String.valueOf(i)+"J:"+String.valueOf(j)+"POSITION=:"+String.valueOf(position));
 
 
 

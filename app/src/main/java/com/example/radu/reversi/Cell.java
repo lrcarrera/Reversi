@@ -1,6 +1,9 @@
 package com.example.radu.reversi;
 
-public class Cell {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Cell implements Parcelable{
     private static final String WHITE = "white";
     private static final String BLACK = "black";
     private static final String EMPTY = "";
@@ -52,4 +55,29 @@ public class Cell {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.state);
+    }
+
+    protected Cell(Parcel in) {
+        this.state = in.readString();
+    }
+
+    public static final Creator<Cell> CREATOR = new Creator<Cell>() {
+        @Override
+        public Cell createFromParcel(Parcel source) {
+            return new Cell(source);
+        }
+
+        @Override
+        public Cell[] newArray(int size) {
+            return new Cell[size];
+        }
+    };
 }

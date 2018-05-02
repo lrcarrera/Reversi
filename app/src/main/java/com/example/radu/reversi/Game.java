@@ -1,10 +1,12 @@
 package com.example.radu.reversi;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.Toast;
 
 import java.sql.SQLOutput;
 
-public class Game {
+public class Game implements Parcelable {
 
     private Board board;
     private State state;
@@ -278,4 +280,36 @@ public class Game {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.board, flags);
+        dest.writeInt(this.state == null ? -1 : this.state.ordinal());
+        dest.writeByte(this.white_play ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.black_play ? (byte) 1 : (byte) 0);
+    }
+
+    protected Game(Parcel in) {
+        this.board = in.readParcelable(Board.class.getClassLoader());
+        int tmpState = in.readInt();
+        this.state = tmpState == -1 ? null : State.values()[tmpState];
+        this.white_play = in.readByte() != 0;
+        this.black_play = in.readByte() != 0;
+    }
+
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
+        @Override
+        public Game createFromParcel(Parcel source) {
+            return new Game(source);
+        }
+
+        @Override
+        public Game[] newArray(int size) {
+            return new Game[size];
+        }
+    };
 }

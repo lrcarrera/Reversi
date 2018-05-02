@@ -1,12 +1,17 @@
 package com.example.radu.reversi;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -14,38 +19,98 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class DesarrolloJuego extends AppCompatActivity {
 
-    Board board;
+    int timer;
     Game game;
-    State state;
-    GridView gv;
+    String alias;
+    int grid_dimension;
     CustomAdapter adapter;
+    Context c1;
+    GridView gv;
+    TextView et;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desarrollo_juego);
 
-        TextView et = (TextView) findViewById(R.id.text);
-        Intent in = getIntent();
-        int timer = in.getIntExtra("timer", 0 );
-        final int grid_dimension = in.getIntExtra("grid_dimension", 0 );
-        String alias = in.getStringExtra("alias");
-        et.setText(alias + "  " + timer + "  " + grid_dimension);
+        c1 = getApplicationContext();
+
+
+        et = (TextView) findViewById(R.id.text);
         gv  = (GridView) findViewById(R.id.grid_custom);
+
+
+        Intent in = getIntent();
+        timer = in.getIntExtra("timer", 0);
+        grid_dimension = in.getIntExtra("grid_dimension", 0);
+        alias = in.getStringExtra("alias");
+        et.setText(alias + "  " + timer + "  " + grid_dimension);
+
         gv.setNumColumns(grid_dimension);
 
-        board = new Board(grid_dimension);
+        Board board = new Board(grid_dimension);
         game = new Game(board);
-        state = State.BLACK;
+        State  state = State.BLACK;
 
-        adapter =  new CustomAdapter(this, game);
+        adapter = new CustomAdapter(getApplicationContext(), game);
         gv.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+
+
+
 
     }
-    
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        if (savedInstanceState != null) {
+
+            game = (Game) savedInstanceState.getParcelable("key");
+            timer = savedInstanceState.getInt("timer");
+            alias = savedInstanceState.getString("alias");
+            grid_dimension = savedInstanceState.getInt("grid");
+
+            et.setText(alias + " POLLAS " + timer + "  " + grid_dimension);
+
+            game.setState(State.BLACK);
+
+            //CustomAdapter adapter = (CustomAdapter) gvaux.getAdapter();
+
+
+            //g.getBoard().countAll(grid_dimension);
+            adapter = new CustomAdapter(this, game);
+            //gvaux.setAdapter(adapter);
+
+            //adapter.notifyDataSetChanged();
+
+            gv.setAdapter(adapter);
+
+        }
+
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("key", game);
+        outState.putInt("timer", timer);
+        outState.putString("alias", alias);
+        outState.putInt("grid", grid_dimension);
+
+
+    }
+
+
 
 }

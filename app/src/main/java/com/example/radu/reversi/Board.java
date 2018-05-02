@@ -1,6 +1,9 @@
 package com.example.radu.reversi;
 
-public class Board {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Board implements Parcelable{
     private int size;
     public Cell[][] cells;
     private int black;
@@ -136,4 +139,44 @@ public class Board {
         System.out.println("WHITE:"+getCountWhite()+"\nBLACK:"+getCountBlack()+"\nEMPTY"+empty+"\nOBJECTIVE"+objective);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.size);
+
+        for (int i = 0; i < this.size; i++){
+            dest.writeTypedArray(this.cells[i], 0);
+        }
+
+        dest.writeInt(this.black);
+        dest.writeInt(this.white);
+    }
+
+    protected Board(Parcel in) {
+        this.size = in.readInt();
+        //this.cells = in.readParcelable(Cell[][].class.getClassLoader());
+        this.black = in.readInt();
+        this.white = in.readInt();
+        this.cells = new Cell[this.size][];
+
+        for (int i = 0; i < this.size; i++){
+            this.cells[i] = in.createTypedArray(Cell.CREATOR);
+        }
+    }
+
+    public static final Parcelable.Creator<Board> CREATOR = new Creator<Board>() {
+        @Override
+        public Board createFromParcel(Parcel source) {
+            return new Board(source);
+        }
+
+        @Override
+        public Board[] newArray(int size) {
+            return new Board[size];
+        }
+    };
 }
