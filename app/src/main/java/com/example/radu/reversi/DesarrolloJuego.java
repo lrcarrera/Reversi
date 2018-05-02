@@ -1,6 +1,7 @@
 package com.example.radu.reversi;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -117,6 +118,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                     }
                     System.out.println("Salio del turno makina");
+                    //game.comprove();
 
                     if(game.getState() == State.FINISHED){
                         System.out.println("Entro en la condicion final");
@@ -170,6 +172,9 @@ public class DesarrolloJuego extends AppCompatActivity {
 
                     //gv.setAdapter(adapter);
                     //updateAdapter();
+                } else {
+                    /*No es una casilla valida, sonido incorrecto*/
+                    System.out.println("Casilla incorrecta puslada");
                 }
 
 
@@ -201,13 +206,17 @@ public class DesarrolloJuego extends AppCompatActivity {
         TextView text = new TextView(getBaseContext());
 
         if (i == BLOCK){
-
             image.setImageResource(R.drawable.block_icon);
             text.setText(R.string.bloqueo);
         } else if (i == WIN){
+            //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
+            //ring.start();
+            System.out.println("Salio del ring");
             image.setImageResource(R.drawable.like_icon);
             text.setText(R.string.victoria);
         } else if (i == LOSE){
+            //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
+            //ring.start();
             image.setImageResource(R.drawable.dislike_icon);
             text.setText(R.string.perdida);
         } else if (i == DRAW){

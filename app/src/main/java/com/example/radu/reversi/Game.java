@@ -153,6 +153,7 @@ public class Game {
             setState(State.WHITE);
         }
         //State st1 = State.BLACK;
+        //comprove();
         if (!canPlay(getState())){
             System.out.println("Entro en la condicion");
             if (getState()  == State.WHITE){
@@ -177,6 +178,31 @@ public class Game {
 
 
     }
+
+    /*public void comprove(){
+        if (!canPlay(getState())){
+            if(board.getCountBlack() + board.getCountWhite() == (board.size() * board.size())){
+                System.out.println("Todas puestisimas ");
+                this.state = State.FINISHED;
+            }
+        } else {
+            System.out.println("Entro en el if supremo");
+            if ((!canPlay(State.WHITE))){
+                white_play = false;
+                //setState(State.BLACK);
+                System.out.println("Puso white a false");
+            }
+            if ((!canPlay(State.BLACK))){
+                black_play = false;
+                //setState(State.WHITE);
+                System.out.println("Puso black a false");
+            }
+            if(white_play == false && black_play == false){
+                System.out.println("Entro en los dos a false");
+                this.state = State.FINISHED;
+            }
+        }
+    }*/
 
 
     public boolean isReverseDirection(State player, Position position, Direction direction) {
@@ -237,6 +263,7 @@ public class Game {
             }
         }
         System.out.println("Llego al final");
+        white_play = false;
         this.changeTurn();
     }
 
