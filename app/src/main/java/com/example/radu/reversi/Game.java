@@ -65,7 +65,11 @@ public class Game implements Parcelable {
     public boolean someSame(State player, Position position, Direction direction) {
         //return (isSame(player, position)) && !(!this.board.contains(position) || (this.board.isEmpty(position))) &&
         //        someSame(player, position.move(direction), direction);
-        return !(!this.board.contains(position) || (this.board.isEmpty(position) || this.board.isObjective(position))) && ((this.board.isBlack(position) && player.equals(State.BLACK)) || (this.board.isWhite(position) && player.equals(State.WHITE)) || someSame(player, position.move(direction), direction));
+        return !(!this.board.contains(position) ||
+                (this.board.isEmpty(position) || this.board.isObjective(position)))
+                && ((this.board.isBlack(position) && player.equals(State.BLACK))
+                || (this.board.isWhite(position) && player.equals(State.WHITE))
+                || someSame(player, position.move(direction), direction));
     }
 /*
     public boolean someSame(State player, Position position, Direction direction) {
@@ -257,6 +261,7 @@ public class Game implements Parcelable {
                 }
                 if(canPlayPosition(getState(), new Position(i,j))){
                     this.board.cells[i][j] = Cell.objective();
+                    countMoves(i, j);
                 }
             }
         }
@@ -278,6 +283,49 @@ public class Game implements Parcelable {
         /*  System.out.println("Llego al final");
         white_play = false;
         this.changeTurn();*/
+    }
+
+    public void countMoves(int i, int j){
+        Position p = new Position(i, j);
+        System.out.println("Lo puso como objetivo");
+        State state;
+        boolean[] directions = this.directionsOfReverse(getState(), new Position(i, j));
+        if (allFalse(directions)) {
+            return;
+        } else {
+            System.out.println("Hay alguna que no es false");
+            for (int z = 0; z < directions.length; z++) {
+                if (directions[z]) {
+                    System.out.println("Entro posicion" + i + "j es" + j);
+                    this.board.setTransform(new Position(i, j));
+                    System.out.println("Valor celda: " + this.board.getTransform(p));
+
+                   /* private void reverse(State player, Position position, Direction direction) {
+                        position = position.move(direction);
+                        if (player == State.WHITE){
+                            while (this.board.isBlack(position)) {
+                                this.board.reverse(position);
+                                position = position.move(direction);
+                            }
+                        } else {
+                            while (this.board.isWhite(position)) {
+                                this.board.reverse(position);
+                                position = position.move(direction);
+                            }
+                        }
+                    }
+
+                    private void reverse(Position position, boolean[] directions) {
+                        for (int i = 0; i < Direction.ALL.length; i++) {
+                            if (directions[i]) {
+                                reverse(getState(), position, Direction.ALL[i]);
+                            }
+                        }
+                    }*/
+
+                }
+            }
+        }
     }
 
 

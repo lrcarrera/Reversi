@@ -8,6 +8,7 @@ public class Cell implements Parcelable{
     private static final String BLACK = "black";
     private static final String EMPTY = "";
     private static final String OBJECTIVE = "objective";
+    private int tranform;
 
     private String state;
 
@@ -33,10 +34,18 @@ public class Cell implements Parcelable{
     public boolean isWhite(){ return this.state == WHITE; }
     public boolean isObjective(){ return this.state == OBJECTIVE; }
 
-    public void setBlack() { this.state = BLACK; }
+    public void setBlack() {
+        this.state = BLACK;
+        setTransform(0);
+    }
     public void setObjective() { this.state = OBJECTIVE; }
-    public void setWhite() { this.state = WHITE; }
+    public void setWhite() {
+        this.state = WHITE;
+        setTransform(0);
+    }
     public void setEmpty() { this.state = EMPTY; }
+    public void setTransform(int tranform){ this.tranform = tranform;}
+    public int getTranform(){return this.tranform;}
 
 
 

@@ -54,7 +54,7 @@ public class Configuracio extends AppCompatActivity {
                 bundle.putString("alias", alias.getText().toString());
                 in.putExtras(bundle);
                 startActivity(in);
-                finish();
+                //finish();
             }
         });
     }

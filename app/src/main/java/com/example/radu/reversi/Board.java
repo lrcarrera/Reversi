@@ -47,10 +47,7 @@ public class Board implements Parcelable{
 
     public void inicialMiddle(){
 
-        cells[this.size/2-2][this.size/2-1] = Cell.objective();
-        cells[this.size/2+1][this.size/2] = Cell.objective();
-        cells[this.size/2-1][this.size/2-2] = Cell.objective();
-        cells[this.size/2][this.size/2+1] = Cell.objective();
+        initialObjectives();
 
 
         cells[(this.size / 2) - 1][(this.size / 2) - 1] = Cell.white();
@@ -61,6 +58,25 @@ public class Board implements Parcelable{
         black += 2;
         white += 2;
 
+    }
+
+    public void initialObjectives(){
+        cells[this.size/2-2][this.size/2-1] = Cell.objective();
+        cells[this.size/2-2][this.size/2-1].setTransform(1);
+        cells[this.size/2+1][this.size/2] = Cell.objective();
+        cells[this.size/2+1][this.size/2].setTransform(1);
+        cells[this.size/2-1][this.size/2-2] = Cell.objective();
+        cells[this.size/2-1][this.size/2-2].setTransform(1);
+        cells[this.size/2][this.size/2+1] = Cell.objective();
+        cells[this.size/2][this.size/2+1].setTransform(1);
+    }
+
+    public int getTransform(Position p){
+        return cells[p.getColumn()][p.getRow()].getTranform();
+    }
+
+    public void setTransform(Position p){
+        cells[p.getColumn()][p.getRow()].setTransform(cells[p.getColumn()][p.getRow()].getTranform() + 1);
     }
 
     public boolean contains(Position p) {
