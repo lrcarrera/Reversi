@@ -1,6 +1,7 @@
 package com.example.radu.reversi;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -54,26 +55,43 @@ public class CustomAdapter extends BaseAdapter {
 
         ImageButton cell;
         int i,j;
+
+        this.game.getBoard().countAll(this.size);
         
         if (convertView == null) {
-            System.out.println("TOY AQUI");
             cell = new ImageButton(context);
+
+
             cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
             cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
             cell.setScaleType(ImageButton.ScaleType.FIT_XY);
             cell.setPadding(0, 0, 0, 0);
 
-        } else {
-            System.out.println("O AKI");
-            cell = (ImageButton) convertView;
 
+
+
+
+        } else {
+            cell = (ImageButton) convertView;
+           /* cell.setLayoutParams(new GridView.LayoutParams((parent.getWidth() / game.getBoard().size()) - 5, (parent.getWidth() / game.getBoard().size()) - 5 ));
+
+            float q = (float) 0.4;
+            cell.setScaleX(q);
+            cell.setScaleY(q);
+            cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+            cell.setPadding(0, 0, 0, 0);*/
+
+        }
+
+        if(DesarrolloJuego.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            System.out.println("DIME ALGO HIJOPUTA");
         }
 
         i = position % size;
         j = position / size;
 
-        //this.game.getBoard().countAll(this.size);
-        System.out.println("DIME LAS POSITION I:"+String.valueOf(i)+"J:"+String.valueOf(j)+"POSITION=:"+String.valueOf(position));
+
 
 
 
