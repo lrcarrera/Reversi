@@ -299,6 +299,7 @@ public class Game implements Parcelable {
                     System.out.println("Entro posicion" + i + "j es" + j);
                     this.board.setTransform(new Position(i, j));
                     System.out.println("Valor celda: " + this.board.getTransform(p));
+                    //countInterval(new Position(i,j), directions);
 
                    /* private void reverse(State player, Position position, Direction direction) {
                         position = position.move(direction);
@@ -327,6 +328,56 @@ public class Game implements Parcelable {
             }
         }
     }
+
+   /* private void countInterval(Position position, boolean[] directions){
+        for (int i = 0; i < Direction.ALL.length; i++) {
+            if (directions[i]) {
+                partialInterval(getState(), position, Direction.ALL[i]);
+            }
+        }
+    }*/
+
+   /* private void partialInterval(State player, Position position, Direction direction){
+        /*boolean[] directions = this.directionsOfReverse(getState(), position);
+        if (allFalse(directions)) {
+            return;
+        }
+        System.out.println("ENTRO O KELOKE");
+
+        this.disk(getState(), position);
+        this.reverse(position, directions);
+        this.changeTurn();
+        position = new Position(direction.getRow(), direction.getColumn());
+        boolean[] directions = this.directionsOfReverse(getState(), position);
+        if (allFalse(directions)) {
+            return;
+        }/* else {
+            System.out.println("Hay alguna que no es false");
+            for (int z = 0; z < directions.length; z++) {
+                if (directions[z]) {
+                    System.out.println("Entro posicion" + direction.getRow() + "j es" + direction.getColumn());
+                    //this.board.setTransform(position);
+                    //System.out.println("Valor celda: " + this.board.getTransform(p));
+                    //countInterval(position, directions);
+                }
+            }
+        }
+        if (player == State.WHITE && this.board.isBlack(position)){
+            /*while (this.board.isBlack(position)) {
+                /*this.board.reverse(position);
+                position = position.move(direction);
+                this.board.setTransform(position);
+            }
+            this.board.setTransform(position);
+        } else if (player == State.BLACK && this.board.isWhite(position)){
+            /*while (this.board.isWhite(position)) {
+               /* this.board.reverse(position);
+                position = position.move(direction);
+                this.board.setTransform(position);
+            }
+            this.board.setTransform(position);
+        }
+    }*/
 
 
     @Override
