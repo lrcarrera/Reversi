@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 public class CustomAdapter extends BaseAdapter {
     private final Context context;
     private Game game;
@@ -25,6 +27,7 @@ public class CustomAdapter extends BaseAdapter {
     int LOSE = 2;
     int DRAW = 3;
     int TIMER = 4;
+    int MULTIPLAYER = 1;
 
     public CustomAdapter (Context c, Game game){
         this.context = c;
@@ -157,24 +160,23 @@ public class CustomAdapter extends BaseAdapter {
                         game.move(new Position(i,j));
                         game.setObjectives(size);
                         game.getBoard().countAll(size);
+                        notifyDataSetChanged();
+                        /*try{
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch(InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                        }*/
                     }
-
-                    //MARCA OBJETIVOS PARA LA MAQUINA
-                    /*game.setObjectives(grid_dimension);
-                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
-
-                    game.getBoard().countAll(grid_dimension);*/
-
-                    //CustomAdapter gnew = (CustomAdapter) parent.getAdapter();
-                    notifyDataSetChanged();
-                    //gv.setAdapter(gnew);
-
-                    //adapter.UpdateGame(game);
-                    //gv.setAdapter(adapter);
                     //TURNO MAKINA
                     if(game.getState()==State.WHITE){
+
                         System.out.println("ENTRO O KELOKE phone turn");
-                        game.phoneTurn();
+                        if(MULTIPLAYER != 0){
+                            game.phoneTurn();
+                        } else {
+                            game.move(new Position(i,j));
+                        }
+                        //game.phoneTurn();
                         //MARCA OBJETIVOS PARA EL PLAYER
                         game.setObjectives(size);
 

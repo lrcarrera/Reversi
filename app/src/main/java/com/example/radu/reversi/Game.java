@@ -2,9 +2,12 @@ package com.example.radu.reversi;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.CalendarContract;
 import android.widget.Toast;
 
 import java.sql.SQLOutput;
+
+import javax.xml.transform.Source;
 
 public class Game implements Parcelable {
 
@@ -12,6 +15,7 @@ public class Game implements Parcelable {
     private State state;
     private boolean white_play;
     private boolean black_play;
+    private int multiplayer = 1;
 
     public Game(Board board) {
 
@@ -152,74 +156,26 @@ public class Game implements Parcelable {
 
 
     private void changeTurn() {
-        if (getState() == State.WHITE)
-            //st1 = State.WHITE;
+        if (getState() == State.WHITE) {
             setState(State.BLACK);
-        else{
+        }else{
             setState(State.WHITE);
         }
-        //State st1 = State.BLACK;
-        //comprove();
 
         if (!canPlay(State.BLACK) && !canPlay(State.WHITE)) {
             setState(State.FINISHED);
             return;
         }
+
         if (!canPlay(getState()))
             changeTurn();
 
-        if (getState() == State.WHITE)
+        if (getState() == State.WHITE && multiplayer != 0)
             phoneTurn();
 
-        /*if (!canPlay(getState())){
-            System.out.println("Entro en la condicion");
-            if (getState()  == State.WHITE){
-                white_play = false;
-                //setState(State.BLACK);
-                System.out.println("Puso white a false");
-            }
-            if (getState()  == State.BLACK){
-                black_play = false;
-                //setState(State.WHITE);
-                System.out.println("Puso black a false");
-            }
-            if(white_play == false && black_play == false){
-                System.out.println("Entro en los dos a false");
-                this.state = State.FINISHED;
-            }
-            if(board.getCountBlack() + board.getCountWhite() == (board.size() * board.size())){
-                System.out.println("Todas puestisimas ");
-                this.state = State.FINISHED;
-            }
-        }*/
 
 
     }
-
-    /*public void comprove(){
-        if (!canPlay(getState())){
-            if(board.getCountBlack() + board.getCountWhite() == (board.size() * board.size())){
-                System.out.println("Todas puestisimas ");
-                this.state = State.FINISHED;
-            }
-        } else {
-            System.out.println("Entro en el if supremo");
-            if ((!canPlay(State.WHITE))){
-                white_play = false;
-                //setState(State.BLACK);
-                System.out.println("Puso white a false");
-            }
-            if ((!canPlay(State.BLACK))){
-                black_play = false;
-                //setState(State.WHITE);
-                System.out.println("Puso black a false");
-            }
-            if(white_play == false && black_play == false){
-                System.out.println("Entro en los dos a false");
-                this.state = State.FINISHED;
-            }
-        }
-    }*/
 
 
     public boolean isReverseDirection(State player, Position position, Direction direction) {
@@ -230,7 +186,7 @@ public class Game implements Parcelable {
 
 
     public void move(Position position) {
-        if (/*!this.board.isEmpty(position) &&*/ !(this.board.isObjective(position) || this.board.isEmpty(position))) {
+        if (!(this.board.isObjective(position) || this.board.isEmpty(position))) {
             return;
         }
         System.out.println("ENTRO O KELOKE, STATE->"+getState().toString()+"POSITION COL:"+position.getColumn()+"ROW: "+position.getRow());
@@ -261,7 +217,7 @@ public class Game implements Parcelable {
                 }
                 if(canPlayPosition(getState(), new Position(i,j))){
                     this.board.cells[i][j] = Cell.objective();
-                    countMoves(i, j);
+                    countMoves(i, j, getState());
                 }
             }
         }
@@ -274,7 +230,7 @@ public class Game implements Parcelable {
             for (int z = 0; z < board.size(); z++) {
 
                 if (board.isObjective(new Position(x,z))){
-                    System.out.println("ENTRO O KELOKE PHONETURN");
+                    //System.out.println("ENTRO O KELOKE PHONETURN");
                     this.move(new Position(x, z));
                     return;
                 }
@@ -285,47 +241,59 @@ public class Game implements Parcelable {
         this.changeTurn();*/
     }
 
-    public void countMoves(int i, int j){
+    public void countMoves(int i, int j, State state){
         Position p = new Position(i, j);
-        System.out.println("Lo puso como objetivo");
-        State state;
-        boolean[] directions = this.directionsOfReverse(getState(), new Position(i, j));
+        // System.out.println("Lo puso como objetivo");
+        //State state;
+        boolean[] directions = this.directionsOfReverse(getState(), p);
         if (allFalse(directions)) {
             return;
         } else {
             System.out.println("Hay alguna que no es false");
-            for (int z = 0; z < directions.length; z++) {
+            for (int z = 0; z < Direction.ALL.length; z++) {
                 if (directions[z]) {
-                    System.out.println("Entro posicion" + i + "j es" + j);
-                    this.board.setTransform(new Position(i, j));
-                    System.out.println("Valor celda: " + this.board.getTransform(p));
-                    //countInterval(new Position(i,j), directions);
-
-                   /* private void reverse(State player, Position position, Direction direction) {
-                        position = position.move(direction);
-                        if (player == State.WHITE){
-                            while (this.board.isBlack(position)) {
-                                this.board.reverse(position);
-                                position = position.move(direction);
-                            }
-                        } else {
-                            while (this.board.isWhite(position)) {
-                                this.board.reverse(position);
-                                position = position.move(direction);
-                            }
-                        }
-                    }
-
-                    private void reverse(Position position, boolean[] directions) {
-                        for (int i = 0; i < Direction.ALL.length; i++) {
-                            if (directions[i]) {
-                                reverse(getState(), position, Direction.ALL[i]);
-                            }
-                        }
-                    }*/
-
+                    //this.board.setTransform(p);
+                    countSubMoves(p.move(Direction.ALL[z]), Direction.ALL[i], i, j);
                 }
             }
+
+            /*public int checkFitxesGirades(State estat, Position position){
+                boolean [] movimentsValids = directionsOfReverse(estat, position);
+                boolean[] result = new boolean[Direction.ALL.length];
+                int sumaTotal = 0;
+                for (int i = 0; i < movimentsValids.length; i++) {
+                    int suma = 0;
+                    if(movimentsValids[i]){
+                        suma = contarFitxes(position.move(Direction.ALL[i]), Direction.ALL[i], suma);
+                        sumaTotal+=suma;
+
+                    }
+                }
+                return sumaTotal;
+            }
+
+            public int contarFitxes(Position position, Direction direction, int suma){
+                if(this.board.isBlack(position) && state.equals(State.WHITE)){
+                    suma+=1;
+                    contarFitxes(position.move(direction), direction, suma);
+                }
+                return suma;
+            }*/
+
+        }
+    }
+
+    private void countSubMoves(Position p, Direction direction, int i, int j){
+        //System.out.println("Entro en el count Sub movees" + (this.board.isBlack(p)) + (getState() == State.WHITE) );
+        System.out.println("Estado: " + getState() + this.board.isBlack(p) + "posicion: " + p.getColumn() + p.getRow());
+        if(this.board.isBlack(p) && getState() == State.WHITE){
+            System.out.println("Estado white ficha negra");
+            this.board.setTransform(new Position(i,j));
+            countSubMoves(p.move(direction), direction, i, j);
+        } else if (this.board.isWhite(p) && getState() == State.BLACK){
+            System.out.println("Estado black ficha blanca");
+            this.board.setTransform(new Position(i,j));
+            countSubMoves(p.move(direction), direction, i, j);
         }
     }
 
@@ -337,47 +305,7 @@ public class Game implements Parcelable {
         }
     }*/
 
-   /* private void partialInterval(State player, Position position, Direction direction){
-        /*boolean[] directions = this.directionsOfReverse(getState(), position);
-        if (allFalse(directions)) {
-            return;
-        }
-        System.out.println("ENTRO O KELOKE");
 
-        this.disk(getState(), position);
-        this.reverse(position, directions);
-        this.changeTurn();
-        position = new Position(direction.getRow(), direction.getColumn());
-        boolean[] directions = this.directionsOfReverse(getState(), position);
-        if (allFalse(directions)) {
-            return;
-        }/* else {
-            System.out.println("Hay alguna que no es false");
-            for (int z = 0; z < directions.length; z++) {
-                if (directions[z]) {
-                    System.out.println("Entro posicion" + direction.getRow() + "j es" + direction.getColumn());
-                    //this.board.setTransform(position);
-                    //System.out.println("Valor celda: " + this.board.getTransform(p));
-                    //countInterval(position, directions);
-                }
-            }
-        }
-        if (player == State.WHITE && this.board.isBlack(position)){
-            /*while (this.board.isBlack(position)) {
-                /*this.board.reverse(position);
-                position = position.move(direction);
-                this.board.setTransform(position);
-            }
-            this.board.setTransform(position);
-        } else if (player == State.BLACK && this.board.isWhite(position)){
-            /*while (this.board.isWhite(position)) {
-               /* this.board.reverse(position);
-                position = position.move(direction);
-                this.board.setTransform(position);
-            }
-            this.board.setTransform(position);
-        }
-    }*/
 
 
     @Override
