@@ -211,7 +211,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         } else if (i == WIN){
             //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
             //ring.start();
-            System.out.println("Salio del ring");
+            //System.out.println("Salio del ring");
             image.setImageResource(R.drawable.like_icon);
             text.setText(R.string.victoria);
         } else if (i == LOSE){
