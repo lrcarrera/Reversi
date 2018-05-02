@@ -1,6 +1,7 @@
 package com.example.radu.reversi;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -84,7 +85,32 @@ public class CustomAdapter extends BaseAdapter {
         } else if (game.getBoard().isEmpty(new Position(i,j))){
             cell.setImageResource(R.drawable.green);
         } else if (game.getBoard().isObjective(new Position(i,j))){
-            cell.setImageResource(R.drawable.whitegreen);
+
+            if (game.getBoard().getTransform(new Position(i,j)) == 1){
+                cell.setImageResource(R.drawable.one_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 2){
+                cell.setImageResource(R.drawable.two_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 3){
+                cell.setImageResource(R.drawable.three_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 4){
+                cell.setImageResource(R.drawable.four_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 5){
+                cell.setImageResource(R.drawable.five_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 6){
+                cell.setImageResource(R.drawable.six_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 7){
+                cell.setImageResource(R.drawable.seven_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 8){
+                cell.setImageResource(R.drawable.eight_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 9){
+                cell.setImageResource(R.drawable.nine_icon);
+            } else if (game.getBoard().getTransform(new Position(i,j)) == 10){
+                cell.setImageResource(R.drawable.ten_icon);
+            } else {
+                    cell.setImageResource(R.drawable.whitegreen);
+            }
+
+
 
         }
 
@@ -128,7 +154,7 @@ public class CustomAdapter extends BaseAdapter {
                         game.phoneTurn();
                         //MARCA OBJETIVOS PARA EL PLAYER
                         game.setObjectives(size);
-
+                        /*Only for black state in easy mode*/
                         notifyDataSetChanged();
                        // gnew.notifyDataSetChanged();
                         //gv.setAdapter(gnew);
@@ -209,14 +235,14 @@ public class CustomAdapter extends BaseAdapter {
             image.setImageResource(R.drawable.block_icon);
             text.setText(R.string.bloqueo);
         } else if (i == WIN){
-            //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
-            //ring.start();
-            //System.out.println("Salio del ring");
+            MediaPlayer ring= MediaPlayer.create(context, R.raw.win_sound);
+            ring.start();
+            System.out.println("Salio del ring");
             image.setImageResource(R.drawable.like_icon);
             text.setText(R.string.victoria);
         } else if (i == LOSE){
-            //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
-            //ring.start();
+            MediaPlayer ring= MediaPlayer.create(context, R.raw.win_sound);
+            ring.start();
             image.setImageResource(R.drawable.dislike_icon);
             text.setText(R.string.perdida);
         } else if (i == DRAW){
