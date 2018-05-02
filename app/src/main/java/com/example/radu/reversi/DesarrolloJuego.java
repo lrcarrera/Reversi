@@ -34,7 +34,6 @@ public class DesarrolloJuego extends AppCompatActivity {
     Context c1;
     GridView gv;
     TextView et;
-    public static int orientation;
 
 
 
@@ -93,23 +92,6 @@ public class DesarrolloJuego extends AppCompatActivity {
             gv.setAdapter(adapter);
 
         }
-
-    }
-
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        Log.d("tag", "config changed");
-        super.onConfigurationChanged(newConfig);
-
-        orientation = newConfig.orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT)
-            Log.d("tag", "Portrait");
-        else if (orientation == Configuration.ORIENTATION_LANDSCAPE)
-            Log.d("tag", "Landscape");
-        else
-            Log.w("tag", "other: " + orientation);
 
     }
 

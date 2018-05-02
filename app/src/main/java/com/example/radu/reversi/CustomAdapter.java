@@ -62,10 +62,18 @@ public class CustomAdapter extends BaseAdapter {
             cell = new ImageButton(context);
 
 
-            cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
-            cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            cell.setScaleType(ImageButton.ScaleType.FIT_XY);
-            cell.setPadding(0, 0, 0, 0);
+            if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                //Do some stuff
+              //  cell.setLayoutParams(new GridView.LayoutParams((parent.getWidth()/2) / game.getBoard().size(), (parent.getWidth()/2) / game.getBoard().size()));
+               // cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
+               // cell.setPadding(0, 0, 0, 0);
+            } else{
+                cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
+                cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+                cell.setPadding(0, 0, 0, 0);
+
+            }
 
 
 
@@ -84,9 +92,9 @@ public class CustomAdapter extends BaseAdapter {
 
         }
 
-        if(DesarrolloJuego.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            System.out.println("DIME ALGO HIJOPUTA");
-        }
+
+
+
 
         i = position % size;
         j = position / size;
@@ -102,7 +110,30 @@ public class CustomAdapter extends BaseAdapter {
         } else if (game.getBoard().isEmpty(new Position(i,j))){
             cell.setImageResource(R.drawable.green);
         } else if (game.getBoard().isObjective(new Position(i,j))){
-            cell.setImageResource(R.drawable.whitegreen);
+
+            if(game.getBoard().getTransform(new Position(i,j))  == 1){
+                cell.setImageResource(R.drawable.one_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 2){
+                cell.setImageResource(R.drawable.two_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 3){
+                cell.setImageResource(R.drawable.three_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 4){
+                cell.setImageResource(R.drawable.four_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 5){
+                cell.setImageResource(R.drawable.five_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 6){
+                cell.setImageResource(R.drawable.six_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 7){
+                cell.setImageResource(R.drawable.seven_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 8){
+                cell.setImageResource(R.drawable.eight_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 9){
+                cell.setImageResource(R.drawable.nine_icon);
+            }else if(game.getBoard().getTransform(new Position(i,j))  == 10){
+                cell.setImageResource(R.drawable.ten_icon);
+            }else{
+                cell.setImageResource(R.drawable.whitegreen);
+            }
 
         }
 
