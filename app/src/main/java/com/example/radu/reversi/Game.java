@@ -157,9 +157,10 @@ public class Game implements Parcelable {
         //State st1 = State.BLACK;
         //comprove();
 
-        if (!canPlay(State.BLACK) && !canPlay(State.WHITE))
+        if (!canPlay(State.BLACK) && !canPlay(State.WHITE)) {
             setState(State.FINISHED);
-
+            return;
+        }
         if (!canPlay(getState()))
             changeTurn();
 

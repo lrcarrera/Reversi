@@ -141,7 +141,7 @@ public class CustomAdapter extends BaseAdapter {
                         System.out.println("Entro en la condicion final");
                         game.getBoard().countAll(size);
 
-                        if(game.blockFinished()){
+                        if((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()){
                             makeToast(BLOCK);
                         } else {
                             if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
