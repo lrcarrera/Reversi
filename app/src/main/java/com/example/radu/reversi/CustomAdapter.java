@@ -54,7 +54,7 @@ public class CustomAdapter extends BaseAdapter {
 
         ImageButton cell;
         int i,j;
-
+        
         if (convertView == null) {
             cell = new ImageButton(context);
             cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));

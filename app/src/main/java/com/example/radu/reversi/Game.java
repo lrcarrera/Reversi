@@ -154,7 +154,17 @@ public class Game {
         }
         //State st1 = State.BLACK;
         //comprove();
-        if (!canPlay(getState())){
+
+        if (!canPlay(State.BLACK) && !canPlay(State.WHITE))
+            setState(State.FINISHED);
+
+        if (!canPlay(getState()))
+            changeTurn();
+
+        if (getState() == State.WHITE)
+            phoneTurn();
+
+        /*if (!canPlay(getState())){
             System.out.println("Entro en la condicion");
             if (getState()  == State.WHITE){
                 white_play = false;
@@ -174,7 +184,7 @@ public class Game {
                 System.out.println("Todas puestisimas ");
                 this.state = State.FINISHED;
             }
-        }
+        }*/
 
 
     }
@@ -262,9 +272,9 @@ public class Game {
                 }
             }
         }
-        System.out.println("Llego al final");
+        /*  System.out.println("Llego al final");
         white_play = false;
-        this.changeTurn();
+        this.changeTurn();*/
     }
 
 
