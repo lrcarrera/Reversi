@@ -26,7 +26,9 @@ public class CustomAdapter extends BaseAdapter {
     private final Context context;
     private Game game;
     private int size;
-    private TextView et, tv;
+    private TextView et, tv, count;
+    private int timer, wayabu;
+
     int BLOCK = 0;
     int WIN = 1;
     int LOSE = 2;
@@ -34,12 +36,15 @@ public class CustomAdapter extends BaseAdapter {
     int TIMER = 4;
     int MULTIPLAYER = 1;
 
-    public CustomAdapter (Context c, Game game, TextView et, TextView tv){
+    public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
         this.context = c;
         this.tv = tv;
         this.et = et;
+        this.count = count;
         this.game = game;
+        this.timer = timer;
         this.size = game.getBoard().size();
+        this.wayabu=0;
     }
 
     @Override
@@ -169,7 +174,9 @@ public class CustomAdapter extends BaseAdapter {
 
 
                 if(game.getBoard().isObjective(new Position(i,j))){
-
+                    if(timer == 1){
+                        countTime();
+                    }
 
                     // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
                     if(game.getState()==State.BLACK){
@@ -241,6 +248,11 @@ public class CustomAdapter extends BaseAdapter {
             }
         });
         return cell;
+    }
+
+    public void countTime(){
+        wayabu++;
+        count.setText(Integer.valueOf(wayabu).toString());
     }
 
     public  void updateNumbers(){

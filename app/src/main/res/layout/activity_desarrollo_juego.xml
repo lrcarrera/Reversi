@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/timer"
                 android:layout_marginRight="@dimen/margin_left"
-                android:text="Verga"
+                android:text="@string/empty"
                 android:textStyle="bold"/>
 
 

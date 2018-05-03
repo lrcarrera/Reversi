@@ -35,6 +35,7 @@ public class DesarrolloJuego extends AppCompatActivity {
     GridView gv;
     TextView et;
     TextView tv;
+    TextView count;
 
 
 
@@ -52,6 +53,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         et = (TextView) findViewById(R.id.text);
         gv  = (GridView) findViewById(R.id.grid_custom);
         tv = (TextView) findViewById(R.id.text_fichas);
+        count = (TextView) findViewById(R.id.timer_text);
 
         Intent in = getIntent();
         timer = in.getIntExtra("timer", 0);
@@ -66,7 +68,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         game = new Game(board);
         State  state = State.BLACK;
 
-        adapter = new CustomAdapter(getApplicationContext(), game, et, tv);
+        adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count);
         gv.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
 
@@ -91,7 +93,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
 
             //g.getBoard().countAll(grid_dimension);
-            adapter = new CustomAdapter(this, game, et,tv);
+            adapter = new CustomAdapter(this, game, et, tv, timer, count);
             //gvaux.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
             gv.setAdapter(adapter);
