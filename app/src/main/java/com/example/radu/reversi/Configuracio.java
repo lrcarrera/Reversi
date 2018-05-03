@@ -1,15 +1,19 @@
 package com.example.radu.reversi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Configuracio extends AppCompatActivity {
@@ -50,12 +54,37 @@ public class Configuracio extends AppCompatActivity {
             public void onClick(View v) {
                 int selected_id = radio_group.getCheckedRadioButtonId();
                 int grid_dimension = getDimensionById(selected_id);
+                String txt = alias.getText().toString();
 
-                bundle.putInt("timer", timer_checked);
-                bundle.putInt("grid_dimension", grid_dimension);
-                bundle.putString("alias", alias.getText().toString());
-                in.putExtras(bundle);
-                startActivity(in);
+                LinearLayout toastLayout = new LinearLayout(getApplicationContext());
+                toastLayout.setBackgroundColor(Color.RED);
+                toastLayout.setOrientation(LinearLayout.HORIZONTAL);
+                Toast toast = new Toast(getApplicationContext());
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 250);
+                TextView text = new TextView(getApplicationContext());
+                text.setTextColor(Color.WHITE);
+
+                if(txt.equals("")){
+                    text.setText(R.string.falta_alias);
+                    toastLayout.addView(text);
+                    toast.setView(toastLayout);
+                    toast.show();
+
+                }else if(grid_dimension == 0){
+
+                    text.setText(R.string.falta_dimension);
+                    toastLayout.addView(text);
+                    toast.setView(toastLayout);
+                    toast.show();
+
+                }else {
+                    bundle.putInt("timer", timer_checked);
+                    bundle.putInt("grid_dimension", grid_dimension);
+                    bundle.putString("alias", txt);
+                    in.putExtras(bundle);
+                    startActivity(in);
+                }
                 //finish();
             }
         });
@@ -71,11 +100,14 @@ public class Configuracio extends AppCompatActivity {
     }
 */
     public int getDimensionById(int selected) {
-        int returner = 8;
+        System.out.println("TUSMUERTOS"+selected);
+        int returner = 0;
         if (selected == 2){
             returner = 6;
         } else if (selected == 3){
             returner = 4;
+        }else if (selected == 1){
+            returner = 8;
         }
         return returner;
     }
