@@ -93,10 +93,13 @@ public class DesarrolloJuego extends AppCompatActivity {
 
 
             //g.getBoard().countAll(grid_dimension);
+            //gv.setColumnWidth(30);;
             adapter = new CustomAdapter(this, game, et, tv, timer, count);
             //gvaux.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
             gv.setAdapter(adapter);
+
+            System.out.println("MAMAPULA"+gv.getColumnWidth());
 
         }
 

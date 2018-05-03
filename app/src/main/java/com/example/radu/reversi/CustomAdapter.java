@@ -78,35 +78,28 @@ public class CustomAdapter extends BaseAdapter {
         ImageButton cell;
         int i,j;
 
-        this.game.getBoard().countAll(this.size);
 
         i = position % size;
         j = position / size;
+
+       // int dim = parent.getWidth()/size;
         
         if (convertView == null) {
             cell = new ImageButton(context);
 
-
-            if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                //Do some stuff
-              //  cell.setLayoutParams(new GridView.LayoutParams((parent.getWidth()/2) / game.getBoard().size(), (parent.getWidth()/2) / game.getBoard().size()));
-               // cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
-               // cell.setPadding(0, 0, 0, 0);
-
-
-                System.out.println("CUANTO ES WIDTH:"+parent.getWidth()+"HEIGH:"+parent.getHeight());
+           /* if(context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
                 cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / (game.getBoard().size()*2), parent.getWidth() / (game.getBoard().size()*2)));
-                cell.setScaleType(ImageButton.ScaleType.FIT_XY);
-                cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                cell.setPadding(0, 0, 0, 0);
-            } else{
-                cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
+            }else{*/
 
-                cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                cell.setScaleType(ImageButton.ScaleType.FIT_XY);
-                cell.setPadding(0, 0, 0, 0);
 
-            }
+            //}
+
+            cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / size, parent.getWidth() / size));
+            cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+            cell.setPadding(0, 0, 0, 0);
+
+
 
 
 
@@ -114,26 +107,9 @@ public class CustomAdapter extends BaseAdapter {
 
         } else {
             cell = (ImageButton) convertView;
-           /* cell.setLayoutParams(new GridView.LayoutParams((parent.getWidth() / game.getBoard().size()) - 5, (parent.getWidth() / game.getBoard().size()) - 5 ));
 
-            float q = (float) 0.4;
-            cell.setScaleX(q);
-            cell.setScaleY(q);
-            cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            cell.setScaleType(ImageButton.ScaleType.FIT_XY);
-            cell.setPadding(0, 0, 0, 0);*/
 
         }
-
-
-
-
-
-
-
-
-
-
 
         if (game.getBoard().isBlack(new Position(i,j))){
             cell.setImageResource(R.drawable.black);
