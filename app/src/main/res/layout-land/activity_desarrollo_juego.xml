@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DesarrolloJuego">
+    android:layout_height="match_parent">
 
 
 
@@ -14,8 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/DarkSeaGreen"
-        android:orientation="horizontal">
+        android:background="@color/DarkSeaGreen">
 
         <ImageView
             android:id="@+id/image_game"
@@ -35,12 +32,12 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-
     <LinearLayout
-        android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="310dp"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/text"
@@ -49,16 +46,28 @@
             android:layout_marginTop="50dp"
             android:text="Lo estamos viendo" />
 
-        <GridView
-            android:id="@+id/grid_custom"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="60dp"
+        <TextView
+            android:id="@+id/text_fichas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/grid_custom"
+            android:text="PULA" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <GridView
+            android:id="@+id/grid_custom"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:verticalSpacing="0dp"
             android:horizontalSpacing="0dp"
-            />
+            android:stretchMode="columnWidth"/>
 
     </LinearLayout>
 
