@@ -35,6 +35,7 @@
 
     <!--- Desarrollo Juego -->
     <string name="partida">Partida</string>
+    <string name="info_caselles">Tu: \'%s\'  Oponent: \'%s\' Caselles Pendents: \'%s\' </string>
 
     <!--- Resultados Juego -->
     <string name="resultados">Resultat</string>

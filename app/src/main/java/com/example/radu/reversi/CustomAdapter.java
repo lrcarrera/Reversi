@@ -1,9 +1,12 @@
 package com.example.radu.reversi;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ public class CustomAdapter extends BaseAdapter {
     private final Context context;
     private Game game;
     private int size;
+    private TextView tv;
     int BLOCK = 0;
     int WIN = 1;
     int LOSE = 2;
@@ -30,8 +34,9 @@ public class CustomAdapter extends BaseAdapter {
     int TIMER = 4;
     int MULTIPLAYER = 1;
 
-    public CustomAdapter (Context c, Game game){
+    public CustomAdapter (Context c, Game game, TextView tv){
         this.context = c;
+        this.tv = tv;
         this.game = game;
         this.size = game.getBoard().size();
     }
@@ -170,7 +175,7 @@ public class CustomAdapter extends BaseAdapter {
                         System.out.println("ENTRO EN EL BLACK");
                         game.move(new Position(i,j));
                         game.setObjectives(size);
-                        game.getBoard().countAll(size);
+                        //game.getBoard().countAll(size);
                         notifyDataSetChanged();
                         /*try{
                             TimeUnit.SECONDS.sleep(2);
@@ -198,6 +203,11 @@ public class CustomAdapter extends BaseAdapter {
                     }
                     System.out.println("Salio del turno makina");
                     //game.comprove();
+                    updateNumbers();
+                    /*if(context.getApplicationContext() instanceof DesarrolloJuego){
+                        System.out.println("Entro en mi verga iff");
+                        ((DesarrolloJuego) context).updateNumbers(game);
+                    }*/
 
                     if(game.getState() == State.FINISHED){
                         System.out.println("Entro en la condicion final");
@@ -222,48 +232,37 @@ public class CustomAdapter extends BaseAdapter {
 
 
                     }
-
-
-
-
-/*
-                    if(game.getBoard().isObjective(new Position(0, 1))){
-                        System.out.println("objetivo MECAGOENTODO\n\n\n");
-
-                    }else{
-                        System.out.println("ALFINNNN");
-                    }
-*/
-
-
-                    // System.out.println("Llego y salio del phonwTurn");
-
-                   /* for (int x = 0; x < grid_dimension; x++){
-                        for (int y = 0; y < grid_dimension; y++){
-                            game.getBoard().getCountBlack();
-                            game.getBoard().getCountWhite();
-                        }
-                    })*/
-
-                    //adapter.notifyDataSetChanged();
-
-                    //adapter.UpdateGame(game);
-
-                    //gv.setAdapter(adapter);
-                    //updateAdapter();
                 } else {
                     /*No es una casilla valida, sonido incorrecto*/
                     System.out.println("Casilla incorrecta puslada");
                 }
+
             }
         });
         return cell;
     }
+
+    public  void updateNumbers(){
+        System.out.println("ENtro en la casaaaaaa");
+        String message;
+        int toFill = (game.getBoard().size() * game.getBoard().size()) -
+                (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
+        message = String.format(context.getString(R.string.info_caselles),
+                Integer.valueOf(game.getBoard().getCountBlack()).toString(),
+                Integer.valueOf(game.getBoard().getCountWhite()).toString(),
+                Integer.valueOf(toFill).toString());
+
+        tv.setText(message);
+    }
+
+
     public void makeToast(int i){
 
         Toast imageToast = new Toast(context);
+        imageToast.setGravity(Gravity.CENTER, 0, 0);
         LinearLayout toastLayout = new LinearLayout(context);
         toastLayout.setOrientation(LinearLayout.HORIZONTAL);
+        toastLayout.setBackgroundColor(Color.WHITE);
         ImageView image = new ImageView(context);
         TextView text = new TextView(context);
 
@@ -291,9 +290,8 @@ public class CustomAdapter extends BaseAdapter {
         toastLayout.addView(image);
         toastLayout.addView(text);
         imageToast.setView(toastLayout);
-        imageToast.setDuration(Toast.LENGTH_SHORT);
+        imageToast.setDuration(Toast.LENGTH_LONG);
         imageToast.show();
-
 
     }
 /*
