@@ -18,9 +18,9 @@
         </activity>
         <activity android:name=".Ayuda" />
         <activity android:name=".Configuracio" />
-        <activity android:name=".DesarrolloJuego"/>
-
-        <activity android:name=".Resultados"></activity>
+        <activity android:name=".DesarrolloJuego" />
+        <activity android:name=".Resultados" />
+        <activity android:name=".PlayMode"></activity>
     </application>
 
 </manifest>

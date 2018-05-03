@@ -32,6 +32,7 @@ public class Configuracio extends AppCompatActivity {
 
 
         bundle = new Bundle();
+        final Intent auxIn = getIntent();
         final Intent in = new Intent(this, DesarrolloJuego.class);
         final RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_buttons);
         final EditText alias = (EditText) findViewById(R.id.edit_text);
@@ -82,6 +83,13 @@ public class Configuracio extends AppCompatActivity {
                     bundle.putInt("timer", timer_checked);
                     bundle.putInt("grid_dimension", grid_dimension);
                     bundle.putString("alias", txt);
+                    if (auxIn.getStringExtra("playMode").equals("MULTYPLAYER")){
+                        System.out.println("Puso multyPlayer");
+                        bundle.putString("playMode", auxIn.getStringExtra("playMode") );
+                    } else {
+                        System.out.println("Puso individual");
+                        bundle.putString("playMode", auxIn.getStringExtra("playMode") );
+                    }
                     in.putExtras(bundle);
                     startActivity(in);
                 }

@@ -43,7 +43,7 @@ public class CustomAdapter extends BaseAdapter {
     int DRAW = 3;
     int TEMPUS = 4;
     int GAMEDURATION = 25;
-    int MULTIPLAYER = 1;
+    int SECONDINMILISECONDS=1000;
 
     public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
         this.context = c;
@@ -112,39 +112,7 @@ public class CustomAdapter extends BaseAdapter {
 
         }
 
-        if (game.getBoard().isBlack(new Position(i,j))){
-            cell.setImageResource(R.drawable.black);
-        } else if (game.getBoard().isWhite(new Position(i,j))){
-            cell.setImageResource(R.drawable.white);
-        } else if (game.getBoard().isEmpty(new Position(i,j))){
-            cell.setImageResource(R.drawable.green);
-        } else if (game.getBoard().isObjective(new Position(i,j))){
-
-            if(game.getBoard().getTransform(new Position(i,j))  == 1){
-                cell.setImageResource(R.drawable.one_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 2){
-                cell.setImageResource(R.drawable.two_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 3){
-                cell.setImageResource(R.drawable.three_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 4){
-                cell.setImageResource(R.drawable.four_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 5){
-                cell.setImageResource(R.drawable.five_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 6){
-                cell.setImageResource(R.drawable.six_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 7){
-                cell.setImageResource(R.drawable.seven_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 8){
-                cell.setImageResource(R.drawable.eight_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 9){
-                cell.setImageResource(R.drawable.nine_icon);
-            }else if(game.getBoard().getTransform(new Position(i,j))  == 10){
-                cell.setImageResource(R.drawable.ten_icon);
-            }else{
-                cell.setImageResource(R.drawable.whitegreen);
-            }
-
-        }
+        changeCellImage(cell, new Position(i, j));
 
         cell.setTag(position);
 
@@ -158,55 +126,7 @@ public class CustomAdapter extends BaseAdapter {
 
 
                 if(game.getBoard().isObjective(new Position(i,j))){
-                    if(timer == 1){
-                        countTime();
-                    }
-
-                    // System.out.println("CUANTASNEGRAS: "+ game.getBoard().getCountBlack());
-                    if(game.getState()==State.BLACK){
-                        System.out.println("ENTRO EN EL BLACK");
-                        game.move(new Position(i,j));
-                        game.setObjectives(size);
-                        //game.getBoard().countAll(size);
-                        notifyDataSetChanged();
-                        /*try{
-                            TimeUnit.SECONDS.sleep(2);
-                        } catch(InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }*/
-                    }
-                    //TURNO MAKINA
-                    if(game.getState()==State.WHITE){
-
-                        System.out.println("ENTRO O KELOKE phone turn");
-                        if(MULTIPLAYER != 0){
-                            game.phoneTurn();
-                        } else {
-                            game.move(new Position(i,j));
-                        }
-                        //game.phoneTurn();
-                        //MARCA OBJETIVOS PARA EL PLAYER
-                        game.setObjectives(size);
-
-                        notifyDataSetChanged();
-                       // gnew.notifyDataSetChanged();
-                        //gv.setAdapter(gnew);
-
-                    }
-                    if(game.getState() == State.FINISHED){
-                        System.out.println("Entro en la condicion final");
-                        //game.getBoard().countAll(size);
-
-                        finishToast();
-
-                        /*Controlar tiempo*/
-                        /*if(){
-                             Toast.makeText(DesarrolloJuego.this, R.string.final_tiempo, Toast.LENGTH_SHORT).show();
-                        }*/
-
-
-                    }
-                    updateNumbers();
+                    isObjectiveProcess(new Position(i,j));
                 } else {
                     /*No es una casilla valida, sonido incorrecto*/
                     System.out.println("Casilla incorrecta puslada");
@@ -217,11 +137,81 @@ public class CustomAdapter extends BaseAdapter {
         return cell;
     }
 
+    public void changeCellImage(ImageButton cell, Position p){
+        if (game.getBoard().isBlack(p)){
+            cell.setImageResource(R.drawable.black);
+        } else if (game.getBoard().isWhite(p)){
+            cell.setImageResource(R.drawable.white);
+        } else if (game.getBoard().isEmpty(p)){
+            cell.setImageResource(R.drawable.green);
+        } else if (game.getBoard().isObjective(p)){
+            if(game.getBoard().getTransform(p)  == 1){
+                cell.setImageResource(R.drawable.one_icon);
+            }else if(game.getBoard().getTransform(p)  == 2){
+                cell.setImageResource(R.drawable.two_icon);
+            }else if(game.getBoard().getTransform(p)  == 3){
+                cell.setImageResource(R.drawable.three_icon);
+            }else if(game.getBoard().getTransform(p)  == 4){
+                cell.setImageResource(R.drawable.four_icon);
+            }else if(game.getBoard().getTransform(p)  == 5){
+                cell.setImageResource(R.drawable.five_icon);
+            }else if(game.getBoard().getTransform(p)  == 6){
+                cell.setImageResource(R.drawable.six_icon);
+            }else if(game.getBoard().getTransform(p)  == 7){
+                cell.setImageResource(R.drawable.seven_icon);
+            }else if(game.getBoard().getTransform(p)  == 8){
+                cell.setImageResource(R.drawable.eight_icon);
+            }else if(game.getBoard().getTransform(p)  == 9){
+                cell.setImageResource(R.drawable.nine_icon);
+            }else if(game.getBoard().getTransform(p)  == 10){
+                cell.setImageResource(R.drawable.ten_icon);
+            }else{
+                cell.setImageResource(R.drawable.whitegreen);
+            }
+
+        }
+    }
+
+    public void isObjectiveProcess(Position p){
+        if(timer == 1){
+            countTime();
+        }
+
+        /*User Turn*/
+        if(game.getState()==State.BLACK){
+            game.move(p);
+            /* Mobile objectives set*/
+            game.setObjectives(size);
+            notifyDataSetChanged();
+
+        }
+
+        /*Mobile Turn*/
+        if(game.getState()==State.WHITE){
+
+            System.out.println("ENTRO O KELOKE phone turn");
+            if(game.getGameType() != GameType.MULTYPLAYER){
+                game.phoneTurn();
+            } else {
+                game.move(p);
+            }
+            /* Player objectives set */
+            game.setObjectives(size);
+            notifyDataSetChanged();
+
+        }
+        if(game.getState() == State.FINISHED){
+            System.out.println("Entro en la condicion final");
+            finishToast();
+        }
+        /* Updates the EditText's of the activity*/
+        updateNumbers();
+    }
+
     public void finishToast(){
         if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()) && GAMEDURATION != 0){
             makeToast(BLOCK);
         } else {
-            System.out.println("Entro en el toast");
             if (GAMEDURATION == BLOCK){
                 makeToast(TEMPUS);
             } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
@@ -235,23 +225,17 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void countTime(){
-        //wayabu++;
-        //count.setText(Integer.valueOf(wayabu).toString());
         startTimer();
-        timer= 0;
+        timer=0;
     }
 
     public void startTimer() {
-        //set a new Timer
         time = new Timer();
-        //initialize the TimerTask's job
         initializeTimerTask();
-        //schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
-        time.schedule(timerTask, 0, 1000); //
+        time.schedule(timerTask, 0, SECONDINMILISECONDS); //
     }
 
     public void stoptimertask(View v) {
-        //stop the timer, if it's not already null
         if (time != null) {
             time.cancel();
             time = null;
@@ -263,15 +247,20 @@ public class CustomAdapter extends BaseAdapter {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        GAMEDURATION--;
-                        count.setText(Integer.valueOf(GAMEDURATION).toString());
-                        count.setTextColor(Color.BLUE);
-                        if (GAMEDURATION == BLOCK){
-                            game.setState(State.FINISHED);
+                        if(game.getState() == State.FINISHED){
                             stoptimertask(count);
-                            finishToast();
-                            updateNumbers();
+                        } else{
+                            GAMEDURATION--;
+                            count.setText(Integer.valueOf(GAMEDURATION).toString());
+                            count.setTextColor(Color.BLUE);
+                            if (GAMEDURATION == BLOCK){
+                                game.setState(State.FINISHED);
+                                stoptimertask(count);
+                                finishToast();
+                                updateNumbers();
+                            }
                         }
+
                     }
                 });
             }
@@ -279,7 +268,6 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public  void updateNumbers(){
-        System.out.println("ENtro en la casaaaaaa");
         String numbers, state, auxiliar;
         int toFill = (game.getBoard().size() * game.getBoard().size()) -
                 (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
@@ -327,7 +315,6 @@ public class CustomAdapter extends BaseAdapter {
             image.setImageResource(R.drawable.balance_icon);
             text.setText(R.string.empate);
         } else if (i == TEMPUS){
-            System.out.println("Entro en el toast tiempo");
             image.setImageResource(R.drawable.chrono_icon);
             text.setText(R.string.final_tiempo);
         }

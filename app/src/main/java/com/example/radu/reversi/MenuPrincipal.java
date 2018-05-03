@@ -24,7 +24,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
 
         final Intent ajuda_in = new Intent(this, Ayuda.class);
-        final Intent partida_in = new Intent(this, Configuracio.class);
+        final Intent partida_in = new Intent(this, PlayMode.class);
 
         ajuda = (Button) findViewById(R.id.button_ajuda);
         ajuda.setOnClickListener(new View.OnClickListener() {
