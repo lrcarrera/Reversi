@@ -40,6 +40,8 @@ public class DesarrolloJuego extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getSupportActionBar().hide();
+
         setContentView(R.layout.activity_desarrollo_juego);
 
         c1 = getApplicationContext();
@@ -56,6 +58,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         et.setText(alias + "  " + timer + "  " + grid_dimension);
 
         gv.setNumColumns(grid_dimension);
+       // gv.setColumnWidth();
 
         Board board = new Board(grid_dimension);
         game = new Game(board);

@@ -7,6 +7,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -60,6 +61,9 @@ public class CustomAdapter extends BaseAdapter {
         int i,j;
 
         this.game.getBoard().countAll(this.size);
+
+        i = position % size;
+        j = position / size;
         
         if (convertView == null) {
             cell = new ImageButton(context);
@@ -70,8 +74,16 @@ public class CustomAdapter extends BaseAdapter {
               //  cell.setLayoutParams(new GridView.LayoutParams((parent.getWidth()/2) / game.getBoard().size(), (parent.getWidth()/2) / game.getBoard().size()));
                // cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
                // cell.setPadding(0, 0, 0, 0);
+
+
+                System.out.println("CUANTO ES WIDTH:"+parent.getWidth()+"HEIGH:"+parent.getHeight());
+                cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / (game.getBoard().size()*2), parent.getWidth() / (game.getBoard().size()*2)));
+                cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+                cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                cell.setPadding(0, 0, 0, 0);
             } else{
                 cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
+
                 cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 cell.setScaleType(ImageButton.ScaleType.FIT_XY);
                 cell.setPadding(0, 0, 0, 0);
@@ -99,8 +111,7 @@ public class CustomAdapter extends BaseAdapter {
 
 
 
-        i = position % size;
-        j = position / size;
+
 
 
 

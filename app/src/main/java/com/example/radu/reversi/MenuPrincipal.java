@@ -17,7 +17,8 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getSupportActionBar().hide();
+
         setContentView(R.layout.activity_menu_principal);
 
 
