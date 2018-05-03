@@ -89,6 +89,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
             et.setText(alias + " " + timer + "  " + grid_dimension);
 
+
             //CustomAdapter adapter = (CustomAdapter) gvaux.getAdapter();
 
 
