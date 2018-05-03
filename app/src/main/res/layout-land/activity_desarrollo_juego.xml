@@ -32,6 +32,8 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="310dp"
@@ -57,13 +59,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="44dp"
+        android:orientation="vertical">
 
         <GridView
             android:id="@+id/grid_custom"
-            android:layout_width="400dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:horizontalSpacing="0dp"

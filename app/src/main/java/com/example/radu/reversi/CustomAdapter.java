@@ -71,7 +71,6 @@ public class CustomAdapter extends BaseAdapter {
         ImageButton cell;
         int i,j;
 
-        this.game.getBoard().countAll(this.size);
 
         i = position % size;
         j = position / size;
@@ -81,18 +80,17 @@ public class CustomAdapter extends BaseAdapter {
         if (convertView == null) {
             cell = new ImageButton(context);
 
-            if(context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
+           /* if(context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
                 cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / (game.getBoard().size()*2), parent.getWidth() / (game.getBoard().size()*2)));
-            }else{
-                cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / game.getBoard().size(), parent.getWidth() / game.getBoard().size()));
+            }else{*/
 
 
-            }
+            //}
 
-
+            cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / size, parent.getWidth() / size));
             cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                cell.setScaleType(ImageButton.ScaleType.FIT_XY);
-                cell.setPadding(0, 0, 0, 0);
+            cell.setScaleType(ImageButton.ScaleType.FIT_XY);
+            cell.setPadding(0, 0, 0, 0);
 
 
 
