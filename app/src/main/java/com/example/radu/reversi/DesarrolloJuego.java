@@ -36,6 +36,8 @@ public class DesarrolloJuego extends AppCompatActivity {
     TextView et;
     TextView tv;
     TextView count;
+    GameType gameType;
+
 
 
 
@@ -59,13 +61,19 @@ public class DesarrolloJuego extends AppCompatActivity {
         timer = in.getIntExtra("timer", 0);
         grid_dimension = in.getIntExtra("grid_dimension", 0);
         alias = in.getStringExtra("alias");
-        //et.setText(alias + "  " + timer + "  " + grid_dimension);
+
+        String playMode = in.getStringExtra("playMode");
+        if (playMode.equals("MULTYPLAYER")){
+            gameType = GameType.MULTYPLAYER;
+        } else {
+            gameType = GameType.EASY;
+        }
 
         gv.setNumColumns(grid_dimension);
        // gv.setColumnWidth();
 
         Board board = new Board(grid_dimension);
-        game = new Game(board);
+        game = new Game(board, gameType);
         State  state = State.BLACK;
 
         adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count);

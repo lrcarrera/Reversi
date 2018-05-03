@@ -15,14 +15,16 @@ public class Game implements Parcelable {
     private State state;
     private boolean white_play;
     private boolean black_play;
-    private int multiplayer = 1;
+    //private int multiplayer = 1;
+    private GameType gameType;
 
-    public Game(Board board) {
+    public Game(Board board, GameType type) {
 
         this.board = board;
         this.state = State.BLACK;
         this.white_play = true;
         this.black_play = true;
+        this.gameType = type;
     }
 
     public int stepsToOutOfBoard(Position position, Direction direction) {
@@ -40,6 +42,10 @@ public class Game implements Parcelable {
 
     public void setState(State state){
         this.state = state;
+    }
+
+    public GameType getGameType(){
+        return this.gameType;
     }
 
 
@@ -170,7 +176,7 @@ public class Game implements Parcelable {
         if (!canPlay(getState()))
             changeTurn();
 
-        if (getState() == State.WHITE && multiplayer != 0)
+        if (getState() == State.WHITE && gameType != GameType.MULTYPLAYER)
             phoneTurn();
 
 

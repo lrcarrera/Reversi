@@ -61,5 +61,10 @@
     <string name="bloqueo">Bloqueig... us heu quedat sense poder moure cap dels 2.</string>
 
 
+    <!--- Play Mode -->
+    <string name="seleccion_dificultad">Selección Dificultad</string>
+    <string name="solitario"> Individual</string>
+    <string name="multijugador"> Multijugador</string>
+
 
 </resources>

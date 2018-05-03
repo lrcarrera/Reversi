@@ -44,7 +44,6 @@ public class CustomAdapter extends BaseAdapter {
     int TEMPUS = 4;
     int GAMEDURATION = 25;
     int SECONDINMILISECONDS=1000;
-    int MULTIPLAYER = 1;
 
     public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
         this.context = c;
@@ -191,7 +190,7 @@ public class CustomAdapter extends BaseAdapter {
         if(game.getState()==State.WHITE){
 
             System.out.println("ENTRO O KELOKE phone turn");
-            if(MULTIPLAYER != 0){
+            if(game.getGameType() != GameType.MULTYPLAYER){
                 game.phoneTurn();
             } else {
                 game.move(p);
