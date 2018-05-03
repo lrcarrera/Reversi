@@ -26,7 +26,7 @@ public class CustomAdapter extends BaseAdapter {
     private final Context context;
     private Game game;
     private int size;
-    private TextView tv;
+    private TextView et, tv;
     int BLOCK = 0;
     int WIN = 1;
     int LOSE = 2;
@@ -34,9 +34,10 @@ public class CustomAdapter extends BaseAdapter {
     int TIMER = 4;
     int MULTIPLAYER = 1;
 
-    public CustomAdapter (Context c, Game game, TextView tv){
+    public CustomAdapter (Context c, Game game, TextView et, TextView tv){
         this.context = c;
         this.tv = tv;
+        this.et = et;
         this.game = game;
         this.size = game.getBoard().size();
     }
@@ -244,15 +245,22 @@ public class CustomAdapter extends BaseAdapter {
 
     public  void updateNumbers(){
         System.out.println("ENtro en la casaaaaaa");
-        String message;
+        String numbers, state, auxiliar;
         int toFill = (game.getBoard().size() * game.getBoard().size()) -
                 (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
-        message = String.format(context.getString(R.string.info_caselles),
+        numbers = String.format(context.getString(R.string.info_caselles),
                 Integer.valueOf(game.getBoard().getCountBlack()).toString(),
                 Integer.valueOf(game.getBoard().getCountWhite()).toString(),
                 Integer.valueOf(toFill).toString());
 
-        tv.setText(message);
+        tv.setText(numbers);
+        if(game.getState() == State.FINISHED){
+            auxiliar = context.getString(R.string.finalitzada);
+        } else {
+            auxiliar = context.getString(R.string.en_marxa);
+        }
+        state = String.format(context.getString(R.string.estat), auxiliar);
+        et.setText(state);
     }
 
 
