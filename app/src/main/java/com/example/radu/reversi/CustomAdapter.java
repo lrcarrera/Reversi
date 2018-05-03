@@ -32,7 +32,7 @@ public class CustomAdapter extends BaseAdapter {
     private Game game;
     private int size;
     private TextView et, tv, count;
-    private int timer, aux;
+    private int timer;
     Timer time;
     TimerTask timerTask;
     final Handler handler = new Handler();
@@ -42,6 +42,7 @@ public class CustomAdapter extends BaseAdapter {
     int LOSE = 2;
     int DRAW = 3;
     int TEMPUS = 4;
+    int GAMEDURATION = 25;
     int MULTIPLAYER = 1;
 
     public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
@@ -192,31 +193,11 @@ public class CustomAdapter extends BaseAdapter {
                         //gv.setAdapter(gnew);
 
                     }
-                    System.out.println("Salio del turno makina");
-                    //game.comprove();
-                    updateNumbers();
-                    /*if(context.getApplicationContext() instanceof DesarrolloJuego){
-                        System.out.println("Entro en mi verga iff");
-                        ((DesarrolloJuego) context).updateNumbers(game);
-                    }*/
-
                     if(game.getState() == State.FINISHED){
                         System.out.println("Entro en la condicion final");
-                        game.getBoard().countAll(size);
+                        //game.getBoard().countAll(size);
 
-                        if((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()){
-                            makeToast(BLOCK);
-                        } else {
-                            if (aux == 25){
-                                makeToast(TEMPUS);
-                            } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
-                                makeToast(WIN);
-                            } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
-                                makeToast(LOSE);
-                            } else {
-                                makeToast(DRAW);
-                            }
-                        }
+                        finishToast();
 
                         /*Controlar tiempo*/
                         /*if(){
@@ -225,6 +206,7 @@ public class CustomAdapter extends BaseAdapter {
 
 
                     }
+                    updateNumbers();
                 } else {
                     /*No es una casilla valida, sonido incorrecto*/
                     System.out.println("Casilla incorrecta puslada");
@@ -233,6 +215,23 @@ public class CustomAdapter extends BaseAdapter {
             }
         });
         return cell;
+    }
+
+    public void finishToast(){
+        if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()) && GAMEDURATION != 0){
+            makeToast(BLOCK);
+        } else {
+            System.out.println("Entro en el toast");
+            if (GAMEDURATION == BLOCK){
+                makeToast(TEMPUS);
+            } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
+                makeToast(WIN);
+            } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
+                makeToast(LOSE);
+            } else {
+                makeToast(DRAW);
+            }
+        }
     }
 
     public void countTime(){
@@ -260,17 +259,18 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void initializeTimerTask() {
-        //final int aux = 0;
         timerTask = new TimerTask() {
             public void run() {
-                //use a handler to run a toast that shows the current timestamp
                 handler.post(new Runnable() {
                     public void run() {
-                        aux++;
-                        count.setText(Integer.valueOf(aux).toString());
-                        if (aux == 25){
+                        GAMEDURATION--;
+                        count.setText(Integer.valueOf(GAMEDURATION).toString());
+                        count.setTextColor(Color.BLUE);
+                        if (GAMEDURATION == BLOCK){
                             game.setState(State.FINISHED);
                             stoptimertask(count);
+                            finishToast();
+                            updateNumbers();
                         }
                     }
                 });
@@ -338,10 +338,6 @@ public class CustomAdapter extends BaseAdapter {
         imageToast.show();
 
     }
-/*
-    public void UpdateGame(Game game) {
-        this.game = game;
-        notifyDataSetChanged();
-    }*/
+
 
 }
