@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -20,6 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class CustomAdapter extends BaseAdapter {
@@ -27,13 +32,16 @@ public class CustomAdapter extends BaseAdapter {
     private Game game;
     private int size;
     private TextView et, tv, count;
-    private int timer, wayabu;
+    private int timer, aux;
+    Timer time;
+    TimerTask timerTask;
+    final Handler handler = new Handler();
 
     int BLOCK = 0;
     int WIN = 1;
     int LOSE = 2;
     int DRAW = 3;
-    int TIMER = 4;
+    int TEMPUS = 4;
     int MULTIPLAYER = 1;
 
     public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
@@ -44,7 +52,6 @@ public class CustomAdapter extends BaseAdapter {
         this.game = game;
         this.timer = timer;
         this.size = game.getBoard().size();
-        this.wayabu=0;
     }
 
     @Override
@@ -224,7 +231,9 @@ public class CustomAdapter extends BaseAdapter {
                         if((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()){
                             makeToast(BLOCK);
                         } else {
-                            if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
+                            if (aux == 25){
+                                makeToast(TEMPUS);
+                            } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
                                 makeToast(WIN);
                             } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
                                 makeToast(LOSE);
@@ -251,8 +260,46 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void countTime(){
-        wayabu++;
-        count.setText(Integer.valueOf(wayabu).toString());
+        //wayabu++;
+        //count.setText(Integer.valueOf(wayabu).toString());
+        startTimer();
+        timer= 0;
+    }
+
+    public void startTimer() {
+        //set a new Timer
+        time = new Timer();
+        //initialize the TimerTask's job
+        initializeTimerTask();
+        //schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
+        time.schedule(timerTask, 0, 1000); //
+    }
+
+    public void stoptimertask(View v) {
+        //stop the timer, if it's not already null
+        if (time != null) {
+            time.cancel();
+            time = null;
+        }
+    }
+
+    public void initializeTimerTask() {
+        //final int aux = 0;
+        timerTask = new TimerTask() {
+            public void run() {
+                //use a handler to run a toast that shows the current timestamp
+                handler.post(new Runnable() {
+                    public void run() {
+                        aux++;
+                        count.setText(Integer.valueOf(aux).toString());
+                        if (aux == 25){
+                            game.setState(State.FINISHED);
+                            stoptimertask(count);
+                        }
+                    }
+                });
+            }
+        };
     }
 
     public  void updateNumbers(){
@@ -303,7 +350,8 @@ public class CustomAdapter extends BaseAdapter {
         } else if (i == DRAW){
             image.setImageResource(R.drawable.balance_icon);
             text.setText(R.string.empate);
-        } else if (i == TIMER){
+        } else if (i == TEMPUS){
+            System.out.println("Entro en el toast tiempo");
             image.setImageResource(R.drawable.chrono_icon);
             text.setText(R.string.final_tiempo);
         }
