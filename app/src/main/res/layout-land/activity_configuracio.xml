@@ -42,25 +42,26 @@
 
         <LinearLayout
             android:id="@+id/layout"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/header">
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/alias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header"
-                android:layout_marginTop="@dimen/margin_left"
                 android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginTop="@dimen/margin_left"
                 android:text="@string/alias" />
 
             <!-- Alias Sub Layout -->
 
             <LinearLayout
                 android:id="@+id/alias_form"
-                android:layout_width="match_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -80,8 +81,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@+id/image_reverse"
                     android:layout_marginLeft="@dimen/margin_left"
-                    android:textSize="@dimen/text_size"
-                    android:hint="@string/nom_usuari"/>
+                    android:hint="@string/nom_usuari"
+                    android:textSize="@dimen/text_size" />
             </LinearLayout>
 
 
@@ -91,13 +92,13 @@
                 android:id="@+id/grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_left"
                 android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginTop="@dimen/margin_left"
                 android:text="@string/mida_graella" />
 
             <LinearLayout
                 android:id="@+id/grid_form"
-                android:layout_width="match_parent"
+                android:layout_width="552dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -137,7 +138,18 @@
                         android:layout_height="wrap_content"
                         android:text="@string/opcio_3" />
 
-                </RadioGroup>>
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/button_comenca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/button_comenca_partida"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginTop="@dimen/margin_left"
+                    android:text="@string/comenca" />
+
 
             </LinearLayout>
 
@@ -147,13 +159,13 @@
                 android:id="@+id/chek_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_left"
                 android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginTop="@dimen/margin_left"
                 android:text="@string/control_temps" />
 
             <LinearLayout
                 android:id="@+id/check_time_form"
-                android:layout_width="match_parent"
+                android:layout_width="331dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -178,15 +190,7 @@
                     android:gravity="center_horizontal" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_comenca"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/button_comenca_partida"
-                android:layout_marginTop="@dimen/margin_left"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="@string/comenca"/>
+
         </LinearLayout>
 
     </RelativeLayout>

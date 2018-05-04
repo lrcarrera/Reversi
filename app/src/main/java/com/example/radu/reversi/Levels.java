@@ -15,6 +15,8 @@ public class Levels extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getSupportActionBar().hide();
+
         setContentView(R.layout.activity_levels);
 
         final Intent configuracio = new Intent(this, Configuracio.class);
