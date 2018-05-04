@@ -67,10 +67,14 @@ public class DesarrolloJuego extends AppCompatActivity {
 
 
         String playMode = in.getStringExtra("playMode");
-        if (playMode.equals("MULTYPLAYER")){
-            gameType = GameType.MULTYPLAYER;
-        } else {
+        if (playMode.equals("MULTIPLAYER")){
+            gameType = GameType.MULTIPLAYER;
+        } else if (playMode.equals("EASY")){
             gameType = GameType.EASY;
+        } else if (playMode.equals("MEDIUM")){
+            gameType = GameType.MEDIUM;
+        } else {
+            gameType = GameType.HARD;
         }
 
         gv.setNumColumns(grid_dimension);

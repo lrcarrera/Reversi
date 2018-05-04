@@ -20,7 +20,8 @@
         <activity android:name=".Configuracio" />
         <activity android:name=".DesarrolloJuego" />
         <activity android:name=".Resultados" />
-        <activity android:name=".PlayMode"></activity>
+        <activity android:name=".PlayMode" />
+        <activity android:name=".Levels"></activity>
     </application>
 
 </manifest>

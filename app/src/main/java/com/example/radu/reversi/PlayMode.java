@@ -19,13 +19,13 @@ public class PlayMode extends AppCompatActivity {
         setContentView(R.layout.activity_play_mode);
 
         final Intent configuracio = new Intent(this, Configuracio.class);
+        final Intent levels = new Intent(this, Levels.class);
 
         individual = (Button) findViewById(R.id.button_individual);
         individual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                configuracio.putExtra("playMode", "EASY");
-                startActivity(configuracio);
+                startActivity(levels);
                 finish();
             }
         });
@@ -34,7 +34,7 @@ public class PlayMode extends AppCompatActivity {
         multiPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                configuracio.putExtra("playMode", "MULTYPLAYER");
+                configuracio.putExtra("playMode", "MULTIPLAYER");
                 startActivity(configuracio);
                 finish();
             }

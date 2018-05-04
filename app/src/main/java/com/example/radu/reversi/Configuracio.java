@@ -40,7 +40,6 @@ public class Configuracio extends AppCompatActivity {
 
         comenca = (Button) findViewById(R.id.button_comenca);
 
-       // boolean first = false;
 
         check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,13 +87,15 @@ public class Configuracio extends AppCompatActivity {
                     bundle.putInt("timer", timer_checked);
                     bundle.putInt("grid_dimension", grid_dimension);
                     bundle.putString("alias", txt);
-                    if (auxIn.getStringExtra("playMode").equals("MULTYPLAYER")){
+
+                    bundle.putString("playMode", auxIn.getStringExtra("playMode"));
+                    /*if (auxIn.getStringExtra("playMode").equals("MULTYPLAYER")){
                         System.out.println("Puso multyPlayer");
                         bundle.putString("playMode", auxIn.getStringExtra("playMode") );
                     } else {
                         System.out.println("Puso individual");
                         bundle.putString("playMode", auxIn.getStringExtra("playMode") );
-                    }
+                    }*/
                     in.putExtras(bundle);
                     startActivity(in);
                 }

@@ -46,8 +46,6 @@
     <string name="casella_incorrecta">Casella incorrecta!</string>
 
 
-
-
     <!--- Resultados Juego -->
     <string name="resultados">Resultat</string>
     <string name="resultados_partida">Resultats Partida</string>
@@ -70,6 +68,12 @@
     <string name="seleccion_dificultad">Selección Dificultad</string>
     <string name="solitario"> Individual</string>
     <string name="multijugador"> Multijugador</string>
+
+    <!--- Levels -->
+    <string name="seleccion_nivel">Selección Nivel</string>
+    <string name="dificil"> Díficil</string>
+    <string name="medio"> Media</string>
+    <string name="facil"> Fácil</string>
 
 
 </resources>

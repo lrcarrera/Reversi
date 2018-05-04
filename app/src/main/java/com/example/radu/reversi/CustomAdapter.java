@@ -137,30 +137,33 @@ public class CustomAdapter extends BaseAdapter {
         } else if (game.getBoard().isEmpty(p)){
             cell.setImageResource(R.drawable.green);
         } else if (game.getBoard().isObjective(p)){
-            if(game.getBoard().getTransform(p)  == 1){
-                cell.setImageResource(R.drawable.one_icon);
-            }else if(game.getBoard().getTransform(p)  == 2){
-                cell.setImageResource(R.drawable.two_icon);
-            }else if(game.getBoard().getTransform(p)  == 3){
-                cell.setImageResource(R.drawable.three_icon);
-            }else if(game.getBoard().getTransform(p)  == 4){
-                cell.setImageResource(R.drawable.four_icon);
-            }else if(game.getBoard().getTransform(p)  == 5){
-                cell.setImageResource(R.drawable.five_icon);
-            }else if(game.getBoard().getTransform(p)  == 6){
-                cell.setImageResource(R.drawable.six_icon);
-            }else if(game.getBoard().getTransform(p)  == 7){
-                cell.setImageResource(R.drawable.seven_icon);
-            }else if(game.getBoard().getTransform(p)  == 8){
-                cell.setImageResource(R.drawable.eight_icon);
-            }else if(game.getBoard().getTransform(p)  == 9){
-                cell.setImageResource(R.drawable.nine_icon);
-            }else if(game.getBoard().getTransform(p)  == 10){
-                cell.setImageResource(R.drawable.ten_icon);
-            }else{
+            if (game.getGameType() == GameType.EASY){
+                if(game.getBoard().getTransform(p)  == 1){
+                    cell.setImageResource(R.drawable.one_icon);
+                }else if(game.getBoard().getTransform(p)  == 2){
+                    cell.setImageResource(R.drawable.two_icon);
+                }else if(game.getBoard().getTransform(p)  == 3){
+                    cell.setImageResource(R.drawable.three_icon);
+                }else if(game.getBoard().getTransform(p)  == 4){
+                    cell.setImageResource(R.drawable.four_icon);
+                }else if(game.getBoard().getTransform(p)  == 5){
+                    cell.setImageResource(R.drawable.five_icon);
+                }else if(game.getBoard().getTransform(p)  == 6){
+                    cell.setImageResource(R.drawable.six_icon);
+                }else if(game.getBoard().getTransform(p)  == 7){
+                    cell.setImageResource(R.drawable.seven_icon);
+                }else if(game.getBoard().getTransform(p)  == 8){
+                    cell.setImageResource(R.drawable.eight_icon);
+                }else if(game.getBoard().getTransform(p)  == 9){
+                    cell.setImageResource(R.drawable.nine_icon);
+                }else if(game.getBoard().getTransform(p)  == 10){
+                    cell.setImageResource(R.drawable.ten_icon);
+                }else{
+                    cell.setImageResource(R.drawable.whitegreen);
+                }
+            } else {
                 cell.setImageResource(R.drawable.whitegreen);
             }
-
         }
     }
 
@@ -183,7 +186,7 @@ public class CustomAdapter extends BaseAdapter {
         if(game.getState()==State.WHITE){
 
             System.out.println("ENTRO O KELOKE phone turn");
-            if(game.getGameType() != GameType.MULTYPLAYER){
+            if(game.getGameType() != GameType.MULTIPLAYER){
                 game.phoneTurn();
             } else {
                 game.move(p);
