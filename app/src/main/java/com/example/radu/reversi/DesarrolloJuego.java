@@ -47,7 +47,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         setContentView(R.layout.activity_desarrollo_juego);
 
         c1 = getApplicationContext();
-        int gameDuration = 25;
+        //int gameDuration = 25;
 
 
         et = (TextView) findViewById(R.id.text);
@@ -77,7 +77,7 @@ public class DesarrolloJuego extends AppCompatActivity {
        // gv.setColumnWidth();
 
         Board board = new Board(grid_dimension);
-        game = new Game(board, gameType, gameDuration);
+        game = new Game(board, gameType, 0);
         State  state = State.BLACK;
 
         adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count);

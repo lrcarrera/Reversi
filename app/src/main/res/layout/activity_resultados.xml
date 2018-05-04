@@ -134,6 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sortir"
+        android:gravity="center"
         android:layout_marginTop="@dimen/margin_left"
         android:layout_below="@+id/buttom"
         android:drawableLeft="@drawable/exit_icon" />

@@ -42,6 +42,7 @@
     <string name="estat">Estat partida: %s !</string>
     <string name="en_marxa">En Marxa</string>
     <string name="finalitzada">FINALITZADA</string>
+    <string name="casella_incorrecta">Casella Incorrecta. Repeteix...</string>
 
     <!--- Resultados Juego -->
     <string name="resultados">Resultat</string>

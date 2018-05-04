@@ -42,7 +42,9 @@ public class CustomAdapter extends BaseAdapter {
     int LOSE = 2;
     int DRAW = 3;
     int TEMPUS = 4;
+    int WRONGCELL = 5;
     //int GAMEDURATION = 25;
+    int firstMove = 0;
     int SECONDINMILISECONDS=1000;
 
     public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
@@ -130,6 +132,7 @@ public class CustomAdapter extends BaseAdapter {
                 } else {
                     /*No es una casilla valida, sonido incorrecto*/
                     System.out.println("Casilla incorrecta puslada");
+                    makeToast(WRONGCELL);
                 }
 
             }
@@ -173,8 +176,9 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void isObjectiveProcess(Position p){
-        if(timer == 1){
+        if(firstMove == 0){
             countTime();
+
         }
 
         /*User Turn*/
@@ -233,7 +237,7 @@ public class CustomAdapter extends BaseAdapter {
 
     public void countTime(){
         startTimer();
-        timer=0;
+        firstMove++;
     }
 
     public void startTimer() {
@@ -257,10 +261,10 @@ public class CustomAdapter extends BaseAdapter {
                         if(game.getState() == State.FINISHED){
                             stoptimertask(count);
                         } else{
-                            game.decreaseDuration();
+                            game.increaseDuration();
                             count.setText(Integer.valueOf(game.getGameDuration()).toString());
                             count.setTextColor(Color.BLUE);
-                            if (game.getGameDuration() == BLOCK){
+                            if (game.getGameDuration() == 25 && timer == 1){
                                 game.setState(State.FINISHED);
                                 stoptimertask(count);
                                 finishToast();
@@ -324,11 +328,14 @@ public class CustomAdapter extends BaseAdapter {
         } else if (i == TEMPUS){
             image.setImageResource(R.drawable.chrono_icon);
             text.setText(R.string.final_tiempo);
+        } else if (i == WRONGCELL){
+            image.setImageResource(R.drawable.wrong_icon);
+            text.setText(R.string.casella_incorrecta);
         }
         toastLayout.addView(image);
         toastLayout.addView(text);
         imageToast.setView(toastLayout);
-        imageToast.setDuration(Toast.LENGTH_LONG);
+        imageToast.setDuration(Toast.LENGTH_SHORT);
         imageToast.show();
 
     }

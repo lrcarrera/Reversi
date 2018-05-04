@@ -29,8 +29,8 @@ public class Game implements Parcelable {
         this.gameDuration = gameDuration;
     }
 
-    public void decreaseDuration(){
-        this.gameDuration--;
+    public void increaseDuration(){
+        this.gameDuration++;
     }
 
     public int getGameDuration(){
