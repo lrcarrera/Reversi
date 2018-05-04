@@ -54,13 +54,10 @@ public class DesarrolloJuego extends AppCompatActivity {
         gv  = (GridView) findViewById(R.id.grid_custom);
         tv = (TextView) findViewById(R.id.text_fichas);
         count = (TextView) findViewById(R.id.timer_text);
-        imageTime = (ImageView) findViewById(R.id.timer);
 
         Intent in = getIntent();
         timer = in.getIntExtra("timer", 0);
-        if(timer==0){
-            imageTime.setVisibility(View.INVISIBLE);
-        }
+
 
 
 
