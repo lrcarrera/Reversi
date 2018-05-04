@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
@@ -47,7 +48,9 @@ public class CustomAdapter extends BaseAdapter {
     int firstMove = 0;
     int SECONDINMILISECONDS=1000;
 
-    public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
+    String alias, numbers;
+
+    public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count, String alias){
         this.context = c;
         this.tv = tv;
         this.et = et;
@@ -55,6 +58,7 @@ public class CustomAdapter extends BaseAdapter {
         this.game = game;
         this.timer = timer;
         this.size = game.getBoard().size();
+        this.alias = alias;
     }
 
     @Override
@@ -206,18 +210,38 @@ public class CustomAdapter extends BaseAdapter {
         }
         if(game.getState() == State.FINISHED){
             System.out.println("Entro en la condicion final");
-            finishToast();
+            finish();
         }
         /* Updates the EditText's of the activity*/
         updateNumbers();
     }
 
-    public void finishToast(){
-        if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()) && game.getGameDuration() != 0){
+
+    public void finish(){
+
+
+        updateNumbers();
+
+        Bundle b = new Bundle();
+        int win = 0;
+        int diferencia = this.game.getBoard().getCountWhite() - this.game.getBoard().getCountBlack();
+
+        if(this.game.getBoard().getCountBlack() > this.game.getBoard().getCountWhite()){
+            win = 1;
+            diferencia = this.game.getBoard().getCountBlack() - this.game.getBoard().getCountWhite();
+        }else if(this.game.getBoard().getCountBlack() == this.game.getBoard().getCountWhite()){
+            win = -1;
+        }
+
+        if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != getCount()) && game.getGameDuration() != 25){
             makeToast(BLOCK);
+
+            win = 2;
+
         } else {
-            if (game.getGameDuration() == BLOCK){
+            if (game.getGameDuration() == 25){
                 makeToast(TEMPUS);
+                win = 3;
             } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
                 makeToast(WIN);
             } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
@@ -228,6 +252,20 @@ public class CustomAdapter extends BaseAdapter {
         }
 
         android.content.Intent in = new android.content.Intent(context, Resultados.class);
+        b.putString("alias", this.alias);
+        b.putInt("size", this.size);
+        b.putInt("duration", this.game.getGameDuration());
+        //b.putString("numbers", this.numbers);
+        b.putInt("black", this.game.getBoard().getCountBlack());
+        b.putInt("white", this.game.getBoard().getCountWhite());
+
+        b.putInt("havetimer", this.timer);
+
+
+        b.putInt("diferencia", diferencia);
+        b.putInt("win", win);
+
+        in.putExtras(b);
         context.startActivity(in);
 
         //DesarrolloJuego d = new DesarrolloJuego();
@@ -267,8 +305,8 @@ public class CustomAdapter extends BaseAdapter {
                             if (game.getGameDuration() == 25 && timer == 1){
                                 game.setState(State.FINISHED);
                                 stoptimertask(count);
-                                finishToast();
-                                updateNumbers();
+                                finish();
+                                //updateNumbers();
                             }
                         }
 
@@ -279,14 +317,13 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public  void updateNumbers(){
-        String numbers, state, auxiliar;
-        int toFill = (game.getBoard().size() * game.getBoard().size()) -
+        String state, auxiliar;
+        int toFill = getCount() -
                 (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
         numbers = String.format(context.getString(R.string.info_caselles),
                 Integer.valueOf(game.getBoard().getCountBlack()).toString(),
                 Integer.valueOf(game.getBoard().getCountWhite()).toString(),
                 Integer.valueOf(toFill).toString());
-
         tv.setText(numbers);
         if(game.getState() == State.FINISHED){
             auxiliar = context.getString(R.string.finalitzada);

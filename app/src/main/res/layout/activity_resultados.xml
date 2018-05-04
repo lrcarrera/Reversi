@@ -42,7 +42,7 @@
         android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_top"
-        android:text="@string/resultados_partida" />
+        android:text="@string/resultados_partida"/>
 
     <TextView
         android:id="@+id/text_dia"
@@ -78,7 +78,8 @@
         android:layout_marginLeft="@dimen/margin_left"
         android:layout_below="@+id/text_log"
         android:layout_marginTop="@dimen/margin_left"
-        android:hint="@string/valores_log"/>
+        android:hint="@string/valores_log"
+        android:background="@drawable/back"/>
 
     <TextView
         android:id="@+id/text_email"

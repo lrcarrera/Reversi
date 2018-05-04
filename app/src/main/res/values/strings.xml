@@ -38,11 +38,15 @@
 
     <!--- Desarrollo Juego -->
     <string name="partida">Partida</string>
-    <string name="info_caselles">Tu: \'%s\'  Oponent: \'%s\' Caselles Pendents: \'%s\' </string>
+    <string name="info_caselles">Tu: \'%s\'  Oponent: \'%s\' \nCaselles Pendents: \'%s\' </string>
     <string name="estat">Estat partida: %s !</string>
     <string name="en_marxa">En Marxa</string>
     <string name="finalitzada">FINALITZADA</string>
-    <string name="casella_incorrecta">Casella Incorrecta. Repeteix...</string>
+    <string name="pulsa_casilla">Presiona una casella per començar.</string>
+    <string name="casella_incorrecta">Casella incorrecta!</string>
+
+
+
 
     <!--- Resultados Juego -->
     <string name="resultados">Resultat</string>
@@ -54,7 +58,7 @@
     <string name="nova_paritda">Nova Partida</string>
     <string name="enviar_email">Enviar e-mail</string>
 
-    <!--- Resultados partinda -->
+    <!--- Resultados partida -->
     <string name="victoria">Ben fet, has guanyat!!</string>
     <string name="perdida">Mala sort, has perdut!!</string>
     <string name="empate">Vaja, heu empatat!!</string>

@@ -80,7 +80,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         game = new Game(board, gameType, 0);
         State  state = State.BLACK;
 
-        adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count);
+        adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count, alias);
         gv.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
 
@@ -107,7 +107,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
             //g.getBoard().countAll(grid_dimension);
             //gv.setColumnWidth(30);;
-            adapter = new CustomAdapter(this, game, et, tv, timer, count);
+            adapter = new CustomAdapter(this, game, et, tv, timer, count, alias);
             //gvaux.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
             gv.setAdapter(adapter);
