@@ -37,6 +37,7 @@ public class DesarrolloJuego extends AppCompatActivity {
     TextView tv;
     TextView count;
     GameType gameType;
+    ImageView imageTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +47,24 @@ public class DesarrolloJuego extends AppCompatActivity {
         setContentView(R.layout.activity_desarrollo_juego);
 
         c1 = getApplicationContext();
-        int gameDuration = 0;
+        int gameDuration = 25;
 
 
         et = (TextView) findViewById(R.id.text);
         gv  = (GridView) findViewById(R.id.grid_custom);
         tv = (TextView) findViewById(R.id.text_fichas);
         count = (TextView) findViewById(R.id.timer_text);
+        imageTime = (ImageView) findViewById(R.id.timer);
 
         Intent in = getIntent();
         timer = in.getIntExtra("timer", 0);
-        if(timer == 1)
-            gameDuration = 25;
+        if(timer==0){
+            imageTime.setVisibility(View.INVISIBLE);
+        }
+
+
+
+
         grid_dimension = in.getIntExtra("grid_dimension", 0);
         alias = in.getStringExtra("alias");
 
@@ -95,7 +102,7 @@ public class DesarrolloJuego extends AppCompatActivity {
             alias = savedInstanceState.getString("alias");
             grid_dimension = savedInstanceState.getInt("grid");
 
-            et.setText(alias + " " + timer + "  " + grid_dimension);
+            updateNumbers();
 
 
             //CustomAdapter adapter = (CustomAdapter) gvaux.getAdapter();
@@ -120,6 +127,24 @@ public class DesarrolloJuego extends AppCompatActivity {
     }
 
 
+    public  void updateNumbers(){
+        String numbers, state, auxiliar;
+        int toFill = (game.getBoard().size() * game.getBoard().size()) -
+                (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
+        numbers = String.format(this.getString(R.string.info_caselles),
+                Integer.valueOf(game.getBoard().getCountBlack()).toString(),
+                Integer.valueOf(game.getBoard().getCountWhite()).toString(),
+                Integer.valueOf(toFill).toString());
+
+        tv.setText(numbers);
+        if(game.getState() == State.FINISHED){
+            auxiliar = this.getString(R.string.finalitzada);
+        } else {
+            auxiliar = this.getString(R.string.en_marxa);
+        }
+        state = String.format(this.getString(R.string.estat), auxiliar);
+        et.setText(state);
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
