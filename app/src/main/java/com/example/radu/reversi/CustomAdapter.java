@@ -89,28 +89,12 @@ public class CustomAdapter extends BaseAdapter {
         i = position % size;
         j = position / size;
 
-       // int dim = parent.getWidth()/size;
-        
         if (convertView == null) {
             cell = new ImageButton(context);
-
-           /* if(context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
-                cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / (game.getBoard().size()*2), parent.getWidth() / (game.getBoard().size()*2)));
-            }else{*/
-
-
-            //}
-
             cell.setLayoutParams(new GridView.LayoutParams(parent.getWidth() / size, parent.getWidth() / size));
             cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
             cell.setScaleType(ImageButton.ScaleType.FIT_XY);
             cell.setPadding(0, 0, 0, 0);
-
-
-
-
-
-
 
         } else {
             cell = (ImageButton) convertView;
@@ -118,9 +102,9 @@ public class CustomAdapter extends BaseAdapter {
 
         }
 
-        changeCellImage(cell, new Position(i, j));
 
         cell.setTag(position);
+        changeCellImage(cell, new Position(i, j));
 
         cell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +125,7 @@ public class CustomAdapter extends BaseAdapter {
 
             }
         });
+
         return cell;
     }
 

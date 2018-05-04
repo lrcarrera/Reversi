@@ -46,7 +46,7 @@
             android:layout_width="@dimen/image_reverse_size"
             android:layout_height="@dimen/image_reverse_size"
             android:layout_alignParentTop="true"
-            android:src="@drawable/reverse_icon" />
+            android:src="@drawable/configuration_icon" />
 
         <TextView
             android:id="@+id/textView"
