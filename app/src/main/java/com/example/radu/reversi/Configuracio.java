@@ -40,11 +40,16 @@ public class Configuracio extends AppCompatActivity {
 
         comenca = (Button) findViewById(R.id.button_comenca);
 
+       // boolean first = false;
+
         check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
                     timer_checked = 1;
+                }else{
+                    timer_checked = 0;
                 }
             }
         });
