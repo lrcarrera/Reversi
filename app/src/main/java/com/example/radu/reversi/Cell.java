@@ -38,16 +38,26 @@ public class Cell implements Parcelable{
         this.state = BLACK;
         setTransform(0);
     }
-    public void setObjective() { this.state = OBJECTIVE; }
+    public void setObjective() {
+        this.state = OBJECTIVE;
+    }
+
     public void setWhite() {
         this.state = WHITE;
         setTransform(0);
     }
-    public void setEmpty() { this.state = EMPTY; }
-    public void setTransform(int tranform){ this.tranform = tranform;}
-    public int getTranform(){return this.tranform;}
 
+    public void setEmpty() {
+        this.state = EMPTY;
+    }
 
+    public void setTransform(int tranform){
+        this.tranform = tranform;
+    }
+
+    public int getTranform(){
+        return this.tranform;
+    }
 
 
     public void reverse(){

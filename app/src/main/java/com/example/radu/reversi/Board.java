@@ -23,9 +23,6 @@ public class Board implements Parcelable{
     public int getCountWhite(){
         return this.white;
     }
-   /* public Cell getCell(Position position){
-        this.cells[position.getColumn()][position.getRow()].;
-    }*/
 
     public int size() {
         return size;
@@ -48,7 +45,6 @@ public class Board implements Parcelable{
     public void inicialMiddle(){
 
         initialObjectives();
-
 
         cells[(this.size / 2) - 1][(this.size / 2) - 1] = Cell.white();
         cells[this.size / 2][this.size / 2] = Cell.white();
@@ -155,8 +151,6 @@ public class Board implements Parcelable{
             }
         }
 
-
-        System.out.println("WHITE:"+getCountWhite()+"\nBLACK:"+getCountBlack()+"\nEMPTY"+empty+"\nOBJECTIVE"+objective);
     }
 
     @Override
