@@ -38,10 +38,6 @@ public class DesarrolloJuego extends AppCompatActivity {
     TextView count;
     GameType gameType;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +46,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         setContentView(R.layout.activity_desarrollo_juego);
 
         c1 = getApplicationContext();
+        int gameDuration = 0;
 
 
         et = (TextView) findViewById(R.id.text);
@@ -59,8 +56,11 @@ public class DesarrolloJuego extends AppCompatActivity {
 
         Intent in = getIntent();
         timer = in.getIntExtra("timer", 0);
+        if(timer == 1)
+            gameDuration = 25;
         grid_dimension = in.getIntExtra("grid_dimension", 0);
         alias = in.getStringExtra("alias");
+
 
         String playMode = in.getStringExtra("playMode");
         if (playMode.equals("MULTYPLAYER")){
@@ -73,7 +73,7 @@ public class DesarrolloJuego extends AppCompatActivity {
        // gv.setColumnWidth();
 
         Board board = new Board(grid_dimension);
-        game = new Game(board, gameType);
+        game = new Game(board, gameType, gameDuration);
         State  state = State.BLACK;
 
         adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count);
@@ -112,6 +112,11 @@ public class DesarrolloJuego extends AppCompatActivity {
 
         }
 
+    }
+
+    public void callIntent(){
+        Intent in = new Intent(this, Resultados.class);
+        startActivity(in);
     }
 
 

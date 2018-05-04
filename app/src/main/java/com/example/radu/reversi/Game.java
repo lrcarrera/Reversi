@@ -16,15 +16,26 @@ public class Game implements Parcelable {
     private boolean white_play;
     private boolean black_play;
     //private int multiplayer = 1;
+    private int gameDuration;
     private GameType gameType;
 
-    public Game(Board board, GameType type) {
+    public Game(Board board, GameType type, int gameDuration) {
 
         this.board = board;
         this.state = State.BLACK;
         this.white_play = true;
         this.black_play = true;
         this.gameType = type;
+        this.gameDuration = gameDuration;
+    }
+
+    public void decreaseDuration(){
+        this.gameDuration--;
+    }
+
+    public int getGameDuration(){
+        return this.gameDuration;
+
     }
 
     public int stepsToOutOfBoard(Position position, Direction direction) {
@@ -220,6 +231,8 @@ public class Game implements Parcelable {
             for (int j = 0; j < size; j++) {
                 if(this.board.cells[i][j].isObjective()){
                     this.board.cells[i][j] = Cell.empty();
+                    this.board.initialTransform(new Position(i,j));
+
                 }
                 if(canPlayPosition(getState(), new Position(i,j))){
                     this.board.cells[i][j] = Cell.objective();

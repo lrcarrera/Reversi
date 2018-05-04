@@ -79,6 +79,10 @@ public class Board implements Parcelable{
         cells[p.getColumn()][p.getRow()].setTransform(cells[p.getColumn()][p.getRow()].getTranform() + 1);
     }
 
+    public void initialTransform(Position p){
+        cells[p.getColumn()][p.getRow()].setTransform(0);
+    }
+
     public boolean contains(Position p) {
         return p.getRow() < size && p.getColumn() < size && p.getRow() >= 0 && p.getColumn() >= 0;
     }

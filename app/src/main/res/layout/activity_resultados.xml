@@ -126,16 +126,17 @@
             android:layout_marginTop="@dimen/margin_left"
             android:drawableLeft="@drawable/left_arrow" />
 
-        <Button
-            android:id="@+id/button_sortir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sortir"
-            android:layout_marginTop="@dimen/margin_left"
-            android:drawableLeft="@drawable/exit_icon" />
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_sortir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sortir"
+        android:layout_marginTop="@dimen/margin_left"
+        android:layout_below="@+id/buttom"
+        android:drawableLeft="@drawable/exit_icon" />
 
 
 

@@ -42,7 +42,7 @@ public class CustomAdapter extends BaseAdapter {
     int LOSE = 2;
     int DRAW = 3;
     int TEMPUS = 4;
-    int GAMEDURATION = 25;
+    //int GAMEDURATION = 25;
     int SECONDINMILISECONDS=1000;
 
     public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count){
@@ -209,10 +209,10 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void finishToast(){
-        if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()) && GAMEDURATION != 0){
+        if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != game.getBoard().size() * game.getBoard().size()) && game.getGameDuration() != 0){
             makeToast(BLOCK);
         } else {
-            if (GAMEDURATION == BLOCK){
+            if (game.getGameDuration() == BLOCK){
                 makeToast(TEMPUS);
             } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
                 makeToast(WIN);
@@ -222,6 +222,13 @@ public class CustomAdapter extends BaseAdapter {
                 makeToast(DRAW);
             }
         }
+
+        android.content.Intent in = new android.content.Intent(context, Resultados.class);
+        context.startActivity(in);
+
+        //DesarrolloJuego d = new DesarrolloJuego();
+        //d.callIntent();
+        //final android.content.Intent configuracio = android.content.Intent(this, Configuracio.class);
     }
 
     public void countTime(){
@@ -250,10 +257,10 @@ public class CustomAdapter extends BaseAdapter {
                         if(game.getState() == State.FINISHED){
                             stoptimertask(count);
                         } else{
-                            GAMEDURATION--;
-                            count.setText(Integer.valueOf(GAMEDURATION).toString());
+                            game.decreaseDuration();
+                            count.setText(Integer.valueOf(game.getGameDuration()).toString());
                             count.setTextColor(Color.BLUE);
-                            if (GAMEDURATION == BLOCK){
+                            if (game.getGameDuration() == BLOCK){
                                 game.setState(State.FINISHED);
                                 stoptimertask(count);
                                 finishToast();
