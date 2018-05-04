@@ -122,10 +122,6 @@ public class DesarrolloJuego extends AppCompatActivity {
 
     }
 
-    public void callIntent(){
-        Intent in = new Intent(this, Resultados.class);
-        startActivity(in);
-    }
 
 
     public  void updateNumbers(){

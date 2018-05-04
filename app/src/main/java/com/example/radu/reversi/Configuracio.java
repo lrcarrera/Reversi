@@ -98,6 +98,7 @@ public class Configuracio extends AppCompatActivity {
                     }*/
                     in.putExtras(bundle);
                     startActivity(in);
+                    finish();
                 }
                 //finish();
             }

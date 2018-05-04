@@ -79,7 +79,8 @@
         android:layout_below="@+id/text_log"
         android:layout_marginTop="@dimen/margin_left"
         android:hint="@string/valores_log"
-        android:background="@drawable/back"/>
+        android:background="@drawable/back"
+        android:textSize="12dp"/>
 
     <TextView
         android:id="@+id/text_email"
@@ -117,7 +118,8 @@
             android:layout_centerHorizontal="true"
             android:text="@string/enviar_email"
             android:layout_marginTop="@dimen/margin_left"
-            android:drawableLeft="@drawable/mail_icon" />
+            android:drawableLeft="@drawable/mail_icon"
+            android:onClick="sendEmail"/>
 
         <Button
             android:id="@+id/button_nova_partida"
@@ -125,7 +127,8 @@
             android:layout_height="wrap_content"
             android:text="@string/nova_paritda"
             android:layout_marginTop="@dimen/margin_left"
-            android:drawableLeft="@drawable/left_arrow" />
+            android:drawableLeft="@drawable/left_arrow"
+            android:onClick="newGame"/>
 
 
     </LinearLayout>
@@ -138,7 +141,8 @@
         android:gravity="center"
         android:layout_marginTop="@dimen/margin_left"
         android:layout_below="@+id/buttom"
-        android:drawableLeft="@drawable/exit_icon" />
+        android:drawableLeft="@drawable/exit_icon"
+        android:onClick="exitGame"/>
 
 
 

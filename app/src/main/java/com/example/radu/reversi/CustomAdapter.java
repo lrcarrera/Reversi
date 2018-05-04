@@ -1,20 +1,14 @@
 package com.example.radu.reversi;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,13 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class CustomAdapter extends BaseAdapter {
+
     private final Context context;
     private Game game;
     private int size;
@@ -50,7 +42,12 @@ public class CustomAdapter extends BaseAdapter {
 
     String alias, numbers;
 
-    public CustomAdapter (Context c, Game game, TextView et, TextView tv, int timer, TextView count, String alias){
+    /*public CustomAdapter(Context context, Caller listener){
+        this.context = context;
+
+    }*/
+
+    public CustomAdapter (Context c,  Game game, TextView et, TextView tv, int timer, TextView count, String alias){
         this.context = c;
         this.tv = tv;
         this.et = et;
@@ -227,7 +224,7 @@ public class CustomAdapter extends BaseAdapter {
             win = 2;
 
         } else {
-            if (game.getGameDuration() == 25){
+            if (game.getGameDuration() == 25 && timer == 1){
                 makeToast(TEMPUS);
                 win = 3;
             } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
@@ -255,6 +252,8 @@ public class CustomAdapter extends BaseAdapter {
 
         in.putExtras(b);
         context.startActivity(in);
+
+        //((Activity)this.context).finish();
 
         //DesarrolloJuego d = new DesarrolloJuego();
         //d.callIntent();

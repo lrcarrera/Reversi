@@ -48,56 +48,57 @@
         android:id="@+id/text_dia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_below="@+id/text_resultados"
-        android:layout_marginTop="@dimen/margin_left"
+        android:layout_alignBaseline="@+id/edit_dia"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
         android:text="@string/dia_hora" />
 
     <EditText
         android:id="@+id/edit_dia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_below="@+id/text_dia"
-        android:layout_marginTop="@dimen/margin_left"
-        android:hint="@string/dia_hora"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/text_resultados"
+        android:layout_marginStart="72dp"
+        android:hint="@string/dia_hora" />
 
     <TextView
         android:id="@+id/text_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_below="@+id/edit_dia"
-        android:layout_marginTop="@dimen/margin_left"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="131dp"
+        android:layout_marginTop="76dp"
         android:text="@string/valores_log" />
 
     <EditText
         android:id="@+id/edit_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_below="@+id/text_log"
-        android:layout_marginTop="@dimen/margin_left"
+        android:layout_alignStart="@+id/text_log"
+        android:layout_below="@+id/text_dia"
+        android:background="@drawable/back"
         android:hint="@string/valores_log"
-        android:background="@drawable/back"/>
+        android:textSize="12dp" />
 
     <TextView
         android:id="@+id/text_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_below="@+id/edit_log"
-        android:layout_marginTop="@dimen/margin_left"
+        android:layout_alignStart="@+id/text_dia"
+        android:layout_centerVertical="true"
         android:text="@string/email" />
 
     <EditText
         android:id="@+id/edit_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_below="@+id/text_email"
-        android:layout_marginTop="@dimen/margin_left"
-        android:hint="@string/email_defecto"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_dia"
+        android:layout_marginBottom="100dp"
+        android:hint="@string/email_defecto"
+        android:textSize="14dp"/>
 
     <!-- Buttom aligned to top -->
 
@@ -105,7 +106,9 @@
         android:id="@+id/buttom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_email"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_dia"
+        android:layout_marginBottom="15dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -115,17 +118,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/decor_buttom"
             android:layout_centerHorizontal="true"
-            android:text="@string/enviar_email"
             android:layout_marginTop="@dimen/margin_left"
-            android:drawableLeft="@drawable/mail_icon" />
+            android:drawableLeft="@drawable/mail_icon"
+            android:text="@string/enviar_email"
+            android:onClick="sendEmail"/>
 
         <Button
             android:id="@+id/button_nova_partida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nova_paritda"
             android:layout_marginTop="@dimen/margin_left"
-            android:drawableLeft="@drawable/left_arrow" />
+            android:drawableLeft="@drawable/left_arrow"
+            android:text="@string/nova_paritda"
+            android:onClick="newGame"/>
 
 
     </LinearLayout>
@@ -134,11 +139,13 @@
         android:id="@+id/button_sortir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sortir"
+        android:layout_alignBottom="@+id/buttom"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:drawableLeft="@drawable/exit_icon"
         android:gravity="center"
-        android:layout_marginTop="@dimen/margin_left"
-        android:layout_below="@+id/buttom"
-        android:drawableLeft="@drawable/exit_icon" />
+        android:text="@string/sortir"
+        android:onClick="exitGame"/>
 
 
 
