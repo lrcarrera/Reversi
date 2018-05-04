@@ -6,6 +6,8 @@ import android.provider.CalendarContract;
 import android.widget.Toast;
 
 import java.sql.SQLOutput;
+import java.util.IllegalFormatCodePointException;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.transform.Source;
 
@@ -15,7 +17,6 @@ public class Game implements Parcelable {
     private State state;
     private boolean white_play;
     private boolean black_play;
-    //private int multiplayer = 1;
     private int gameDuration;
     private GameType gameType;
 
@@ -100,7 +101,6 @@ public class Game implements Parcelable {
         return returner;
     }
     private static boolean allFalse(boolean[] bools) {
-        //boolean returner = true;
         for (int i = 0; i < bools.length; i++){
             if (bools[i])
                 return false;
@@ -172,7 +172,7 @@ public class Game implements Parcelable {
         if (!canPlay(getState()))
             changeTurn();
 
-        if (getState() == State.WHITE && gameType != GameType.MULTYPLAYER)
+        if (getState() == State.WHITE && gameType != GameType.MULTIPLAYER)
             phoneTurn();
 
     }
@@ -234,37 +234,60 @@ public class Game implements Parcelable {
         Position max, min, normal;
         max = new Position(0,0);
         min = new Position(0,0);
-        normal = new Position(0,0);
+        //normal = new Position(0,0);
         maxToTransform = 0;
-        minToTransform = 0;
+        minToTransform = 999999;
         for (int x = 0; x < board.size(); x++) {
             for (int z = 0; z < board.size(); z++) {
                 Position aux = new Position(x,z);
                 if (board.isObjective(aux)){
                     //board.getTransform()
                     //board.getTransform(aux);
+
+                   /* if (board.getTransform(aux) <= maxToTransform){
+                        //maxToTransform = board.getTransform(aux);
+                        System.out.println("Medio" + maxToTransform + "casilla:" + x + z);
+                        normal = new Position(x,z);
+
+                    }*/
+
                     if (board.getTransform(aux) >= maxToTransform){
                         maxToTransform = board.getTransform(aux);
+                        System.out.println("MAX" + maxToTransform + "casilla:" + x + z);
                         max = new Position(x,z);
                     }
 
                     if (board.getTransform(aux) <= minToTransform){
                         maxToTransform = board.getTransform(aux);
+                        System.out.println("Min" + maxToTransform + "casilla:" + x + z);
                         min = new Position(x,z);
                     }
 
-                    if ((minToTransform <= board.getTransform(aux)) && (board.getTransform(aux) <= maxToTransform)){
-                        //maxToTransform = board.getTransform(aux);
-                        normal = new Position(x,z);
-
-                    }
                     //System.out.println("ENTRO O KELOKE PHONETURN");
                    //this.move(new Position(x, z));
                     //return;
                 }
             }
         }
-        this.move(max);
+
+        if (gameType == GameType.EASY) {
+            System.out.println("Entro en facil");
+            this.move(min);
+        } else if (gameType == GameType.MEDIUM) {
+            System.out.println("Entro en medio");
+            int randomNum = ThreadLocalRandom.current().nextInt(0, 1 + 1);
+            if (randomNum == 0){
+                this.move(min);
+            } else {
+                this.move(max);
+            }
+
+            //this.move(normal);
+        } else if (gameType == GameType.HARD) {
+            System.out.println("Enttro en normal");
+            this.move(max);
+        }
+
         /*  System.out.println("Llego al final");
         white_play = false;
         this.changeTurn();*/
