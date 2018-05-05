@@ -2,11 +2,6 @@ package com.example.radu.reversi;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.CalendarContract;
-import android.widget.Toast;
-
-import java.sql.SQLOutput;
-import java.util.IllegalFormatCodePointException;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.transform.Source;
@@ -100,6 +95,7 @@ public class Game implements Parcelable {
         }
         return returner;
     }
+
     private static boolean allFalse(boolean[] bools) {
         for (int i = 0; i < bools.length; i++){
             if (bools[i])
@@ -107,10 +103,6 @@ public class Game implements Parcelable {
         }
         return true;
     }
-
-
-
-
 
     private void disk(State player, Position position) {
         if (player == State.WHITE){
