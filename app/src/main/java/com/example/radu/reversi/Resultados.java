@@ -109,6 +109,5 @@ public class Resultados extends AppCompatActivity {
 
     public void exitGame(View view) {
         finish();
-        //this.onBackPressed();
     }
 }

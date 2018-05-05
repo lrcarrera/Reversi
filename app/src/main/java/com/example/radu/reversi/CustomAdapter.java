@@ -1,7 +1,9 @@
 package com.example.radu.reversi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -28,6 +30,7 @@ public class CustomAdapter extends BaseAdapter {
     private int timer;
     Timer time;
     TimerTask timerTask;
+    MediaPlayer ring;
     final Handler handler = new Handler();
 
     int BLOCK = 0;
@@ -36,16 +39,12 @@ public class CustomAdapter extends BaseAdapter {
     int DRAW = 3;
     int TEMPUS = 4;
     int WRONGCELL = 5;
-    //int GAMEDURATION = 25;
     int firstMove = 0;
     int SECONDINMILISECONDS=1000;
 
     String alias, numbers;
 
-    /*public CustomAdapter(Context context, Caller listener){
-        this.context = context;
 
-    }*/
 
     public CustomAdapter (Context c,  Game game, TextView et, TextView tv, int timer, TextView count, String alias){
         this.context = c;
@@ -191,7 +190,6 @@ public class CustomAdapter extends BaseAdapter {
 
         }
         if(game.getFinished()){
-            System.out.println("Entro en la condicion final");
             finish();
         }
         /* Updates the EditText's of the activity*/
@@ -290,7 +288,6 @@ public class CustomAdapter extends BaseAdapter {
                                 game.setState(State.FINISHED);
                                 stoptimertask(count);
                                 finish();
-                                //updateNumbers();
                             }
                         }
 
@@ -333,23 +330,22 @@ public class CustomAdapter extends BaseAdapter {
             image.setImageResource(R.drawable.block_icon);
             text.setText(R.string.bloqueo);
         } else if (i == WIN){
-            //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
-            //ring.start();
-            //System.out.println("Salio del ring");
+            makeSound(WIN);
             image.setImageResource(R.drawable.like_icon);
             text.setText(R.string.victoria);
         } else if (i == LOSE){
-            //MediaPlayer ring= MediaPlayer.create(DesarrolloJuego.this, R.raw.win_sound);
-            //ring.start();
+            makeSound(LOSE);
             image.setImageResource(R.drawable.dislike_icon);
             text.setText(R.string.perdida);
         } else if (i == DRAW){
             image.setImageResource(R.drawable.balance_icon);
             text.setText(R.string.empate);
         } else if (i == TEMPUS){
+            makeSound(TEMPUS);
             image.setImageResource(R.drawable.chrono_icon);
             text.setText(R.string.final_tiempo);
         } else if (i == WRONGCELL){
+            makeSound(WRONGCELL);
             image.setImageResource(R.drawable.wrong_icon);
             text.setText(R.string.casella_incorrecta);
         }
@@ -360,6 +356,25 @@ public class CustomAdapter extends BaseAdapter {
         imageToast.show();
 
     }
+
+    public void makeSound(int i){
+        if (i == WIN || i == DRAW){
+            ring= MediaPlayer.create(context, R.raw.win_sound);
+            ring.start();
+        } else if (i == LOSE){
+            ring= MediaPlayer.create(context, R.raw.lose_sound);
+            ring.start();
+        } else if (i == WRONGCELL){
+            ring= MediaPlayer.create(context, R.raw.wrong_cell_sound);
+            ring.start();
+        } else if (i == TEMPUS) {
+            ring = MediaPlayer.create(context, R.raw.timer_sound);
+            ring.start();
+        }
+
+    }
+
+
 
 
 }

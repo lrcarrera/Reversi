@@ -102,33 +102,16 @@ public class Configuracio extends AppCompatActivity {
                     bundle.putInt(getString(R.string.timer_key), timer_checked);
                     bundle.putInt(getString(R.string.size_key), grid_dimension);
                     bundle.putString(getString(R.string.alias_key), txt);
-
                     bundle.putString(getString(R.string.playmode_key), auxIn.getStringExtra(getString(R.string.playmode_key)));
-                    /*if (auxIn.getStringExtra("playMode").equals("MULTYPLAYER")){
-                        System.out.println("Puso multyPlayer");
-                        bundle.putString("playMode", auxIn.getStringExtra("playMode") );
-                    } else {
-                        System.out.println("Puso individual");
-                        bundle.putString("playMode", auxIn.getStringExtra("playMode") );
-                    }*/
+
                     in.putExtras(bundle);
                     startActivity(in);
                     finish();
                 }
-                //finish();
             }
         });
     }
-/*
-    void checkbox_clicked(View view){
-        CheckBox ch = (CheckBox) view;
-        if (ch.isChecked()) {
-            timer_checked = 1;
-        } else {
-            timer_checked = 0;
-        }
-    }
-*/
+
     public int getDimensionById(int selected) {
         int returner = 0;
         if (selected == RB6_ID){

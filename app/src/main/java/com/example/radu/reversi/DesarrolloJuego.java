@@ -47,9 +47,6 @@ public class DesarrolloJuego extends AppCompatActivity {
         setContentView(R.layout.activity_desarrollo_juego);
 
         c1 = getApplicationContext();
-        //int gameDuration = 25;
-
-
         et = (TextView) findViewById(R.id.text);
         gv  = (GridView) findViewById(R.id.grid_custom);
         tv = (TextView) findViewById(R.id.text_fichas);
@@ -58,27 +55,11 @@ public class DesarrolloJuego extends AppCompatActivity {
         Intent in = getIntent();
         timer = in.getIntExtra(getString(R.string.timer_key), 0);
 
-
-
-
-
         grid_dimension = in.getIntExtra(getString(R.string.size_key), 0);
         alias = in.getStringExtra(getString(R.string.alias_key));
-
-
-        String playMode = in.getStringExtra(getString(R.string.playmode_key));
-        if (playMode.equals(getString(R.string.multiplayer))){
-            gameType = GameType.MULTIPLAYER;
-        } else if (playMode.equals(getString(R.string.mode_easy))){
-            gameType = GameType.EASY;
-        } else if (playMode.equals(getString(R.string.mode_medium))){
-            gameType = GameType.MEDIUM;
-        } else {
-            gameType = GameType.HARD;
-        }
-
+        playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
         gv.setNumColumns(grid_dimension);
-       // gv.setColumnWidth();
+
 
         Board board = new Board(grid_dimension);
         game = new Game(board, gameType, 0);
@@ -86,7 +67,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
         adapter = new CustomAdapter(getApplicationContext(), game, et, tv, timer, count, alias);
         gv.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
+
 
 
 
@@ -105,19 +86,21 @@ public class DesarrolloJuego extends AppCompatActivity {
 
             updateNumbers();
 
-
-            //CustomAdapter adapter = (CustomAdapter) gvaux.getAdapter();
-
-
-            //g.getBoard().countAll(grid_dimension);
-            //gv.setColumnWidth(30);;
             adapter = new CustomAdapter(this, game, et, tv, timer, count, alias);
-            //gvaux.setAdapter(adapter);
-            //adapter.notifyDataSetChanged();
             gv.setAdapter(adapter);
-
         }
+    }
 
+    public void playModeDecide(String playMode){
+        if (playMode.equals(getString(R.string.multiplayer))){
+            gameType = GameType.MULTIPLAYER;
+        } else if (playMode.equals(getString(R.string.mode_easy))){
+            gameType = GameType.EASY;
+        } else if (playMode.equals(getString(R.string.mode_medium))){
+            gameType = GameType.MEDIUM;
+        } else {
+            gameType = GameType.HARD;
+        }
     }
 
 
