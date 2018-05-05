@@ -9,7 +9,9 @@
     <dimen name="little_icon_size">20dp</dimen>
     <dimen name="null_spacing">0dp</dimen>
     <dimen name="lay_wid">330dp</dimen>
-
+    <dimen name="lay_margin">94dp</dimen>
+    <dimen name="m1">131dp</dimen>
+    <dimen name="m2">76dp</dimen>
 
 
 </resources>
