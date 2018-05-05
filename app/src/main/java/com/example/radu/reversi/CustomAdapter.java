@@ -115,8 +115,6 @@ public class CustomAdapter extends BaseAdapter {
                 if(game.getBoard().isObjective(new Position(i,j))){
                     isObjectiveProcess(new Position(i,j));
                 } else {
-                    /*No es una casilla valida, sonido incorrecto*/
-                    System.out.println("Casilla incorrecta puslada");
                     makeToast(WRONGCELL);
                 }
 
@@ -182,7 +180,6 @@ public class CustomAdapter extends BaseAdapter {
         /*Mobile Turn*/
         if(game.getState()==State.WHITE){
 
-            System.out.println("ENTRO O KELOKE phone turn");
             if(game.getGameType() != GameType.MULTIPLAYER){
                 game.phoneTurn();
             } else {

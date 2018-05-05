@@ -56,22 +56,22 @@ public class DesarrolloJuego extends AppCompatActivity {
         count = (TextView) findViewById(R.id.timer_text);
 
         Intent in = getIntent();
-        timer = in.getIntExtra("timer", 0);
+        timer = in.getIntExtra(getString(R.string.timer_key), 0);
 
 
 
 
 
-        grid_dimension = in.getIntExtra("grid_dimension", 0);
-        alias = in.getStringExtra("alias");
+        grid_dimension = in.getIntExtra(getString(R.string.size_key), 0);
+        alias = in.getStringExtra(getString(R.string.alias_key));
 
 
-        String playMode = in.getStringExtra("playMode");
-        if (playMode.equals("MULTIPLAYER")){
+        String playMode = in.getStringExtra(getString(R.string.playmode_key));
+        if (playMode.equals(getString(R.string.multiplayer))){
             gameType = GameType.MULTIPLAYER;
-        } else if (playMode.equals("EASY")){
+        } else if (playMode.equals(getString(R.string.mode_easy))){
             gameType = GameType.EASY;
-        } else if (playMode.equals("MEDIUM")){
+        } else if (playMode.equals(getString(R.string.mode_medium))){
             gameType = GameType.MEDIUM;
         } else {
             gameType = GameType.HARD;
@@ -98,10 +98,10 @@ public class DesarrolloJuego extends AppCompatActivity {
 
         if (savedInstanceState != null) {
 
-            game = (Game) savedInstanceState.getParcelable("key");
-            timer = savedInstanceState.getInt("timer");
-            alias = savedInstanceState.getString("alias");
-            grid_dimension = savedInstanceState.getInt("grid");
+            game = (Game) savedInstanceState.getParcelable(getString(R.string.game_key));
+            timer = savedInstanceState.getInt(getString(R.string.timer_key));
+            alias = savedInstanceState.getString(getString(R.string.alias_key));
+            grid_dimension = savedInstanceState.getInt(getString(R.string.size_key));
 
             updateNumbers();
 
@@ -115,8 +115,6 @@ public class DesarrolloJuego extends AppCompatActivity {
             //gvaux.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
             gv.setAdapter(adapter);
-
-            System.out.println("MAMAPULA"+gv.getColumnWidth());
 
         }
 
@@ -146,10 +144,10 @@ public class DesarrolloJuego extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable("key", game);
-        outState.putInt("timer", timer);
-        outState.putString("alias", alias);
-        outState.putInt("grid", grid_dimension);
+        outState.putParcelable(getString(R.string.game_key), game);
+        outState.putInt(getString(R.string.timer_key), timer);
+        outState.putString(getString(R.string.alias_key), alias);
+        outState.putInt(getString(R.string.size_key), grid_dimension);
 
 
     }

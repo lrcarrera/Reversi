@@ -34,7 +34,7 @@ public class PlayMode extends AppCompatActivity {
         multiPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                configuracio.putExtra("playMode", "MULTIPLAYER");
+                configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.multiplayer));
                 startActivity(configuracio);
                 finish();
             }

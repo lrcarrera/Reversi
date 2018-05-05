@@ -73,11 +73,7 @@ public class Configuracio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int selected_id = radio_group.getCheckedRadioButtonId();
-                System.out.println("SELECTED_ID:"+selected_id);
                 grid_dimension = getDimensionById(selected_id);
-
-
-                System.out.println("GRIDDIMENSION:"+grid_dimension);
                 String txt = alias.getText().toString();
 
                 LinearLayout toastLayout = new LinearLayout(getApplicationContext());
@@ -103,11 +99,11 @@ public class Configuracio extends AppCompatActivity {
                     toast.show();
 
                 }else {
-                    bundle.putInt("timer", timer_checked);
-                    bundle.putInt("grid_dimension", grid_dimension);
-                    bundle.putString("alias", txt);
+                    bundle.putInt(getString(R.string.timer_key), timer_checked);
+                    bundle.putInt(getString(R.string.size_key), grid_dimension);
+                    bundle.putString(getString(R.string.alias_key), txt);
 
-                    bundle.putString("playMode", auxIn.getStringExtra("playMode"));
+                    bundle.putString(getString(R.string.playmode_key), auxIn.getStringExtra(getString(R.string.playmode_key)));
                     /*if (auxIn.getStringExtra("playMode").equals("MULTYPLAYER")){
                         System.out.println("Puso multyPlayer");
                         bundle.putString("playMode", auxIn.getStringExtra("playMode") );
@@ -134,7 +130,6 @@ public class Configuracio extends AppCompatActivity {
     }
 */
     public int getDimensionById(int selected) {
-        System.out.println("TUSMUERTOS"+selected);
         int returner = 0;
         if (selected == RB6_ID){
             returner = 6;

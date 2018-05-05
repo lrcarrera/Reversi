@@ -158,7 +158,6 @@ public class Game implements Parcelable {
 
 
     private void changeTurn() {
-        System.out.println("Le llego estado :" + getState());
         if (getState() == State.WHITE) {
             setState(State.BLACK);
         }else{

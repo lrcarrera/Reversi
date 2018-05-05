@@ -19,7 +19,6 @@ public class Resultados extends AppCompatActivity {
     EditText txtMail;
     EditText txtDia;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,11 +98,23 @@ public class Resultados extends AppCompatActivity {
 
     public void sendEmail(View view) {
 
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                getString(R.string.mail_to),txtMail.getText().toString(), null));
+       /* Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+               getString(R.string.mail_to),txtMail.getText().toString(), null));
+
+
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+"\n"+txtResultats.getText());
-        emailIntent.putExtra(Intent.EXTRA_TEXT, txtResultats.getText());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, ""+txtResultats.getText());
         startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
+        */
+
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType(getString(R.string.type_email));
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getString(R.string.email_defecto)});
+        i.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+" "+txtResultats.getText().toString());
+        i.putExtra(Intent.EXTRA_TEXT   , txtResultats.getText().toString());
+
+        startActivity(Intent.createChooser(i, getString(R.string.send_email)));
+
 
     }
 

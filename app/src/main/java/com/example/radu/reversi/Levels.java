@@ -26,7 +26,7 @@ public class Levels extends AppCompatActivity {
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                configuracio.putExtra("playMode", "EASY");
+                configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.mode_easy));
                 startActivity(configuracio);
                 finish();
             }
@@ -36,7 +36,7 @@ public class Levels extends AppCompatActivity {
         medium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                configuracio.putExtra("playMode", "MEDIUM");
+                configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.mode_medium));
                 startActivity(configuracio);
                 finish();
             }
@@ -46,7 +46,7 @@ public class Levels extends AppCompatActivity {
         hard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                configuracio.putExtra("playMode", "HARD");
+                configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.mode_hard));
                 startActivity(configuracio);
                 finish();
             }
