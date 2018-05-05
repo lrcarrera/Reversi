@@ -44,58 +44,53 @@ public class Resultados extends AppCompatActivity {
 
         Intent i = getIntent();
         Bundle b = i.getExtras();
-        String alias = b.getString("alias");
-        int size = b.getInt("size");
-        int duration = b.getInt("duration");
-        //String numbers = b.getString("numbers");
-        int haveTimer = b.getInt("havetimer");
-        int win = b.getInt("win");
-        int black = b.getInt("black");
-        int white = b.getInt("white");
-        int diferencia = b.getInt("diferencia");
+        String alias = b.getString(getString(R.string.alias_key));
+        int size = b.getInt(getString(R.string.size_key));
+        int duration = b.getInt(getString(R.string.duration_key));
+        int haveTimer = b.getInt(getString(R.string.hastimer_key));
+        int win = b.getInt(getString(R.string.win_key));
+        int black = b.getInt(getString(R.string.black_key));
+        int white = b.getInt(getString(R.string.white_key));
+        int diferencia = b.getInt(getString(R.string.diferencia_key));
 
         String controlTiempo = "";
         if(haveTimer == 1){
             if (25-duration == 0 ){
-            controlTiempo = "Has esgotat el temps!!";
+            controlTiempo = getString(R.string.temps_esgotat);
             }else{
-                controlTiempo = "Han sobrat "+ (25-duration) + " segons!";
+                controlTiempo = String.format(getString(R.string.temps_restant),
+                        String.valueOf(25-duration));
+
             }
         }
 
 
         switch(win){
             case 1://VICTORIA
-                txtResultats.setText("Alias: "+alias+"\nMida graella: "+String.valueOf(size)
-                        +"\nTemps total: "+String.valueOf(duration)
-                        +" secs.\n"+"Has guanyat !! Tu "+black+"; Oponent "
-                        +white+";\n"+diferencia+" caselles de diferencia!\n"+controlTiempo);
+                txtResultats.setText(String.format(getString(R.string.victory_log), alias, String.valueOf(size)
+                , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), controlTiempo));
                 break;
+
             case -1://EMPATE
-                txtResultats.setText("Alias: "+alias+"\nMida graella: "+String.valueOf(size)
-                        +"\nTemps total: "+String.valueOf(duration)
-                        +" secs.\n" +"Heu empatat !!\n"+controlTiempo);
+
+                txtResultats.setText(String.format(getString(R.string.draw_log), alias, String.valueOf(size)
+                        , String.valueOf(duration), controlTiempo));
+                break;
+            case 2://BLOQUEO INTRINSECO
+
+                txtResultats.setText(String.format(getString(R.string.block_log), alias, String.valueOf(size)
+                        , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black)) ,controlTiempo));
 
                 break;
-            case 2:
-                txtResultats.setText("Alias: "+alias+"\nMida graella: "+String.valueOf(size)
-                        +"\nTemps total: "+String.valueOf(duration)
-                        +" secs.\n" +"Us heu quedat sense poder completar la graella … !!\nTu "+black+"; Oponent "
-                        +white+";\n"+diferencia+" caselles de diferencia!\nHan quedat "+ (size*size-(white+black)) + " caselles per cobrir\n"+controlTiempo);
+            case 3://TEMPS ESGOTAT
 
-                break;
-            case 3:
-                txtResultats.setText("Alias: "+alias+"\nMida graella: "+String.valueOf(size)
-                        +"\nTemps total: "+String.valueOf(duration)
-                        +" secs.\n" +"Has esgotat el temps!!\nTu "+black+"; Oponent "
-                        +white+";\n"+diferencia+" caselles de diferencia!\nHan quedat "+ (size*size-(white+black)) + " caselles per cobrir");
+                txtResultats.setText(String.format(getString(R.string.time_log), alias, String.valueOf(size)
+                        , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black))));
 
                 break;
             default://DERROTA
-                txtResultats.setText("Alias: "+alias+"\nMida graella: "+String.valueOf(size)
-                        +"\nTemps total: "+String.valueOf(duration)
-                        +" secs.\n" +"Has perdut !! Oponent "+white+"; Tu "
-                        +black+";\n"+diferencia+" caselles de diferencia!"+"\n"+controlTiempo);
+                txtResultats.setText(String.format(getString(R.string.lose_log), alias, String.valueOf(size)
+                        , String.valueOf(duration), String.valueOf(white), String.valueOf(black), String.valueOf(diferencia), controlTiempo));
                 break;
         }
 
@@ -105,11 +100,10 @@ public class Resultados extends AppCompatActivity {
     public void sendEmail(View view) {
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto",txtMail.getText().toString(), null));
+                getString(R.string.mail_to),txtMail.getText().toString(), null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+"\n"+txtResultats.getText());
-        emailIntent.putExtra(Intent.EXTRA_TEXT, ""+txtResultats.getText());
-        //emailIntent.putExtra(Intent.EXTRA_EMAIL, address);
-        startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        emailIntent.putExtra(Intent.EXTRA_TEXT, txtResultats.getText());
+        startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
 
     }
 

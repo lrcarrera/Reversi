@@ -75,5 +75,30 @@
     <string name="medio"> Media</string>
     <string name="facil"> Fácil</string>
 
+    <!--- Intent keywords -->
+
+    <string name="alias_key">alias</string>
+    <string name="size_key">size</string>
+    <string name="duration_key">duration</string>
+    <string name="hastimer_key">hastimer</string>
+    <string name="win_key">win</string>
+    <string name="black_key">black</string>
+    <string name="white_key">white</string>
+    <string name="diferencia_key">diferencia</string>
+
+    <!--- Resultats -->
+
+    <string name="temps_esgotat">Has esgotat el temps!!</string>
+    <string name="temps_restant">Han sobrat %s segons!</string>
+    <string name="mail_to">mailTo</string>
+    <string name="send_email">Send email...</string>
+    <string name="victory_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has guanyat !! Tu %s; Oponent %s;\n%s caselles de diferencia!\n%s</string>
+    <string name="draw_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Heu empatat !!\n%s</string>
+    <string name="block_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Us heu quedat sense poder completar la graella … !! Tu %s; Oponent %s;\n%s caselles de diferencia!\nHan quedat %s caselles per cobrir\n%s</string>
+    <string name="time_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has esgotat el temps!!\nTu %s; Oponent %s;\n%s caselles de diferencia!\nHan quedat %s caselles per cobrir</string>
+
+    <string name="lose_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has perdut !! Oponent %s; Tu %s;\n%s caselles de diferencia!\n%s</string>
+
+
 
 </resources>

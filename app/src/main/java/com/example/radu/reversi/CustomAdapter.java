@@ -208,15 +208,15 @@ public class CustomAdapter extends BaseAdapter {
         updateNumbers();
 
         Bundle b = new Bundle();
-        int win = 0;
+        int win;
         int diferencia = this.game.getBoard().getCountWhite() - this.game.getBoard().getCountBlack();
 
-        if(this.game.getBoard().getCountBlack() > this.game.getBoard().getCountWhite()){
+     /*   if(this.game.getBoard().getCountBlack() > this.game.getBoard().getCountWhite()){
             win = 1;
             diferencia = this.game.getBoard().getCountBlack() - this.game.getBoard().getCountWhite();
         }else if(this.game.getBoard().getCountBlack() == this.game.getBoard().getCountWhite()){
             win = -1;
-        }
+        }*/
 
 
         if (game.getGameDuration() == 25 && timer == 1){
@@ -228,10 +228,14 @@ public class CustomAdapter extends BaseAdapter {
         } else {
             if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
                 makeToast(WIN);
+                win = 1;
+                diferencia = this.game.getBoard().getCountBlack() - this.game.getBoard().getCountWhite();
             } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
                 makeToast(LOSE);
+                win = 0;
             } else {
                 makeToast(DRAW);
+                win = -1;
             }
         }
 
@@ -240,7 +244,7 @@ public class CustomAdapter extends BaseAdapter {
             win = 2;
 
         } else {
-            if (game.getGameDuration() == 25 && timer == 1){
+            if (game.getGameDuration() == 25){
                 makeToast(TEMPUS);
                 win = 3;
             } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
@@ -253,18 +257,18 @@ public class CustomAdapter extends BaseAdapter {
         }*/
 
         android.content.Intent in = new android.content.Intent(context, Resultados.class);
-        b.putString("alias", this.alias);
-        b.putInt("size", this.size);
-        b.putInt("duration", this.game.getGameDuration());
+        b.putString(context.getString(R.string.alias_key), this.alias);
+        b.putInt(context.getString(R.string.size_key), this.size);
+        b.putInt(context.getString(R.string.duration_key), this.game.getGameDuration());
         //b.putString("numbers", this.numbers);
-        b.putInt("black", this.game.getBoard().getCountBlack());
-        b.putInt("white", this.game.getBoard().getCountWhite());
+        b.putInt(context.getString(R.string.black_key), this.game.getBoard().getCountBlack());
+        b.putInt(context.getString(R.string.white_key), this.game.getBoard().getCountWhite());
 
-        b.putInt("havetimer", this.timer);
+        b.putInt(context.getString(R.string.hastimer_key), this.timer);
 
 
-        b.putInt("diferencia", diferencia);
-        b.putInt("win", win);
+        b.putInt(context.getString(R.string.diferencia_key), diferencia);
+        b.putInt(context.getString(R.string.win_key), win);
 
         in.putExtras(b);
         context.startActivity(in);

@@ -22,6 +22,12 @@ public class Configuracio extends AppCompatActivity {
     Bundle bundle;
 
     int timer_checked = 0;
+    int grid_dimension;
+
+    private static final int RB8_ID = 1008;//first radio button id
+    private static final int RB6_ID = 1006;//second radio button id
+    private static final int RB4_ID = 1004;//third radio button id
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,15 @@ public class Configuracio extends AppCompatActivity {
         final RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_buttons);
         final EditText alias = (EditText) findViewById(R.id.edit_text);
         CheckBox check_box = (CheckBox) findViewById(R.id.check);
+
+        RadioButton r8 = (RadioButton) findViewById(R.id.radio8);
+        RadioButton r6 = (RadioButton) findViewById(R.id.radio6);
+        RadioButton r4 = (RadioButton) findViewById(R.id.radio4);
+
+        r8.setId(RB8_ID);
+        r6.setId(RB6_ID);
+        r4.setId(RB4_ID);
+
 
         comenca = (Button) findViewById(R.id.button_comenca);
 
@@ -58,7 +73,11 @@ public class Configuracio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int selected_id = radio_group.getCheckedRadioButtonId();
-                int grid_dimension = getDimensionById(selected_id);
+                System.out.println("SELECTED_ID:"+selected_id);
+                grid_dimension = getDimensionById(selected_id);
+
+
+                System.out.println("GRIDDIMENSION:"+grid_dimension);
                 String txt = alias.getText().toString();
 
                 LinearLayout toastLayout = new LinearLayout(getApplicationContext());
@@ -117,11 +136,11 @@ public class Configuracio extends AppCompatActivity {
     public int getDimensionById(int selected) {
         System.out.println("TUSMUERTOS"+selected);
         int returner = 0;
-        if (selected == 2){
+        if (selected == RB6_ID){
             returner = 6;
-        } else if (selected == 3){
+        } else if (selected == RB4_ID){
             returner = 4;
-        }else if (selected == 1){
+        }else if (selected == RB8_ID){
             returner = 8;
         }
         return returner;

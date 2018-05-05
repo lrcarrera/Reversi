@@ -106,7 +106,9 @@
         android:id="@+id/buttom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_email"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="94dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -116,19 +118,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/decor_buttom"
             android:layout_centerHorizontal="true"
-            android:text="@string/enviar_email"
             android:layout_marginTop="@dimen/margin_left"
             android:drawableLeft="@drawable/mail_icon"
-            android:onClick="sendEmail"/>
+            android:onClick="sendEmail"
+            android:text="@string/enviar_email" />
 
         <Button
             android:id="@+id/button_nova_partida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nova_paritda"
             android:layout_marginTop="@dimen/margin_left"
             android:drawableLeft="@drawable/left_arrow"
-            android:onClick="newGame"/>
+            android:onClick="newGame"
+            android:text="@string/nova_paritda" />
 
 
     </LinearLayout>
@@ -137,12 +139,13 @@
         android:id="@+id/button_sortir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sortir"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/margin_left"
-        android:layout_below="@+id/buttom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
         android:drawableLeft="@drawable/exit_icon"
-        android:onClick="exitGame"/>
+        android:gravity="center"
+        android:onClick="exitGame"
+        android:text="@string/sortir" />
 
 
 
