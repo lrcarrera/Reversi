@@ -304,7 +304,12 @@ public class CustomAdapter extends BaseAdapter {
                         } else{
                             game.increaseDuration();
                             count.setText(Integer.valueOf(game.getGameDuration()).toString());
-                            count.setTextColor(Color.BLUE);
+                            if (timer == 1){
+                                count.setTextColor(Color.RED);
+                            } else {
+                                count.setTextColor(Color.BLUE);
+                            }
+
                             if (game.getGameDuration() == 25 && timer == 1){
                                 game.setState(State.FINISHED);
                                 stoptimertask(count);
