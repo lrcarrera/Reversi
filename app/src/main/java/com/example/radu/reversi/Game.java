@@ -158,6 +158,7 @@ public class Game implements Parcelable {
 
 
     private void changeTurn() {
+        System.out.println("Le llego estado :" + getState());
         if (getState() == State.WHITE) {
             setState(State.BLACK);
         }else{
@@ -169,12 +170,12 @@ public class Game implements Parcelable {
             return;
         }
 
-        if (!canPlay(getState()))
-            changeTurn();
 
         if (getState() == State.WHITE && gameType != GameType.MULTIPLAYER)
             phoneTurn();
 
+        if (!canPlay(getState()))
+            changeTurn();
     }
 
 
@@ -251,7 +252,7 @@ public class Game implements Parcelable {
 
                     }*/
 
-                    if (board.getTransform(aux) >= maxToTransform){
+                    /*if (board.getTransform(aux) >= maxToTransform){
                         maxToTransform = board.getTransform(aux);
                         System.out.println("MAX" + maxToTransform + "casilla:" + x + z);
                         max = new Position(x,z);
@@ -261,16 +262,16 @@ public class Game implements Parcelable {
                         maxToTransform = board.getTransform(aux);
                         System.out.println("Min" + maxToTransform + "casilla:" + x + z);
                         min = new Position(x,z);
-                    }
+                    }*/
 
                     //System.out.println("ENTRO O KELOKE PHONETURN");
-                   //this.move(new Position(x, z));
-                    //return;
+                    this.move(new Position(x, z));
+                    return;
                 }
             }
         }
 
-        if (gameType == GameType.EASY) {
+       /* if (gameType == GameType.EASY) {
             System.out.println("Entro en facil");
             this.move(min);
         } else if (gameType == GameType.MEDIUM) {
@@ -286,7 +287,7 @@ public class Game implements Parcelable {
         } else if (gameType == GameType.HARD) {
             System.out.println("Enttro en normal");
             this.move(max);
-        }
+        }*/
 
         /*  System.out.println("Llego al final");
         white_play = false;

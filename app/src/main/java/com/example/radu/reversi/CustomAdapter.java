@@ -218,9 +218,25 @@ public class CustomAdapter extends BaseAdapter {
             win = -1;
         }
 
-        if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != getCount()) && game.getGameDuration() != 25){
-            makeToast(BLOCK);
 
+        if (game.getGameDuration() == 25 && timer == 1){
+            makeToast(TEMPUS);
+            win = 3;
+        } else if (((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != getCount())){
+            makeToast(BLOCK);
+            win = 2;
+        } else {
+            if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
+                makeToast(WIN);
+            } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
+                makeToast(LOSE);
+            } else {
+                makeToast(DRAW);
+            }
+        }
+
+       /* if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != getCount()) && game.getGameDuration() != 25){
+            makeToast(BLOCK);
             win = 2;
 
         } else {
@@ -234,7 +250,7 @@ public class CustomAdapter extends BaseAdapter {
             } else {
                 makeToast(DRAW);
             }
-        }
+        }*/
 
         android.content.Intent in = new android.content.Intent(context, Resultados.class);
         b.putString("alias", this.alias);
