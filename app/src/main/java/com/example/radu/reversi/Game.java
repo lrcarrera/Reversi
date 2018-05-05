@@ -189,13 +189,11 @@ public class Game implements Parcelable {
         if (!(this.board.isObjective(position) || this.board.isEmpty(position))) {
             return;
         }
-        System.out.println("ENTRO O KELOKE, STATE->"+getState().toString()+"POSITION COL:"+position.getColumn()+"ROW: "+position.getRow());
 
         boolean[] directions = this.directionsOfReverse(getState(), position);
         if (allFalse(directions)) {
             return;
         }
-        System.out.println("ENTRO O KELOKE");
 
         this.disk(getState(), position);
         this.reverse(position, directions);
@@ -204,16 +202,12 @@ public class Game implements Parcelable {
 
     public boolean canPlayPosition(State player, Position position) {
         return (this.board.isEmpty(position) || this.board.isObjective(position)) && !allFalse(directionsOfReverse(player, position));
-        //return this.board.isEmpty(position) && !allFalse(directionsOfReverse(player, position));
     }
 
     public void setObjectives(int size){
-
-
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 this.board.initialTransform(new Position(i,j));
-                //System.out.println("Al entrar:" + i + j + "valor: " + this.board.cells[i][j].getTranform());
                 if(this.board.cells[i][j].isObjective()){
                     this.board.cells[i][j] = Cell.empty();
 
@@ -222,76 +216,48 @@ public class Game implements Parcelable {
                     this.board.cells[i][j] = Cell.objective();
                     countMoves(i, j, getState());
                 }
-                //System.out.println("Al salir:" + i + j + "valor: " + this.board.cells[i][j].getTranform());
             }
         }
-
-
     }
 
     public void phoneTurn(){
         int maxToTransform, minToTransform;
         Position max, min, normal;
+
         max = new Position(0,0);
         min = new Position(0,0);
-        //normal = new Position(0,0);
         maxToTransform = 0;
         minToTransform = 999999;
+
         for (int x = 0; x < board.size(); x++) {
             for (int z = 0; z < board.size(); z++) {
                 Position aux = new Position(x,z);
                 if (board.isObjective(aux)){
-                    //board.getTransform()
-                    //board.getTransform(aux);
-
-                   /* if (board.getTransform(aux) <= maxToTransform){
-                        //maxToTransform = board.getTransform(aux);
-                        System.out.println("Medio" + maxToTransform + "casilla:" + x + z);
-                        normal = new Position(x,z);
-
-                    }*/
-
                     if (board.getTransform(aux) >= maxToTransform){
                         maxToTransform = board.getTransform(aux);
-                        System.out.println("MAX" + maxToTransform + "casilla:" + x + z);
                         max = new Position(x,z);
                     }
 
                     if (board.getTransform(aux) <= minToTransform){
                         maxToTransform = board.getTransform(aux);
-                        System.out.println("Min" + maxToTransform + "casilla:" + x + z);
                         min = new Position(x,z);
                     }
-
-                    //System.out.println("ENTRO O KELOKE PHONETURN");
-                    //this.move(new Position(x, z));
-                    //return;
                 }
             }
         }
 
-       if (gameType == GameType.EASY) {
-            System.out.println("Entro en facil");
+        if (gameType == GameType.EASY){
             this.move(min);
         } else if (gameType == GameType.MEDIUM) {
-            System.out.println("Entro en medio");
             int randomNum = ThreadLocalRandom.current().nextInt(0, 1 + 1);
-            System.out.println("Randoom is --------->" + randomNum);
             if (randomNum == 0){
                 this.move(min);
             } else {
                 this.move(max);
             }
-
-            //this.move(normal);
         } else if (gameType == GameType.HARD) {
-            System.out.println("Enttro en normal");
             this.move(max);
         }
-
-        /*  System.out.println("Llego al final");
-        white_play = false;
-        this.changeTurn();*/
     }
 
     public void countMoves(int i, int j, State state){

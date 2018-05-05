@@ -190,7 +190,7 @@ public class CustomAdapter extends BaseAdapter {
             notifyDataSetChanged();
 
         }
-        if(game.getState() == State.FINISHED){
+        if(game.getFinished()){
             System.out.println("Entro en la condicion final");
             finish();
         }
@@ -207,14 +207,6 @@ public class CustomAdapter extends BaseAdapter {
         Bundle b = new Bundle();
         int win;
         int diferencia = this.game.getBoard().getCountWhite() - this.game.getBoard().getCountBlack();
-
-     /*   if(this.game.getBoard().getCountBlack() > this.game.getBoard().getCountWhite()){
-            win = 1;
-            diferencia = this.game.getBoard().getCountBlack() - this.game.getBoard().getCountWhite();
-        }else if(this.game.getBoard().getCountBlack() == this.game.getBoard().getCountWhite()){
-            win = -1;
-        }*/
-
 
         if (game.getGameDuration() == 25 && timer == 1){
             makeToast(TEMPUS);
@@ -235,23 +227,6 @@ public class CustomAdapter extends BaseAdapter {
                 win = -1;
             }
         }
-
-       /* if(((game.getBoard().getCountBlack() + game.getBoard().getCountWhite()) != getCount()) && game.getGameDuration() != 25){
-            makeToast(BLOCK);
-            win = 2;
-
-        } else {
-            if (game.getGameDuration() == 25){
-                makeToast(TEMPUS);
-                win = 3;
-            } else if(game.getBoard().getCountBlack() > game.getBoard().getCountWhite()) {
-                makeToast(WIN);
-            } else if (game.getBoard().getCountBlack() < game.getBoard().getCountWhite()) {
-                makeToast(LOSE);
-            } else {
-                makeToast(DRAW);
-            }
-        }*/
 
         android.content.Intent in = new android.content.Intent(context, Resultados.class);
         b.putString(context.getString(R.string.alias_key), this.alias);
@@ -300,7 +275,7 @@ public class CustomAdapter extends BaseAdapter {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        if(game.getState() == State.FINISHED){
+                        if(game.getFinished()){
                             stoptimertask(count);
                         } else{
                             game.increaseDuration();

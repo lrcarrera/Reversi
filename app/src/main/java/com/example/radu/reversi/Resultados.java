@@ -1,15 +1,11 @@
 package com.example.radu.reversi;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -97,33 +93,22 @@ public class Resultados extends AppCompatActivity {
     }
 
     public void sendEmail(View view) {
-
-       /* Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-               getString(R.string.mail_to),txtMail.getText().toString(), null));
-
-
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+"\n"+txtResultats.getText());
-        emailIntent.putExtra(Intent.EXTRA_TEXT, ""+txtResultats.getText());
-        startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
-        */
-
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType(getString(R.string.type_email));
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getString(R.string.email_defecto)});
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{txtMail.getText().toString()});
         i.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+" "+txtResultats.getText().toString());
         i.putExtra(Intent.EXTRA_TEXT   , txtResultats.getText().toString());
-
         startActivity(Intent.createChooser(i, getString(R.string.send_email)));
-
-
     }
 
     public void newGame(View view) {
-        Intent i = new Intent(this, MenuPrincipal.class);
+        Intent i = new Intent(this, PlayMode.class);
         startActivity(i);
+        finish();
     }
 
     public void exitGame(View view) {
-        this.onBackPressed();
+        finish();
+        //this.onBackPressed();
     }
 }
