@@ -6,12 +6,12 @@ The object of the game is to have the majority of disks turned to display your c
 
 
 /*Implementation of Reversi game*/
-Game Modes:
+- Game Modes:
  - Multiplayer
  - Individual:
-    -Easy (In each move, the hint disks shows a number of disks that will be moved in the actual movement or a future one)
-    -Medium
-    -Hard
+    - Easy (In each move, the hint disks shows a number of disks that will be moved in the actual movement or a future one)
+    - Medium
+    - Hard
 
 Developed By Radu Spaimoc & Luis Rosales
 
