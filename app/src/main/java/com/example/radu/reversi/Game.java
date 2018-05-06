@@ -13,6 +13,7 @@ public class Game implements Parcelable {
     private boolean white_play;
     private boolean black_play;
     private int gameDuration;
+    private boolean firstMove;
     private GameType gameType;
 
     public Game(Board board, GameType type, int gameDuration) {
@@ -23,6 +24,15 @@ public class Game implements Parcelable {
         this.black_play = true;
         this.gameType = type;
         this.gameDuration = gameDuration;
+        this.firstMove = true;
+    }
+
+    public boolean isFirstMove(){
+        return firstMove;
+    }
+
+    public void changeFirstMove(){
+        this.firstMove = false;
     }
 
     public void increaseDuration(){

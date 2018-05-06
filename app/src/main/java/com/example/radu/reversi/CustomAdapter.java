@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -163,7 +164,7 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void isObjectiveProcess(Position p){
-        if(firstMove == 0){
+        if(game.isFirstMove()){
             countTime();
 
         }
@@ -249,7 +250,8 @@ public class CustomAdapter extends BaseAdapter {
 
     public void countTime(){
         startTimer();
-        firstMove++;
+        game.changeFirstMove();
+       // firstMove++;
     }
 
     public void startTimer() {
@@ -274,13 +276,7 @@ public class CustomAdapter extends BaseAdapter {
                             stopTimerTask(count);
                         } else{
                             game.increaseDuration();
-                            count.setText(Integer.valueOf(game.getGameDuration()).toString());
-                            if (timer == 1){
-                                count.setTextColor(Color.RED);
-                            } else {
-                                count.setTextColor(Color.BLUE);
-                            }
-
+                            updateCount();
                             if (game.getGameDuration() == 25 && timer == 1){
                                 game.setState(State.FINISHED);
                                 stopTimerTask(count);
@@ -291,6 +287,17 @@ public class CustomAdapter extends BaseAdapter {
                 });
             }
         };
+    }
+
+    public void updateCount(){
+        TextView editText = (TextView) activity.findViewById(R.id.timer_text);
+        //System.out.println("No llega aqui o si :)");
+        editText.setText(Integer.valueOf(game.getGameDuration()).toString());
+        if (timer == 1){
+            editText.setTextColor(Color.RED);
+        } else {
+            editText.setTextColor(Color.BLUE);
+        }
     }
 
     public  void updateNumbers(){
