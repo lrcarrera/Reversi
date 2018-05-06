@@ -52,11 +52,8 @@ public class CustomAdapter extends BaseAdapter {
 
 
 
-    public CustomAdapter (Context c,  Game game/*, TextView et, TextView tv,*/, int timer/*, TextView count*/, String alias){
+    public CustomAdapter (Context c,  Game game, int timer, String alias){
         this.context = c;
-      //  this.tv = tv;
-       // this.et = et;
-      //  this.count = count;
         this.game = game;
         this.timer = timer;
         this.size = game.getBoard().size();
@@ -89,7 +86,6 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ImageButton cell;
         int i,j;
 
@@ -172,7 +168,6 @@ public class CustomAdapter extends BaseAdapter {
 
     public void isObjectiveProcess(Position p){
         if(firstMove == 0){
-            //stopTimerTask(count);
             countTime();
 
         }
@@ -209,10 +204,9 @@ public class CustomAdapter extends BaseAdapter {
 
     public void finish(){
 
-
+        Bundle b = new Bundle();
         updateNumbers();
 
-        Bundle b = new Bundle();
         int win;
         int diferencia = this.game.getBoard().getCountWhite() - this.game.getBoard().getCountBlack();
 
@@ -240,13 +234,9 @@ public class CustomAdapter extends BaseAdapter {
         b.putString(context.getString(R.string.alias_key), this.alias);
         b.putInt(context.getString(R.string.size_key), this.size);
         b.putInt(context.getString(R.string.duration_key), this.game.getGameDuration());
-        //b.putString("numbers", this.numbers);
         b.putInt(context.getString(R.string.black_key), this.game.getBoard().getCountBlack());
         b.putInt(context.getString(R.string.white_key), this.game.getBoard().getCountWhite());
-
         b.putInt(context.getString(R.string.hastimer_key), this.timer);
-
-
         b.putInt(context.getString(R.string.diferencia_key), diferencia);
         b.putInt(context.getString(R.string.win_key), win);
 
@@ -258,7 +248,6 @@ public class CustomAdapter extends BaseAdapter {
 
     public void countTime(){
         startTimer();
-        //game.changeFirstMove();
         firstMove++;
     }
 
@@ -270,7 +259,6 @@ public class CustomAdapter extends BaseAdapter {
 
     public void stopTimerTask(View v) {
         if (time != null) {
-            System.out.println("Entro en lo que queria");
             time.cancel();
             time = null;
         }
@@ -299,9 +287,7 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void updateCount(){
-        System.out.println("Entro en el timer ");
         final TextView textView = (TextView) activity.findViewById(R.id.timer_text);
-        //System.out.println("No llega aqui o si :)");
         textView.setText(Integer.valueOf(game.getGameDuration()).toString());
         if (timer == 1){
             textView.setTextColor(Color.RED);
@@ -309,13 +295,6 @@ public class CustomAdapter extends BaseAdapter {
             textView.setTextColor(Color.BLUE);
         }
         textView.postInvalidate();
-
-        /*((Activity) context).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((EditText)editText).setText(text);
-            }
-        });*/
     }
 
     public  void updateNumbers(){

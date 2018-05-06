@@ -13,7 +13,6 @@ public class Game implements Parcelable {
     private boolean white_play;
     private boolean black_play;
     private int gameDuration;
-    private boolean firstMove;
     private GameType gameType;
 
     public Game(Board board, GameType type, int gameDuration) {
@@ -24,16 +23,8 @@ public class Game implements Parcelable {
         this.black_play = true;
         this.gameType = type;
         this.gameDuration = gameDuration;
-        this.firstMove = true;
     }
 
-    public boolean isFirstMove(){
-        return firstMove;
-    }
-
-    public void changeFirstMove(){
-        this.firstMove = false;
-    }
 
     public void increaseDuration(){
         this.gameDuration++;
@@ -42,15 +33,6 @@ public class Game implements Parcelable {
     public int getGameDuration(){
         return this.gameDuration;
 
-    }
-
-    public int stepsToOutOfBoard(Position position, Direction direction) {
-        int numSteps = 0;
-        while (this.board.contains(position)) {
-            numSteps += 1;
-            position = position.move(direction);
-        }
-        return numSteps;
     }
 
     public Board getBoard(){
@@ -73,10 +55,6 @@ public class Game implements Parcelable {
     public boolean getFinished()
     {
         return this.state == State.FINISHED;
-    }
-
-    public boolean blockFinished(){
-        return this.white_play == false && this.black_play == false;
     }
 
     public boolean isSame(State player, Position position) {
