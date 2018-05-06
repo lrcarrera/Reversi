@@ -52,17 +52,24 @@ public class CustomAdapter extends BaseAdapter {
 
 
 
-    public CustomAdapter (Context c,  Game game, TextView et, TextView tv, int timer, TextView count, String alias){
+    public CustomAdapter (Context c,  Game game/*, TextView et, TextView tv,*/, int timer/*, TextView count*/, String alias){
         this.context = c;
-        this.tv = tv;
-        this.et = et;
-        this.count = count;
+      //  this.tv = tv;
+       // this.et = et;
+      //  this.count = count;
         this.game = game;
         this.timer = timer;
         this.size = game.getBoard().size();
         this.alias = alias;
         this.activity = (Activity) c;
+        createViews();
     }
+
+    public void createViews(){
+        et = (TextView) ((Activity)context).findViewById(R.id.text);
+        tv = (TextView) ((Activity)context).findViewById(R.id.text_fichas);
+    }
+
 
     @Override
     public int getCount() {

@@ -64,7 +64,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         game = new Game(board, gameType, 0);
         State  state = State.BLACK;
 
-        adapter = new CustomAdapter(this, game, et, tv, timer, count, alias);
+        adapter = new CustomAdapter(this, game/*, et, tv, */,timer, /*count,*/ alias);
         gv.setAdapter(adapter);
 
 
@@ -85,7 +85,8 @@ public class DesarrolloJuego extends AppCompatActivity {
 
             updateNumbers();
 
-            adapter = new CustomAdapter(this, game, et, tv, timer, count, alias);
+
+            adapter = new CustomAdapter(this, game/*, et, tv*/, timer, /*count,*/ alias);
             gv.setAdapter(adapter);
         }
     }
