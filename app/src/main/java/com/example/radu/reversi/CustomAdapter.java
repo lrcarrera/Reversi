@@ -98,8 +98,6 @@ public class CustomAdapter extends BaseAdapter {
 
         } else {
             cell = (ImageButton) convertView;
-
-
         }
 
 
@@ -234,13 +232,9 @@ public class CustomAdapter extends BaseAdapter {
         b.putString(context.getString(R.string.alias_key), this.alias);
         b.putInt(context.getString(R.string.size_key), this.size);
         b.putInt(context.getString(R.string.duration_key), this.game.getGameDuration());
-        //b.putString("numbers", this.numbers);
         b.putInt(context.getString(R.string.black_key), this.game.getBoard().getCountBlack());
         b.putInt(context.getString(R.string.white_key), this.game.getBoard().getCountWhite());
-
         b.putInt(context.getString(R.string.hastimer_key), this.timer);
-
-
         b.putInt(context.getString(R.string.diferencia_key), diferencia);
         b.putInt(context.getString(R.string.win_key), win);
 
@@ -248,12 +242,6 @@ public class CustomAdapter extends BaseAdapter {
         context.startActivity(in);
 
         activity.finish();
-
-        //((Activity)this.context).finish();
-
-        //DesarrolloJuego d = new DesarrolloJuego();
-        //d.callIntent();
-        //final android.content.Intent configuracio = android.content.Intent(this, Configuracio.class);
     }
 
     public void countTime(){
@@ -377,10 +365,5 @@ public class CustomAdapter extends BaseAdapter {
             ring = MediaPlayer.create(context, R.raw.timer_sound);
             ring.start();
         }
-
     }
-
-
-
-
 }

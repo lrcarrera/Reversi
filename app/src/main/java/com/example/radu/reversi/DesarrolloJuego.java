@@ -37,7 +37,6 @@ public class DesarrolloJuego extends AppCompatActivity {
     TextView tv;
     TextView count;
     GameType gameType;
-    ImageView imageTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
