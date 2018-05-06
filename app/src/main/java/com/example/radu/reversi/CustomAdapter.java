@@ -65,7 +65,6 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        //return 0;
         return this.game.getBoard().totalCells();
     }
 
@@ -82,8 +81,7 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ImageButton cell;
         int i,j;
 
@@ -97,7 +95,6 @@ public class CustomAdapter extends BaseAdapter {
             cell.setScaleType(ImageView.ScaleType.FIT_CENTER);
             cell.setScaleType(ImageButton.ScaleType.FIT_XY);
             cell.setPadding(0, 0, 0, 0);
-
         } else {
             cell = (ImageButton) convertView;
         }
@@ -234,16 +231,20 @@ public class CustomAdapter extends BaseAdapter {
         b.putString(context.getString(R.string.alias_key), this.alias);
         b.putInt(context.getString(R.string.size_key), this.size);
         b.putInt(context.getString(R.string.duration_key), this.game.getGameDuration());
+        //b.putString("numbers", this.numbers);
         b.putInt(context.getString(R.string.black_key), this.game.getBoard().getCountBlack());
         b.putInt(context.getString(R.string.white_key), this.game.getBoard().getCountWhite());
+
         b.putInt(context.getString(R.string.hastimer_key), this.timer);
+
+
         b.putInt(context.getString(R.string.diferencia_key), diferencia);
         b.putInt(context.getString(R.string.win_key), win);
 
         in.putExtras(b);
         context.startActivity(in);
-
         activity.finish();
+
     }
 
     public void countTime(){
@@ -254,10 +255,10 @@ public class CustomAdapter extends BaseAdapter {
     public void startTimer() {
         time = new Timer();
         initializeTimerTask();
-        time.schedule(timerTask, 0, SECONDINMILISECONDS); //
+        time.schedule(timerTask, 0, SECONDINMILISECONDS);
     }
 
-    public void stoptimertask(View v) {
+    public void stopTimerTask(View v) {
         if (time != null) {
             time.cancel();
             time = null;
@@ -270,7 +271,7 @@ public class CustomAdapter extends BaseAdapter {
                 handler.post(new Runnable() {
                     public void run() {
                         if(game.getFinished()){
-                            stoptimertask(count);
+                            stopTimerTask(count);
                         } else{
                             game.increaseDuration();
                             count.setText(Integer.valueOf(game.getGameDuration()).toString());
@@ -282,11 +283,10 @@ public class CustomAdapter extends BaseAdapter {
 
                             if (game.getGameDuration() == 25 && timer == 1){
                                 game.setState(State.FINISHED);
-                                stoptimertask(count);
+                                stopTimerTask(count);
                                 finish();
                             }
                         }
-
                     }
                 });
             }
@@ -367,5 +367,10 @@ public class CustomAdapter extends BaseAdapter {
             ring = MediaPlayer.create(context, R.raw.timer_sound);
             ring.start();
         }
+
     }
+
+
+
+
 }

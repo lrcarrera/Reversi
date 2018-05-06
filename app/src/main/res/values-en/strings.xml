@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="empty"></string>
+    <!-- Menu Principal strings -->
+    <string name="app_name">Reversi</string>
+    <string name="comenca_partida">Start</string>
+    <string name="sortir">Sign Out</string>
+    <string name="menu_principal">Main Menu</string>
+    <string name="ayuda">Help</string>
+
+    <!-- Ayuda  strings -->
+    <string name="ajuda">Help</string>
+    <string name="hello_message">Welcome to REVERSI game!</string>
+    <string name="info_message">
+        Reversi is a strategy board game for two players, played on an 8×8 uncheckered board.
+        There are sixty-four identical game pieces called disks (often spelled "discs"),
+        which are light on one side and dark on the other. Players take turns placing disks on the board with their assigned color facing up.
+        During a play, any disks of the opponent\'s color that are in a straight line and bounded by the disk just placed and another disk of the current player\'s color are turned over to the current player's color.
+        The object of the game is to have the majority of disks turned to display your color when the last playable empty square is filled.
+    </string>
+    <string name="anar_joc">Back</string>
+
+    <!--- Sortir -->
+    <string name="sortir_joc">Reversi finished correctly</string>
+
+    <!--- Configuració -->
+    <string name="comenca">Start</string>
+    <string name="configuracio">Settings</string>
+    <string name="alias">Nickname id:</string>
+    <string name="mida_graella">Grid Size:</string>
+    <string name="control_temps">Timer countdown:</string>
+    <string name="nom_usuari">User name</string>
+    <string name="opcio_1">8</string>
+    <string name="opcio_2">6</string>
+    <string name="opcio_3">4</string>
+    <string name="falta_alias">  Fill the Nickname blanck, please!  </string>
+    <string name="falta_dimension"> Select a grid dimension, please| </string>
+
+    <!--- Desarrollo Juego -->
+    <string name="partida">Game</string>
+    <string name="info_caselles">You: \'%s\'  Oponent: \'%s\' \n Remanining Disks: \'%s\' </string>
+    <string name="estat">Game Status: %s !</string>
+    <string name="en_marxa">In progress..</string>
+    <string name="finalitzada">FINISHED</string>
+    <string name="pulsa_casilla">Tap a cell to start the game.</string>
+    <string name="casella_incorrecta">Wrong cell!</string>
+
+
+    <!--- Resultados Juego -->
+    <string name="resultados">Results</string>
+    <string name="resultados_partida">Game Results</string>
+    <string name="dia_hora">Date:</string>
+    <string name="valores_log">Log:</string>
+    <string name="email">Email:</string>
+    <string name="email_defecto">petergriffin@gmail.com</string>
+    <string name="nova_paritda">New Game</string>
+    <string name="enviar_email">Send e-mail</string>
+
+    <!--- Resultados partida -->
+    <string name="victoria">Well done, you won!!</string>
+    <string name="perdida">Bad luck, try again!!</string>
+    <string name="empate">Intriguin, you draw!!</string>
+    <string name="final_tiempo">Countdown Finished</string>
+    <string name="bloqueo">Block... anyone can move.</string>
+
+
+    <!--- Play Mode -->
+    <string name="seleccion_dificultad">Selección Dificultad</string>
+    <string name="solitario"> Individual</string>
+    <string name="multijugador"> Multijugador</string>
+
+    <!--- Levels -->
+    <string name="seleccion_nivel">Selección Nivel</string>
+    <string name="dificil"> Díficil</string>
+    <string name="medio"> Media</string>
+    <string name="facil"> Fácil</string>
+
+
+    <!--- Resultats -->
+
+    <string name="temps_esgotat">Has esgotat el temps!!</string>
+    <string name="temps_restant">Han sobrat %s segons!</string>
+    <string name="mail_to">mailTo</string>
+    <string name="send_email">Send email...</string>
+    <string name="type_email">message\/rfc822</string>
+    <string name="victory_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has guanyat !! Tu %s; Oponent %s;\n%s caselles de diferencia!\n%s</string>
+    <string name="draw_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Heu empatat !!\n%s</string>
+    <string name="block_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Us heu quedat sense poder completar la graella … !! Tu %s; Oponent %s;\n%s caselles de diferencia!\nHan quedat %s caselles per cobrir\n%s</string>
+    <string name="time_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has esgotat el temps!!\nTu %s; Oponent %s;\n%s caselles de diferencia!\nHan quedat %s caselles per cobrir</string>
+    <string name="lose_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has perdut !! Oponent %s; Tu %s;\n%s caselles de diferencia!\n%s</string>
+    <string name="asunto_correo">Partida Reversi</string>
+</resources>

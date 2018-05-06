@@ -96,7 +96,7 @@ public class Resultados extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType(getString(R.string.type_email));
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{txtMail.getText().toString()});
-        i.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+" "+txtResultats.getText().toString());
+        i.putExtra(Intent.EXTRA_SUBJECT, txtDia.getText().toString()+" "+ getString(R.string.asunto_correo));
         i.putExtra(Intent.EXTRA_TEXT   , txtResultats.getText().toString());
         startActivity(Intent.createChooser(i, getString(R.string.send_email)));
     }
