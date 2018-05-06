@@ -126,6 +126,7 @@ public class DesarrolloJuego extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        adapter.stopTimerTask(count);
         outState.putParcelable(getString(R.string.game_key), game);
         outState.putInt(getString(R.string.timer_key), timer);
         outState.putString(getString(R.string.alias_key), alias);

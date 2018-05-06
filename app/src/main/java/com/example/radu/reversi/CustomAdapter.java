@@ -164,7 +164,8 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void isObjectiveProcess(Position p){
-        if(game.isFirstMove()){
+        if(firstMove == 0){
+            //stopTimerTask(count);
             countTime();
 
         }
@@ -250,8 +251,8 @@ public class CustomAdapter extends BaseAdapter {
 
     public void countTime(){
         startTimer();
-        game.changeFirstMove();
-       // firstMove++;
+        //game.changeFirstMove();
+        firstMove++;
     }
 
     public void startTimer() {
@@ -262,6 +263,7 @@ public class CustomAdapter extends BaseAdapter {
 
     public void stopTimerTask(View v) {
         if (time != null) {
+            System.out.println("Entro en lo que queria");
             time.cancel();
             time = null;
         }
@@ -290,7 +292,8 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void updateCount(){
-        TextView textView = (TextView) activity.findViewById(R.id.timer_text);
+        System.out.println("Entro en el timer ");
+        final TextView textView = (TextView) activity.findViewById(R.id.timer_text);
         //System.out.println("No llega aqui o si :)");
         textView.setText(Integer.valueOf(game.getGameDuration()).toString());
         if (timer == 1){
