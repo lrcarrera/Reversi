@@ -62,7 +62,6 @@ public class Game implements Parcelable {
 
     public boolean getFinished()
     {
-
         return this.state == State.FINISHED;
     }
 

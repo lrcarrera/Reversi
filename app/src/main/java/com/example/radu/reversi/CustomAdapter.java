@@ -243,6 +243,8 @@ public class CustomAdapter extends BaseAdapter {
         in.putExtras(b);
         context.startActivity(in);
 
+        //this.finish();
+
         //((Activity)this.context).finish();
 
         //DesarrolloJuego d = new DesarrolloJuego();
