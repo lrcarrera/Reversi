@@ -1,5 +1,6 @@
 package com.example.radu.reversi;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -42,6 +43,8 @@ public class CustomAdapter extends BaseAdapter {
     int firstMove = 0;
     int SECONDINMILISECONDS=1000;
 
+    Activity activity;
+
     String alias, numbers;
 
 
@@ -55,6 +58,7 @@ public class CustomAdapter extends BaseAdapter {
         this.timer = timer;
         this.size = game.getBoard().size();
         this.alias = alias;
+        this.activity = (Activity) c;
     }
 
     @Override
@@ -243,7 +247,7 @@ public class CustomAdapter extends BaseAdapter {
         in.putExtras(b);
         context.startActivity(in);
 
-        //this.finish();
+        activity.finish();
 
         //((Activity)this.context).finish();
 
