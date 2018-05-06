@@ -34,14 +34,16 @@ public class CustomAdapter extends BaseAdapter {
     MediaPlayer ring;
     final Handler handler = new Handler();
 
-    int BLOCK = 0;
-    int WIN = 1;
-    int LOSE = 2;
-    int DRAW = 3;
-    int TEMPUS = 4;
-    int WRONGCELL = 5;
+    private static final int BLOCK = 0;
+    private static final int WIN = 1;
+    private static final int LOSE = 2;
+    private static final int DRAW = 3;
+    private static final int TEMPUS = 4;
+    private static final int WRONGCELL = 5;
+    private static final int SECONDINMILISECONDS = 1000;
+
     int firstMove = 0;
-    int SECONDINMILISECONDS=1000;
+
 
     Activity activity;
 
