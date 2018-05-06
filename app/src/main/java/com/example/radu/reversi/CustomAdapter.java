@@ -290,14 +290,22 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void updateCount(){
-        TextView editText = (TextView) activity.findViewById(R.id.timer_text);
+        TextView textView = (TextView) activity.findViewById(R.id.timer_text);
         //System.out.println("No llega aqui o si :)");
-        editText.setText(Integer.valueOf(game.getGameDuration()).toString());
+        textView.setText(Integer.valueOf(game.getGameDuration()).toString());
         if (timer == 1){
-            editText.setTextColor(Color.RED);
+            textView.setTextColor(Color.RED);
         } else {
-            editText.setTextColor(Color.BLUE);
+            textView.setTextColor(Color.BLUE);
         }
+        textView.postInvalidate();
+
+        /*((Activity) context).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((EditText)editText).setText(text);
+            }
+        });*/
     }
 
     public  void updateNumbers(){
