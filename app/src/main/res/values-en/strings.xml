@@ -9,7 +9,7 @@
     <string name="menu_principal">Main Menu</string>
     <string name="ayuda">Help</string>
 
-    <!-- Ayuda  strings -->
+    <!-- AyudaActivity  strings -->
     <string name="ajuda">Help</string>
     <string name="hello_message">Welcome to REVERSI game!</string>
     <string name="info_message">
@@ -47,7 +47,7 @@
     <string name="casella_incorrecta">Wrong cell!</string>
 
 
-    <!--- Resultados Juego -->
+    <!--- ResultadosActivity Juego -->
     <string name="resultados">Results</string>
     <string name="resultados_partida">Game Results</string>
     <string name="dia_hora">Date:</string>
@@ -57,7 +57,7 @@
     <string name="nova_paritda">New Game</string>
     <string name="enviar_email">Send e-mail</string>
 
-    <!--- Resultados partida -->
+    <!--- ResultadosActivity partida -->
     <string name="victoria">Well done, you won!!</string>
     <string name="perdida">Bad luck, try again!!</string>
     <string name="empate">Intriguin, you draw!!</string>
@@ -70,7 +70,7 @@
     <string name="solitario"> Individual</string>
     <string name="multijugador"> Multijugador</string>
 
-    <!--- Levels -->
+    <!--- LevelsActivity -->
     <string name="seleccion_nivel">Selección Nivel</string>
     <string name="dificil"> Díficil</string>
     <string name="medio"> Media</string>

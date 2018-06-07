@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Ayuda extends AppCompatActivity {
+public class AyudaActivity extends AppCompatActivity {
 
     Button tornar;
     @Override

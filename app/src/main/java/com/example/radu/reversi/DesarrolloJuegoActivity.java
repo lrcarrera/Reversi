@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class DesarrolloJuego extends AppCompatActivity {
+public class DesarrolloJuegoActivity extends AppCompatActivity {
 
     int timer;
     Game game;
@@ -83,11 +83,12 @@ public class DesarrolloJuego extends AppCompatActivity {
             alias = savedInstanceState.getString(getString(R.string.alias_key));
             grid_dimension = savedInstanceState.getInt(getString(R.string.size_key));
 
-            updateNumbers();
+            //updateNumbers();
 
 
             adapter = new CustomAdapter(this, game/*, et, tv*/, timer, /*count,*/ alias);
             gv.setAdapter(adapter);
+            adapter.updateNumbers();
         }
     }
 
@@ -105,7 +106,7 @@ public class DesarrolloJuego extends AppCompatActivity {
 
 
 
-    public  void updateNumbers(){
+    /*public  void updateNumbers(){
         String numbers, state, auxiliar;
         int toFill = (game.getBoard().size() * game.getBoard().size()) -
                 (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
@@ -122,7 +123,7 @@ public class DesarrolloJuego extends AppCompatActivity {
         }
         state = String.format(this.getString(R.string.estat), auxiliar);
         et.setText(state);
-    }
+    }*/
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

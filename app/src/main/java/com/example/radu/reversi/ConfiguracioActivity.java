@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Configuracio extends AppCompatActivity {
+public class ConfiguracioActivity extends AppCompatActivity {
 
     Button comenca;
     Bundle bundle;
@@ -39,7 +39,7 @@ public class Configuracio extends AppCompatActivity {
 
         bundle = new Bundle();
         final Intent auxIn = getIntent();
-        final Intent in = new Intent(this, DesarrolloJuego.class);
+        final Intent in = new Intent(this, DesarrolloJuegoActivity.class);
         final RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_buttons);
         final EditText alias = (EditText) findViewById(R.id.edit_text);
         CheckBox check_box = (CheckBox) findViewById(R.id.check);

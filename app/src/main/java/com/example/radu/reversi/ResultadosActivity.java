@@ -9,7 +9,7 @@ import android.widget.EditText;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Resultados extends AppCompatActivity {
+public class ResultadosActivity extends AppCompatActivity {
 
     EditText txtResultats;
     EditText txtMail;
@@ -102,7 +102,7 @@ public class Resultados extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-        Intent i = new Intent(this, PlayMode.class);
+        Intent i = new Intent(this, PlayModeActivity.class);
         startActivity(i);
         finish();
     }

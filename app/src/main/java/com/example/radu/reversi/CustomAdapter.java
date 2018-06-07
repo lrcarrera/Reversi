@@ -2,17 +2,14 @@ package com.example.radu.reversi;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -230,7 +227,7 @@ public class CustomAdapter extends BaseAdapter {
             }
         }
 
-        android.content.Intent in = new android.content.Intent(context, Resultados.class);
+        android.content.Intent in = new android.content.Intent(context, ResultadosActivity.class);
         b.putString(context.getString(R.string.alias_key), this.alias);
         b.putInt(context.getString(R.string.size_key), this.size);
         b.putInt(context.getString(R.string.duration_key), this.game.getGameDuration());
