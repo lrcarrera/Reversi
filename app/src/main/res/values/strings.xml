@@ -109,5 +109,8 @@
     <string name="mode_medium">MEDIUM</string>
     <string name="mode_hard">HARD</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

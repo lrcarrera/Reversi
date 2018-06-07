@@ -11,6 +11,7 @@
 
     <!-- AyudaActivity  strings -->
     <string name="ajuda">Help</string>
+    <string name="consulta_partida">Scores</string>
     <string name="hello_message">Welcome to REVERSI game!</string>
     <string name="info_message">
         Reversi is a strategy board game for two players, played on an 8×8 uncheckered board.
@@ -90,4 +91,32 @@
     <string name="time_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has esgotat el temps!!\nTu %s; Oponent %s;\n%s caselles de diferencia!\nHan quedat %s caselles per cobrir</string>
     <string name="lose_log">Alias %s\nMida graella: %s\nTemps total: %s secs.\n Has perdut !! Oponent %s; Tu %s;\n%s caselles de diferencia!\n%s</string>
     <string name="asunto_correo">Partida Reversi</string>
+
+
+
+
+    <!--- Shared Preferences -->
+
+    <string name="pref_title">Configuración</string>
+
+    <string name="pref_alias">Alias</string>
+    <string name="pref_alias_default">Juanjo</string>
+    <string name="pref_alias_key">alias_key</string>
+    <string name="pref_alias_intro">Introdueix el teu Alias</string>
+
+    <string name="pref_timer">Temporitzador</string>
+    <string name="pref_timer_default">0</string>
+    <string name="pref_timer_key">timer_key</string>
+
+    <string name="pref_size">Tamany graella</string>
+    <string name="pref_size_default">4</string>
+    <string name="pref_size_key">size_key</string>
+    <string name="pref_size_intro">Introdueix un Tamany</string>
+
+
+
+
+
+
+
 </resources>

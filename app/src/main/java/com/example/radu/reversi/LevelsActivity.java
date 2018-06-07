@@ -22,7 +22,7 @@ public class LevelsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_levels);
 
-        final Intent configuracio = new Intent(this, ConfiguracioActivity.class);
+        final Intent configuracio = new Intent(this, DesarrolloJuegoActivity.class);
 
 
         easy = (Button) findViewById(R.id.button_facil);
@@ -60,15 +60,15 @@ public class LevelsActivity extends AppCompatActivity {
     }
 
     private void startParams(int received){
-        final Intent configuracio = new Intent(this, ConfiguracioActivity.class);
+        final Intent game = new Intent(this, DesarrolloJuegoActivity.class);
         if (received == EASY){
-            configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.mode_easy));
+            game.putExtra(getString(R.string.playmode_key), getString(R.string.mode_easy));
         } else if(received == MEDIUM){
-            configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.mode_medium));
+            game.putExtra(getString(R.string.playmode_key), getString(R.string.mode_medium));
         }else{
-            configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.mode_hard));
+            game.putExtra(getString(R.string.playmode_key), getString(R.string.mode_hard));
         }
-        startActivity(configuracio);
+        startActivity(game);
         finish();
     }
 }

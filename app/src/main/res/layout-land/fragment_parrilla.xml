@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:id="@+id/header_desarrollo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/DarkSeaGreen">
+
+        <ImageView
+            android:id="@+id/image_game"
+            android:layout_width="@dimen/image_reverse_size"
+            android:layout_height="@dimen/image_reverse_size"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/game_icon" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/image_game"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:text="@string/partida"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="50dp"/>
+
+        <TextView
+            android:id="@+id/text_fichas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/grid_custom"
+            android:text="@string/pulsa_casilla" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/sub_aux"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/timer"
+            android:layout_width="@dimen/little_icon_size"
+            android:layout_height="@dimen/little_icon_size"
+            android:src="@drawable/chrono_icon"
+            android:layout_alignParentBottom="true"/>
+
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/m3"
+        android:layout_marginTop="@dimen/m4"
+        android:orientation="vertical"
+        android:layout_below="@+id/header_desarrollo">
+
+        <GridView
+            android:id="@+id/grid_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:horizontalSpacing="0dp"
+            android:stretchMode="columnWidth"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

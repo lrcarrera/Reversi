@@ -28,7 +28,9 @@
         <activity android:name=".ResultadosActivity" />
         <activity android:name=".PlayModeActivity" />
         <activity android:name=".LevelsActivity" />
-        <activity android:name=".PreferenceActivity"></activity>
+        <activity android:name=".OpcionesActivity" />
+        <activity android:name=".AccessBDActivity" />
+        <activity android:name=".DetailRegActivity"></activity>
     </application>
 
 </manifest>

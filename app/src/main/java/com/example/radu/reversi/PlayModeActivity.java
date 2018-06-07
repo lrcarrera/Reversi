@@ -48,9 +48,9 @@ public class PlayModeActivity extends AppCompatActivity {
             final Intent levels = new Intent(this, LevelsActivity.class);
             startActivity(levels);
         }else{
-            final Intent configuracio = new Intent(this, ConfiguracioActivity.class);
-            configuracio.putExtra(getString(R.string.playmode_key), getString(R.string.multiplayer));
-            startActivity(configuracio);
+            final Intent game = new Intent(this, DesarrolloJuegoActivity.class);
+            game.putExtra(getString(R.string.playmode_key), getString(R.string.multiplayer));
+            startActivity(game);
         }
         finish();
     }

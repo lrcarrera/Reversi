@@ -19,11 +19,13 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     private Button ajuda;
     private Button comenca_partida;
     private Button sortir;
+    private Button score;
 
     private static final int HELP = 0;
     private static final int START = 1;
     private static final int END = 2;
     private static final int CONFIG = 3;
+    private static final int SCORE = 4;
 
 
     @Override
@@ -59,6 +61,14 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivities(END);
+            }
+        });
+
+        score = (Button) findViewById(R.id.button_score);
+        score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivities(SCORE);
             }
         });
     }
@@ -104,8 +114,13 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                 finish();
                 break;
             case CONFIG:
-                final Intent config = new Intent(this, PreferenceActivity.class);
+                final Intent config = new Intent(this, OpcionesActivity.class);
                 startActivity(config);
+                break;
+
+            case SCORE:
+                final Intent score = new Intent(this, AccessBDActivity.class);
+                startActivity(score);
                 break;
             default:
                 break;

@@ -3,9 +3,13 @@ package com.example.radu.reversi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Parcelable;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class DesarrolloJuegoActivity extends AppCompatActivity {
+public class DesarrolloJuegoActivity extends FragmentActivity {
 
     int timer;
     Game game;
@@ -41,9 +45,16 @@ public class DesarrolloJuegoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
 
         setContentView(R.layout.activity_desarrollo_juego);
+
+        ParrillaFrag frgParrilla = (ParrillaFrag) getSupportFragmentManager().findFragmentById(R.id.FrgParrilla);
+//TE QUEDASTE AQUI ACABA DE HACER EL fragment para el juegos
+        //frgParrilla.setCorreosListener(this);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(DesarrolloJuegoActivity.this);
+
 
         c1 = getApplicationContext();
         et = (TextView) findViewById(R.id.text);
@@ -52,13 +63,16 @@ public class DesarrolloJuegoActivity extends AppCompatActivity {
         count = (TextView) findViewById(R.id.timer_text);
 
         Intent in = getIntent();
-        timer = in.getIntExtra(getString(R.string.timer_key), 0);
 
-        grid_dimension = in.getIntExtra(getString(R.string.size_key), 0);
-        alias = in.getStringExtra(getString(R.string.alias_key));
+        if ( prefs.getBoolean(getString(R.string.pref_timer_key),false) ) {
+            timer = 1;
+        }else{
+            timer = 0;
+        }
+        grid_dimension = Integer.valueOf(prefs.getString(getString(R.string.pref_size_key), getString(R.string.pref_size_default)));
+        alias = prefs.getString(getString(R.string.pref_alias_key), getString(R.string.pref_alias_default));
         playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
         gv.setNumColumns(grid_dimension);
-
 
         Board board = new Board(grid_dimension);
         game = new Game(board, gameType, 0);
@@ -67,25 +81,15 @@ public class DesarrolloJuegoActivity extends AppCompatActivity {
         adapter = new CustomAdapter(this, game, timer, alias);
         gv.setAdapter(adapter);
 
-
-
-
-
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-
         if (savedInstanceState != null) {
-
             game = (Game) savedInstanceState.getParcelable(getString(R.string.game_key));
             timer = savedInstanceState.getInt(getString(R.string.timer_key));
             alias = savedInstanceState.getString(getString(R.string.alias_key));
             grid_dimension = savedInstanceState.getInt(getString(R.string.size_key));
-
-            //updateNumbers();
-
-
             adapter = new CustomAdapter(this, game/*, et, tv*/, timer, /*count,*/ alias);
             gv.setAdapter(adapter);
             adapter.updateNumbers();
@@ -133,7 +137,5 @@ public class DesarrolloJuegoActivity extends AppCompatActivity {
         outState.putInt(getString(R.string.timer_key), timer);
         outState.putString(getString(R.string.alias_key), alias);
         outState.putInt(getString(R.string.size_key), grid_dimension);
-
-
     }
 }

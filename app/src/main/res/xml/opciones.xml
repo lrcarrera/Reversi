@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_title">
+        <EditTextPreference
+            android:defaultValue="@string/pref_alias_default"
+            android:key="@string/pref_alias_key"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/pref_alias"
+            android:dialogTitle="@string/pref_alias_intro"/>
+        <CheckBoxPreference
+            android:defaultValue="@string/pref_timer_default"
+            android:key="@string/pref_timer_key"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/pref_timer" />
+        <ListPreference
+            android:defaultValue="@string/pref_size_default"
+            android:key="@string/pref_size_key"
+            android:title="@string/pref_size"
+            android:dialogTitle="@string/pref_size_intro"
+            android:entries="@array/size"
+            android:entryValues="@array/size"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>
