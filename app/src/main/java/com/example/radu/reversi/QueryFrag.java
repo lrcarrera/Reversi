@@ -31,16 +31,7 @@ public class QueryFrag extends Fragment {
                     new Score("Persona 4", "Asunto del correo 4", "Texto del correo 4"),
                     new Score("Persona 5", "Asunto del correo 5", "Texto del correo 5")};
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            listener = (ScoreListener) context;
-        }
-        catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnScoreListener");
-        }
-    }
+
 
     @Nullable
     @Override
@@ -64,6 +55,9 @@ public class QueryFrag extends Fragment {
 
 
             Cursor cursor = db.query("Partidas", campos, null, null, null, null, null);
+
+
+
             SimpleCursorAdapter adt = new SimpleCursorAdapter(getContext(), R.layout.list_query,
                     cursor, new String[]{"alias", "fecha","resultado"}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
             lstListado = (ListView) getView().findViewById(R.id.LstListado);
@@ -73,10 +67,9 @@ public class QueryFrag extends Fragment {
             lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
-                    System.out.println("RADU");
                     if (listener != null) {
-                        listener.onScoreSeleccionado(
-                                (SQLiteCursor) lstListado.getAdapter().getItem(pos));
+                        listener.onScoreSeleccionado(//PASAR ID PARA HACER CONSULTA EN EL DETALLE);
+                                (SQLiteCursor) lstListado.getAdapter().getItem(pos)*/);
                     }
                 }
 
@@ -84,10 +77,21 @@ public class QueryFrag extends Fragment {
         }
     }
 
-    public interface ScoreListener{
-        //void onScoreSeleccionado(Score c);
-        void onScoreSeleccionado(SQLiteCursor c);
+    @Override
+    public void onAttach(Context c) {
+        super.onAttach(c);
+        try {
+            listener = (ScoreListener) c;
+        }
+        catch (ClassCastException e) {
+            throw new ClassCastException(c.toString() + " must implement onScoreListener");
+        }
     }
+
+    public interface ScoreListener{
+        void onScoreSeleccionado();
+    }
+
 
     public void setScoreListener(ScoreListener listener) {
         this.listener=listener;

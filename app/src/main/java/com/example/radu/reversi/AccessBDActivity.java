@@ -21,13 +21,12 @@ public class AccessBDActivity extends FragmentActivity implements QueryFrag.Scor
 
 
     @Override
-    public void onScoreSeleccionado(SQLiteCursor c) {
+    public void onScoreSeleccionado(/*SQLiteCursor c*/) {
 
-        boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgDetalle) != null);
+        boolean hayDetalle = (getFragmentManager().findFragmentById(R.id.FrgDetalleQuery) != null);
 
         if(hayDetalle) {
-
-            RegFrag f1 = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalle);
+            RegFrag f1 = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalleQuery);
             f1.mostrarDetalle("holas");
 
         }

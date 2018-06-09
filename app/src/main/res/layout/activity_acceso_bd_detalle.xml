@@ -8,6 +8,6 @@
     <fragment class="com.example.radu.reversi.RegFrag"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:id="@+id/FrgDetalle"  />
+        android:id="@+id/FrgDetalleQuery"  />
 
 </LinearLayout>
