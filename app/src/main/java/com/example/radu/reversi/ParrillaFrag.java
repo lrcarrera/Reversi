@@ -19,14 +19,8 @@ public class ParrillaFrag extends Fragment {
 
 
     private MyOnClickListener listener;
-    String alias;
 
-    Context c1;
-    GridView gv;
-    TextView et;
-    TextView tv;
-    TextView count;
-    CustomAdapter adapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -38,8 +32,10 @@ public class ParrillaFrag extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        et = (TextView) getView().findViewById(R.id.text);
-        tv = (TextView) getView().findViewById(R.id.text_fichas);
+
+
+       // et = (TextView) getView().findViewById(R.id.text);
+        //tv = (TextView) getView().findViewById(R.id.text_fichas);
 
 
 
@@ -98,7 +94,7 @@ public class ParrillaFrag extends Fragment {
     }
 
     public interface MyOnClickListener{
-        void onLogSeleccionado(Game c);
+        void onLogSeleccionado(String info);
     }
 
     public void setMyOnClickListener(MyOnClickListener listener) {

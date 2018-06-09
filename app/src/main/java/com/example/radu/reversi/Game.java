@@ -73,6 +73,10 @@ public class Game implements Parcelable {
                 || someSame(player, position.move(direction), direction));
     }
 
+    public int getRemainingCells() {
+        return this.board.totalCells() - (this.board.getCountBlack() + this.board.getCountWhite());
+    }
+
 
     public boolean[] directionsOfReverse(State player, Position position) {
         boolean [] returner = new boolean[Direction.ALL.length];

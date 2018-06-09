@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +47,7 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
 
     Context c1;
 
+    TextView log;
 
 
 
@@ -58,6 +60,7 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
         frgParrilla = (ParrillaFrag) getSupportFragmentManager().findFragmentById(R.id.FrgParrilla);
         frgParrilla.setMyOnClickListener(this);
 
+
         Intent in = getIntent();
 
         c1 = getApplicationContext();
@@ -65,6 +68,7 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
         gv  = (GridView) findViewById(R.id.grid_custom);
         tv = (TextView) findViewById(R.id.text_fichas);
         count = (TextView) findViewById(R.id.timer_text);
+         log = findViewById(R.id.TxtDetalle);
 
 
 
@@ -83,14 +87,41 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
 
         Board board = new Board(grid_dimension);
         game = new Game(board, gameType, 0);
-        State  state = State.BLACK;
+        State state = State.BLACK;
 
         adapter = new CustomAdapter(this, game, timer, alias);
+
+        adapter.setMyOnClickListener(this);
         gv.setAdapter(adapter);
 
 
 
 
+
+
+
+       boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgLog) != null);
+
+       if (hayDetalle) {
+            TextView txt = findViewById(R.id.TxtDetalleLog);
+
+           if(timer==0) {
+                txt.setText(String.format(getString(R.string.temp_init), alias, String.valueOf(grid_dimension), "Sense control temps."));
+           }else{
+               txt.setText(String.format(getString(R.string.temp_init), alias, String.valueOf(grid_dimension), "Control temps."));
+            }
+        }
+    }
+    @Override
+    public void onLogSeleccionado(String info) {
+
+        boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgLog) != null);
+
+        if(hayDetalle) {
+            LogFrag f1 = (LogFrag) getSupportFragmentManager().findFragmentById(R.id.FrgLog);
+            f1.mostrarLog(info);
+
+        }
 
     }
 
@@ -112,16 +143,14 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
 
         if (savedInstanceState != null) {
 
-            game = (Game) savedInstanceState.getParcelable(getString(R.string.game_key));
-            //timer = savedInstanceState.getInt(getString(R.string.timer_key));
-           // alias = savedInstanceState.getString(getString(R.string.alias_key));
-           // grid_dimension = savedInstanceState.getInt(getString(R.string.size_key));
 
-            //updateNumbers();
+            game = (Game) savedInstanceState.getParcelable(getString(R.string.game_key));
 
 
             adapter = new CustomAdapter(this, game/*, et, tv*/, timer, /*count,*/ alias);
             gv.setAdapter(adapter);
+            adapter.setMyOnClickListener(this);
+
             adapter.updateNumbers();
         }
     }
@@ -129,23 +158,13 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        System.out.println("RADURADURADU");
         adapter.stopTimerTask(count);
         outState.putParcelable(getString(R.string.game_key), game);
 
         //getSupportFragmentManager().putFragment(outState, "myFragmentName", frgParrilla);
     }
 
-    @Override
-    public void onLogSeleccionado(Game g) {
 
-        boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgDetalle) != null);
-
-        if(hayDetalle) {
-            LogFrag f1 = (LogFrag) getSupportFragmentManager().findFragmentById(R.id.FrgDetalle);
-            f1.mostrarLog(g);
-        }
-    }
 /*
     @Override
     public void onSaveInstanceState(Bundle outState) {

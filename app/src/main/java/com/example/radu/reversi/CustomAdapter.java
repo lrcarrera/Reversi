@@ -19,10 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CustomAdapter extends BaseAdapter{
+public class CustomAdapter extends BaseAdapter {
 
     private final Context context;
     private Game game;
@@ -49,6 +52,10 @@ public class CustomAdapter extends BaseAdapter{
 
     String alias, numbers;
 
+    ParrillaFrag.MyOnClickListener listener;
+
+    String tempini, tempfin;
+
 
 
     public CustomAdapter (Context c,  Game game, int timer, String alias){
@@ -59,6 +66,11 @@ public class CustomAdapter extends BaseAdapter{
         this.alias = alias;
         this.activity = (Activity) c;
         createViews();
+    }
+
+
+    public void setMyOnClickListener(ParrillaFrag.MyOnClickListener listener) {
+        this.listener=listener;
     }
 
     public void createViews(){
@@ -113,10 +125,20 @@ public class CustomAdapter extends BaseAdapter{
                 int pos = (int) v.getTag();
                 int i = pos % size;
                 int j = pos / size;
-
-
                 if(game.getBoard().isObjective(new Position(i,j))){
                     isObjectiveProcess(new Position(i,j));
+                    if (listener!=null) {
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:s");
+                        tempfin = sdf.format(c.getTime());
+
+                        TextView txt = activity.findViewById(R.id.TxtDetalleLog);
+
+
+
+
+                        listener.onLogSeleccionado(String.format(context.getString(R.string.temp_onclick), String.valueOf(i), String.valueOf(j), String.valueOf(game.getRemainingCells()), tempini, tempfin));
+                    }
                 } else {
                     makeToast(WRONGCELL);
                 }
@@ -251,13 +273,21 @@ public class CustomAdapter extends BaseAdapter{
     }
 
     public void startTimer() {
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh,mm,s");
+        tempini = sdf.format(c.getTime());
+
         time = new Timer();
         initializeTimerTask();
         time.schedule(timerTask, 0, SECONDINMILISECONDS);
     }
 
     public void stopTimerTask(View v) {
+
         if (time != null) {
+
+
             time.cancel();
             time = null;
         }
