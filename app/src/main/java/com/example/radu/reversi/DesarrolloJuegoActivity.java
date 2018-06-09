@@ -28,89 +28,85 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class DesarrolloJuegoActivity extends FragmentActivity {
+public class DesarrolloJuegoActivity extends FragmentActivity implements ParrillaFrag.MyOnClickListener {
 
-    int timer;
-    Game game;
-    String alias;
-    int grid_dimension;
-    CustomAdapter adapter;
-    Context c1;
-    GridView gv;
-    TextView et;
-    TextView tv;
-    TextView count;
-    GameType gameType;
+
+    ParrillaFrag frgParrilla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this.getSupportActionBar().hide();
-
+       // getActionBar().hide();
         setContentView(R.layout.activity_desarrollo_juego);
 
-        ParrillaFrag frgParrilla = (ParrillaFrag) getSupportFragmentManager().findFragmentById(R.id.FrgParrilla);
-//TE QUEDASTE AQUI ACABA DE HACER EL fragment para el juegos
-        //frgParrilla.setCorreosListener(this);
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(DesarrolloJuegoActivity.this);
-
-
-        c1 = getApplicationContext();
-        et = (TextView) findViewById(R.id.text);
-        gv  = (GridView) findViewById(R.id.grid_custom);
-        tv = (TextView) findViewById(R.id.text_fichas);
-        count = (TextView) findViewById(R.id.timer_text);
-
-        Intent in = getIntent();
-
-        if ( prefs.getBoolean(getString(R.string.pref_timer_key),false) ) {
-            timer = 1;
+        if (savedInstanceState != null) {
+            //Restore the fragment's instance
+            System.out.println("RADURADU");
+            frgParrilla = (ParrillaFrag) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
         }else{
-            timer = 0;
+            frgParrilla = (ParrillaFrag) getSupportFragmentManager().findFragmentById(R.id.FrgParrilla);
         }
-        grid_dimension = Integer.valueOf(prefs.getString(getString(R.string.pref_size_key), getString(R.string.pref_size_default)));
-        alias = prefs.getString(getString(R.string.pref_alias_key), getString(R.string.pref_alias_default));
-        playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
-        gv.setNumColumns(grid_dimension);
-
-        Board board = new Board(grid_dimension);
-        game = new Game(board, gameType, 0);
-        State  state = State.BLACK;
-
-        adapter = new CustomAdapter(this, game, timer, alias);
-        gv.setAdapter(adapter);
+        frgParrilla.setMyOnClickListener(this);
 
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        System.out.println("RADURADURADU");
+        getSupportFragmentManager().putFragment(outState, "myFragmentName", frgParrilla);
+    }
+
+    @Override
+    public void onLogSeleccionado(Game g) {
+
+        boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgDetalle) != null);
+
+        if(hayDetalle) {
+            LogFrag f1 = (LogFrag) getSupportFragmentManager().findFragmentById(R.id.FrgDetalle);
+            f1.mostrarLog(g);
+        }
+    }
+/*
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        System.out.println("ENTRO O KE HACE");
+
+        adapter.stopTimerTask(count);
+        outState.putParcelable(getString(R.string.game_key), game);
+        outState.putInt(getString(R.string.timer_key), timer);
+        outState.putString(getString(R.string.alias_key), alias);
+        outState.putInt(getString(R.string.size_key), grid_dimension);
+    }*/
+
+   /* @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getParcelable(getString(R.string.game_key));
             timer = savedInstanceState.getInt(getString(R.string.timer_key));
             alias = savedInstanceState.getString(getString(R.string.alias_key));
             grid_dimension = savedInstanceState.getInt(getString(R.string.size_key));
-            adapter = new CustomAdapter(this, game/*, et, tv*/, timer, /*count,*/ alias);
+            adapter = new CustomAdapter(this, game, timer,alias);
             gv.setAdapter(adapter);
             adapter.updateNumbers();
         }
     }
 
-    public void playModeDecide(String playMode){
-        if (playMode.equals(getString(R.string.multiplayer))){
-            gameType = GameType.MULTIPLAYER;
-        } else if (playMode.equals(getString(R.string.mode_easy))){
-            gameType = GameType.EASY;
-        } else if (playMode.equals(getString(R.string.mode_medium))){
-            gameType = GameType.MEDIUM;
-        } else {
-            gameType = GameType.HARD;
-        }
-    }
 
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        adapter.stopTimerTask(count);
+        outState.putParcelable(getString(R.string.game_key), game);
+        outState.putInt(getString(R.string.timer_key), timer);
+        outState.putString(getString(R.string.alias_key), alias);
+        outState.putInt(getString(R.string.size_key), grid_dimension);
+    }*/
 
-    /*public  void updateNumbers(){
+
+        /*public  void updateNumbers(){
         String numbers, state, auxiliar;
         int toFill = (game.getBoard().size() * game.getBoard().size()) -
                 (game.getBoard().getCountBlack() + game.getBoard().getCountWhite());
@@ -128,14 +124,4 @@ public class DesarrolloJuegoActivity extends FragmentActivity {
         state = String.format(this.getString(R.string.estat), auxiliar);
         et.setText(state);
     }*/
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        adapter.stopTimerTask(count);
-        outState.putParcelable(getString(R.string.game_key), game);
-        outState.putInt(getString(R.string.timer_key), timer);
-        outState.putString(getString(R.string.alias_key), alias);
-        outState.putInt(getString(R.string.size_key), grid_dimension);
-    }
 }

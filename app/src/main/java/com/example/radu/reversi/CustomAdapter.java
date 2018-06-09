@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapter extends BaseAdapter{
 
     private final Context context;
     private Game game;
@@ -370,8 +372,4 @@ public class CustomAdapter extends BaseAdapter {
         }
 
     }
-
-
-
-
 }
