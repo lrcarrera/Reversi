@@ -230,12 +230,12 @@ public class CustomAdapter extends BaseAdapter{
         }
 
         android.content.Intent in = new android.content.Intent(context, ResultadosActivity.class);
-        b.putString(context.getString(R.string.alias_key), this.alias);
-        b.putInt(context.getString(R.string.size_key), this.size);
+        //b.putString(context.getString(R.string.alias_key), this.alias);
+        //b.putInt(context.getString(R.string.size_key), this.size);
         b.putInt(context.getString(R.string.duration_key), this.game.getGameDuration());
         b.putInt(context.getString(R.string.black_key), this.game.getBoard().getCountBlack());
         b.putInt(context.getString(R.string.white_key), this.game.getBoard().getCountWhite());
-        b.putInt(context.getString(R.string.hastimer_key), this.timer);
+        //b.putInt(context.getString(R.string.hastimer_key), this.timer);
         b.putInt(context.getString(R.string.diferencia_key), diferencia);
         b.putInt(context.getString(R.string.win_key), win);
 
