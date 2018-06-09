@@ -14,6 +14,9 @@ public class AccessBDActivity extends FragmentActivity implements QueryFrag.Scor
 
         QueryFrag frgListado = (QueryFrag)getFragmentManager().findFragmentById(R.id.FrgListado);
         frgListado.setScoreListener(this);
+
+
+
     }
 
 
@@ -23,13 +26,14 @@ public class AccessBDActivity extends FragmentActivity implements QueryFrag.Scor
         boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgDetalle) != null);
 
         if(hayDetalle) {
+
             RegFrag f1 = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalle);
-            //f1.mostrarDetalle(c.getTexto());
+            f1.mostrarDetalle("holas");
 
         }
         else {
             Intent i = new Intent(this, DetailRegActivity.class);
-            //i.putExtra(DetailRegActivity.EXTRA_TEXTO, c.getTexto());
+            i.putExtra(DetailRegActivity.EXTRA_TEXTO, "holas");
             startActivity(i);
         }
 

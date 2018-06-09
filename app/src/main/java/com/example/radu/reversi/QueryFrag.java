@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import java.sql.SQLOutput;
+
 public class QueryFrag extends Fragment {
 
 
@@ -59,13 +61,11 @@ public class QueryFrag extends Fragment {
             //long oid = db.insert("Partidas", null, values);
             //System.out.println(oid);
             String[] campos = new String[]{"_id", "alias", "fecha", "resultado"};
+
+
             Cursor cursor = db.query("Partidas", campos, null, null, null, null, null);
-            SimpleCursorAdapter adt = new SimpleCursorAdapter(getContext(), android.R.layout.simple_list_item_1,
-                    cursor, new String[]{"alias", "fecha", "resultado"}, new int[]{android.R.id.text1, android.R.id.text1, android.R.id.text2}, 0);
-            //SimpleCursorAdapter adt = new SimpleCursorAdapter (getContext(), R.layout.fragment_listado,
-            //        cursor, new String[]{"alias", "fecha", "resultado"}, new int[]{R.id.LstListado}, 0);
-
-
+            SimpleCursorAdapter adt = new SimpleCursorAdapter(getContext(), R.layout.list_query,
+                    cursor, new String[]{"alias", "fecha","resultado"}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
             lstListado = (ListView) getView().findViewById(R.id.LstListado);
             lstListado.setAdapter(adt);
             //lstListado.setAdapter(new CustomAdapterScores(this, datos));
@@ -73,6 +73,7 @@ public class QueryFrag extends Fragment {
             lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
+                    System.out.println("RADU");
                     if (listener != null) {
                         listener.onScoreSeleccionado(
                                 (SQLiteCursor) lstListado.getAdapter().getItem(pos));
