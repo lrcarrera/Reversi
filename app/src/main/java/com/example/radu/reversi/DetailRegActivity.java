@@ -16,7 +16,7 @@ public class DetailRegActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        String name = i.getStringExtra("value");
+       // String name = i.getStringExtra("value");
         RegFrag frag = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalle);
         frag.mostrarDetalle(getIntent().getStringExtra(EXTRA_TEXTO));
 

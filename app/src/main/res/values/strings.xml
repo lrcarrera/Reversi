@@ -7,6 +7,7 @@
     <string name="sortir">Sortir</string>
     <string name="menu_principal">Menu Principal</string>
     <string name="ayuda">Ayuda</string>
+    <string name="consulta_partida">Consultar Partides</string>
 
     <!-- AyudaActivity  strings -->
     <string name="ajuda">Ajuda</string>
@@ -111,6 +112,24 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--- Shared Preferences -->
+
+    <string name="pref_title">Configuración</string>
+
+    <string name="pref_alias">Alias</string>
+    <string name="pref_alias_default">Juanjo</string>
+    <string name="pref_alias_key">alias_key</string>
+    <string name="pref_alias_intro">Introdueix el teu Alias</string>
+
+    <string name="pref_timer">Temporitzador</string>
+    <string name="pref_timer_default">0</string>
+    <string name="pref_timer_key">timer_key</string>
+
+    <string name="pref_size">Tamany graella</string>
+    <string name="pref_size_default">4</string>
+    <string name="pref_size_key">size_key</string>
+    <string name="pref_size_intro">Introdueix un Tamany</string>
 
 
 </resources>

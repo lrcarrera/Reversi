@@ -2,6 +2,9 @@ package com.example.radu.reversi;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class QueryFrag extends Fragment {
 
@@ -49,26 +53,39 @@ public class QueryFrag extends Fragment {
 
 
         //datos
+        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(getContext(),"DBPartidas", null, 1);
+        SQLiteDatabase db = udb.getWritableDatabase();
+        if (db != null) {
+            //long oid = db.insert("Partidas", null, values);
+            //System.out.println(oid);
+            String[] campos = new String[]{"_id", "alias", "fecha", "resultado"};
+            Cursor cursor = db.query("Partidas", campos, null, null, null, null, null);
+            SimpleCursorAdapter adt = new SimpleCursorAdapter(getContext(), android.R.layout.simple_list_item_1,
+                    cursor, new String[]{"alias", "fecha", "resultado"}, new int[]{android.R.id.text1, android.R.id.text1, android.R.id.text2}, 0);
+            //SimpleCursorAdapter adt = new SimpleCursorAdapter (getContext(), R.layout.fragment_listado,
+            //        cursor, new String[]{"alias", "fecha", "resultado"}, new int[]{R.id.LstListado}, 0);
 
 
-        lstListado = (ListView) getView().findViewById(R.id.LstListado);
+            lstListado = (ListView) getView().findViewById(R.id.LstListado);
+            lstListado.setAdapter(adt);
+            //lstListado.setAdapter(new CustomAdapterScores(this, datos));
 
-        lstListado.setAdapter(new CustomAdapterScores(this, datos));
-
-        lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
-                if (listener!=null) {
-                    listener.onScoreSeleccionado(
-                            (Score)lstListado.getAdapter().getItem(pos));
+            lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
+                    if (listener != null) {
+                        listener.onScoreSeleccionado(
+                                (SQLiteCursor) lstListado.getAdapter().getItem(pos));
+                    }
                 }
-            }
 
-        });
+            });
+        }
     }
 
     public interface ScoreListener{
-        void onScoreSeleccionado(Score c);
+        //void onScoreSeleccionado(Score c);
+        void onScoreSeleccionado(SQLiteCursor c);
     }
 
     public void setScoreListener(ScoreListener listener) {

@@ -36,6 +36,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_principal);
         showActionBar();
 
+        //this.deleteDatabase("DBPartidas");
 
         final Intent ajuda_in = new Intent(this, AyudaActivity.class);
         final Intent partida_in = new Intent(this, PlayModeActivity.class);
