@@ -33,28 +33,107 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
 
     ParrillaFrag frgParrilla;
 
+    GameType gameType;
+    Game game;
+    int grid_dimension;
+    int timer;
+    CustomAdapter adapter;
+    TextView count;
+    String alias;
+    GridView gv;
+    TextView et;
+    TextView tv;
+
+    Context c1;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // getActionBar().hide();
+        //getActionBar().hide();
         setContentView(R.layout.activity_desarrollo_juego);
 
-        if (savedInstanceState != null) {
-            //Restore the fragment's instance
-            System.out.println("RADURADU");
-            frgParrilla = (ParrillaFrag) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
-        }else{
-            frgParrilla = (ParrillaFrag) getSupportFragmentManager().findFragmentById(R.id.FrgParrilla);
-        }
+        frgParrilla = (ParrillaFrag) getSupportFragmentManager().findFragmentById(R.id.FrgParrilla);
         frgParrilla.setMyOnClickListener(this);
 
+        Intent in = getIntent();
+
+        c1 = getApplicationContext();
+        et = (TextView) findViewById(R.id.text);
+        gv  = (GridView) findViewById(R.id.grid_custom);
+        tv = (TextView) findViewById(R.id.text_fichas);
+        count = (TextView) findViewById(R.id.timer_text);
+
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(DesarrolloJuegoActivity.this);
+        if ( prefs.getBoolean(getString(R.string.pref_timer_key),false) ) {
+            timer = 1;
+        }else{
+            timer = 0;
+        }
+        alias = prefs.getString(getString(R.string.pref_alias_key), getString(R.string.pref_alias_default));
+        grid_dimension = Integer.valueOf(prefs.getString(getString(R.string.pref_size_key), getString(R.string.pref_size_default)));
+
+        playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
+        gv.setNumColumns(grid_dimension);
+
+
+        Board board = new Board(grid_dimension);
+        game = new Game(board, gameType, 0);
+        State  state = State.BLACK;
+
+        adapter = new CustomAdapter(this, game, timer, alias);
+        gv.setAdapter(adapter);
+
+
+
+
+
+    }
+
+
+    public void playModeDecide(String playMode){
+        if (playMode.equals(getString(R.string.multiplayer))){
+            gameType = GameType.MULTIPLAYER;
+        } else if (playMode.equals(getString(R.string.mode_easy))){
+            gameType = GameType.EASY;
+        } else if (playMode.equals(getString(R.string.mode_medium))){
+            gameType = GameType.MEDIUM;
+        } else {
+            gameType = GameType.HARD;
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        if (savedInstanceState != null) {
+
+            game = (Game) savedInstanceState.getParcelable(getString(R.string.game_key));
+            //timer = savedInstanceState.getInt(getString(R.string.timer_key));
+           // alias = savedInstanceState.getString(getString(R.string.alias_key));
+           // grid_dimension = savedInstanceState.getInt(getString(R.string.size_key));
+
+            //updateNumbers();
+
+
+            adapter = new CustomAdapter(this, game/*, et, tv*/, timer, /*count,*/ alias);
+            gv.setAdapter(adapter);
+            adapter.updateNumbers();
+        }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         System.out.println("RADURADURADU");
-        getSupportFragmentManager().putFragment(outState, "myFragmentName", frgParrilla);
+        adapter.stopTimerTask(count);
+        outState.putParcelable(getString(R.string.game_key), game);
+
+        //getSupportFragmentManager().putFragment(outState, "myFragmentName", frgParrilla);
     }
 
     @Override

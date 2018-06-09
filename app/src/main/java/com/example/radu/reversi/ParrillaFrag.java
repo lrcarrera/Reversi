@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,11 +19,8 @@ public class ParrillaFrag extends Fragment {
 
 
     private MyOnClickListener listener;
-    Game game;
-    GameType gameType;
     String alias;
-    int timer;
-    int grid_dimension;
+
     Context c1;
     GridView gv;
     TextView et;
@@ -42,69 +40,57 @@ public class ParrillaFrag extends Fragment {
 
         et = (TextView) getView().findViewById(R.id.text);
         tv = (TextView) getView().findViewById(R.id.text_fichas);
-        count = (TextView) getView().findViewById(R.id.timer_text);
-        gv  = (GridView) getView().findViewById(R.id.grid_custom);
 
 
-        c1 = getActivity();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+
+        //c1 = getActivity();
+
+      /*  SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if ( prefs.getBoolean(getString(R.string.pref_timer_key),false) ) {
             timer = 1;
         }else{
             timer = 0;
-        }
-        grid_dimension = Integer.valueOf(prefs.getString(getString(R.string.pref_size_key), getString(R.string.pref_size_default)));
-        alias = prefs.getString(getString(R.string.pref_alias_key), getString(R.string.pref_alias_default));
+        }*/
+        //alias = prefs.getString(getString(R.string.pref_alias_key), getString(R.string.pref_alias_default));
 
-        gv.setNumColumns(grid_dimension);
-        if (state == null) {
-            Intent in = getActivity().getIntent();
+       // gv.setNumColumns(grid_dimension);
+        //if (state == null) {
+         /*   Intent in = getActivity().getIntent();
             playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
-
             Board board = new Board(grid_dimension);
             game = new Game(board, gameType, 0);
-
-            adapter = new CustomAdapter(c1, game, timer, alias);
-            gv.setAdapter(adapter);
-        }
+*/
+          /*  adapter = new CustomAdapter(getContext(), game, timer, alias);
+            gv.setAdapter(adapter);*/
+      /*  }
         else{
             game = (Game) state.getParcelable(getString(R.string.game_key));
-            System.out.println(game.getBoard().getCountWhite());
             //timer = state.getInt(getString(R.string.timer_key));
             //alias = state.getString(getString(R.string.alias_key));
             //grid_dimension = state.getInt(getString(R.string.size_key));
-            adapter = new CustomAdapter(c1, game, timer,alias);
+            adapter = new CustomAdapter(getContext(), game, timer,alias);
             gv.setAdapter(adapter);
             adapter.updateNumbers();
-        }
+        }*/
 
     }
 
 
-    @Override
+    /*@Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         adapter.stopTimerTask(count);
-        outState.putParcelable(getString(R.string.game_key), game);
-    }
+       // outState.putParcelable(getString(R.string.game_key), game);
+    }*/
 
-    public void playModeDecide(String playMode){
-        if (playMode.equals(getString(R.string.multiplayer))){
-            gameType = GameType.MULTIPLAYER;
-        } else if (playMode.equals(getString(R.string.mode_easy))){
-            gameType = GameType.EASY;
-        } else if (playMode.equals(getString(R.string.mode_medium))){
-            gameType = GameType.MEDIUM;
-        } else {
-            gameType = GameType.HARD;
-        }
-    }
 
     @Override
     public void onAttach(Context c) {
         super.onAttach(c);
         try {
             listener = (MyOnClickListener) c;
+            //context = c;
         }
         catch (ClassCastException e) {
             throw new ClassCastException(c.toString() + " must implement OnCorreosListener");
