@@ -130,6 +130,14 @@
     <string name="pref_size_default">4</string>
     <string name="pref_size_key">size_key</string>
     <string name="pref_size_intro">Introdueix un Tamany</string>
+    
+    <!--- Times for fragment game -->
+
+    <string name="temp_init">LOG...\n Alias= %s  Mida graella= %s\n %s\n</string>
+
+    <string name="temp_onclick">Casella seleccionada: (%s,%s)\nNº Caselles pendents = %s\nTemps in.tirada = %s secs; Temps %s secs.\n</string>
+    <string name="key_log">key_log</string>
+
 
 
 </resources>
