@@ -20,16 +20,8 @@ public class QueryFrag extends Fragment {
 
 
     private ListView lstListado;
-
     private ScoreListener listener;
 
-    private Score[] datos =
-            new Score[]{
-                    new Score("Persona 1", "Asunto del correo 1", "Texto del correo 1"),
-                    new Score("Persona 2", "Asunto del correo 2", "Texto del correo 2"),
-                    new Score("Persona 3", "Asunto del correo 3", "Texto del correo 3"),
-                    new Score("Persona 4", "Asunto del correo 4", "Texto del correo 4"),
-                    new Score("Persona 5", "Asunto del correo 5", "Texto del correo 5")};
 
 
 
@@ -51,10 +43,21 @@ public class QueryFrag extends Fragment {
         if (db != null) {
             //long oid = db.insert("Partidas", null, values);
             //System.out.println(oid);
-            String[] campos = new String[]{"_id", "alias", "fecha", "resultado"};
+            final String[] campos = new String[]{"_id", "alias", "fecha", "tamany",
+                                           "tiempo", "negras", "blancas", "empleado", "resultado","resultado"};
+           /* "CREATE table Partidas"+
+                    "(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "alias TEXT,"+
+                    "fecha TEXT,"+
+                    "tamany INTEGER,"+
+                    "tiempo TEXT,"+
+                    "negras INTEGER," +
+                    "blancas INTEGER," +
+                    "empleado INTEGER," +
+                    "resultado TEXT)";*/
 
 
-            Cursor cursor = db.query("Partidas", campos, null, null, null, null, null);
+            final Cursor cursor = db.query("Partidas", campos, null, null, null, null, null);
 
 
 
@@ -68,8 +71,12 @@ public class QueryFrag extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
                     if (listener != null) {
-                        listener.onScoreSeleccionado(//PASAR ID PARA HACER CONSULTA EN EL DETALLE);
-                                (SQLiteCursor) lstListado.getAdapter().getItem(pos)*/);
+                        cursor.moveToPosition(pos);
+                        System.out.println(cursor.getString(4));
+                        Bundle bundle = cursorToBundle(cursor);
+                        //listener.onScoreSeleccionado(/*PASAR ID PARA HACER CONSULTA EN EL DETALLE);*/
+                        //        (SQLiteCursor) lstListado.getAdapter().getItem(pos));
+                        listener.onScoreSeleccionado(bundle);
                     }
                 }
 
@@ -77,6 +84,18 @@ public class QueryFrag extends Fragment {
         }
     }
 
+    public Bundle cursorToBundle(Cursor c){
+        Bundle bundle = new Bundle();
+        bundle.putString("alias", c.getString(1));
+        bundle.putString("fecha", c.getString(2));
+        bundle.putInt("tamany", c.getInt(3));
+        bundle.putString("control_tiempo", c.getString(4));
+        bundle.putInt("negras", c.getInt(5));
+        bundle.putInt("blancas", c.getInt(6));
+        bundle.putInt("empleado", c.getInt(7));
+        bundle.putString("resultado", c.getString(8));
+        return bundle;
+    }
     @Override
     public void onAttach(Context c) {
         super.onAttach(c);
@@ -89,7 +108,7 @@ public class QueryFrag extends Fragment {
     }
 
     public interface ScoreListener{
-        void onScoreSeleccionado();
+        void onScoreSeleccionado(Bundle bundle);
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.radu.reversi;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -21,18 +22,18 @@ public class AccessBDActivity extends FragmentActivity implements QueryFrag.Scor
 
 
     @Override
-    public void onScoreSeleccionado(/*SQLiteCursor c*/) {
+    public void onScoreSeleccionado(Bundle b) {
 
         boolean hayDetalle = (getFragmentManager().findFragmentById(R.id.FrgDetalleQuery) != null);
 
         if(hayDetalle) {
             RegFrag f1 = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalleQuery);
-            f1.mostrarDetalle("holas");
+            f1.mostrarDetalle(b);
 
         }
         else {
             Intent i = new Intent(this, DetailRegActivity.class);
-            i.putExtra(DetailRegActivity.EXTRA_TEXTO, "holas");
+            i.putExtra(DetailRegActivity.EXTRA_TEXTO, b);
             startActivity(i);
         }
 

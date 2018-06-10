@@ -68,7 +68,9 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
         gv  = (GridView) findViewById(R.id.grid_custom);
         tv = (TextView) findViewById(R.id.text_fichas);
         count = (TextView) findViewById(R.id.timer_text);
-         log = findViewById(R.id.TxtDetalle);
+
+        /*Preguntarle al Luis que es i pk lo mete en fragment_detalle*/
+        log = findViewById(R.id.TxtDetalle);
 
 
 
@@ -103,8 +105,8 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
        boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgLog) != null);
 
        if (hayDetalle) {
-            TextView txt = findViewById(R.id.TxtDetalleLog);
-
+           TextView txt = findViewById(R.id.TxtDetalleLog);
+           frgParrilla.setMyOnClickListener(this);
            if(timer==0) {
                 txt.setText(String.format(getString(R.string.temp_init), alias, String.valueOf(grid_dimension), "Sense control temps."));
            }else{

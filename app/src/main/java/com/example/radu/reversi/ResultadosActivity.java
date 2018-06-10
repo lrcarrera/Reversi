@@ -71,9 +71,9 @@ public class ResultadosActivity extends AppCompatActivity {
         values.put("fecha",  format.format(ca.getTime()));
         values.put("tamany", size);
         if (!haveTimer){
-            values.put("tiempo", "ConTiempo");
+            values.put("tiempo", "Activado");
         }else{
-            values.put("tiempo", "SinTiempo");
+            values.put("tiempo", "Desactivado");
         }
         values.put("negras", black);
         values.put("blancas", white);
