@@ -5,7 +5,9 @@
     <dimen name="margin_top">10dp</dimen>
     <dimen name="text_size">27dp</dimen>
     <dimen name="text_size2">12dp</dimen>
+    <dimen name="text_size3">40dp</dimen>
     <dimen name="image_reverse_size">40dp</dimen>
+    <dimen name="image_reverse_size_big">150dp</dimen>
     <dimen name="little_icon_size">20dp</dimen>
     <dimen name="null_spacing">0dp</dimen>
     <dimen name="lay_wid">330dp</dimen>
