@@ -2,7 +2,6 @@ package com.example.radu.reversi;
 
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,10 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import java.text.DateFormat;
+import com.example.radu.reversi.GameRegisters.PartidasSQLiteHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.prefs.Preferences;
 
 public class ResultadosActivity extends AppCompatActivity {
 
@@ -138,7 +137,7 @@ public class ResultadosActivity extends AppCompatActivity {
         SQLiteDatabase db = udb.getWritableDatabase();
         if (db != null){
             long oid = db.insert("Partidas", null, values);
-            System.out.println(oid);
+            db.close();
         }
     }
 

@@ -14,14 +14,13 @@
         android:id="@+id/val1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="王斌"/>
+        android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/val2"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="理学院" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

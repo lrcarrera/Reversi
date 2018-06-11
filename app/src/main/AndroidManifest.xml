@@ -29,8 +29,8 @@
         <activity android:name=".PlayModeActivity" />
         <activity android:name=".LevelsActivity" />
         <activity android:name=".OpcionesActivity" />
-        <activity android:name=".AccessBDActivity" />
-        <activity android:name=".DetailRegActivity"></activity>
+        <activity android:name=".GameRegisters.AccessBDActivity" />
+        <activity android:name=".GameRegisters.DetailRegActivity"></activity>
     </application>
 
 </manifest>

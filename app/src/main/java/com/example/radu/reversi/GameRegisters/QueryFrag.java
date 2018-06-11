@@ -1,9 +1,8 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameRegisters;
 
 import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import java.sql.SQLOutput;
+import com.example.radu.reversi.R;
 
 public class QueryFrag extends Fragment {
 
@@ -72,11 +71,11 @@ public class QueryFrag extends Fragment {
                 public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
                     if (listener != null) {
                         cursor.moveToPosition(pos);
-                        System.out.println(cursor.getString(4));
-                        Bundle bundle = cursorToBundle(cursor);
                         //listener.onScoreSeleccionado(/*PASAR ID PARA HACER CONSULTA EN EL DETALLE);*/
                         //        (SQLiteCursor) lstListado.getAdapter().getItem(pos));
-                        listener.onScoreSeleccionado(bundle);
+                        Score score = new Score(cursor);
+                        //System.out.println("Print de puts \n" + score.toString() );
+                        listener.onScoreSeleccionado(score);
                     }
                 }
 
@@ -84,18 +83,7 @@ public class QueryFrag extends Fragment {
         }
     }
 
-    public Bundle cursorToBundle(Cursor c){
-        Bundle bundle = new Bundle();
-        bundle.putString("alias", c.getString(1));
-        bundle.putString("fecha", c.getString(2));
-        bundle.putInt("tamany", c.getInt(3));
-        bundle.putString("control_tiempo", c.getString(4));
-        bundle.putInt("negras", c.getInt(5));
-        bundle.putInt("blancas", c.getInt(6));
-        bundle.putInt("empleado", c.getInt(7));
-        bundle.putString("resultado", c.getString(8));
-        return bundle;
-    }
+
     @Override
     public void onAttach(Context c) {
         super.onAttach(c);
@@ -108,7 +96,7 @@ public class QueryFrag extends Fragment {
     }
 
     public interface ScoreListener{
-        void onScoreSeleccionado(Bundle bundle);
+        void onScoreSeleccionado(Score score);
     }
 
 

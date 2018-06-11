@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:orientation="vertical" >
 
-    <fragment class="com.example.radu.reversi.QueryFrag"
+    <fragment class="com.example.radu.reversi.GameRegisters.QueryFrag"
         android:layout_height="0px"
         android:layout_width="match_parent"
         android:layout_weight="40"
         android:id="@+id/FrgListado"  />
 
-    <fragment class="com.example.radu.reversi.RegFrag"
+    <fragment class="com.example.radu.reversi.GameRegisters.RegFrag"
         android:layout_height="0px"
         android:layout_width="match_parent"
         android:layout_weight="60"
