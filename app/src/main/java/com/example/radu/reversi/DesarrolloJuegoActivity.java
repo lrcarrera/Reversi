@@ -47,7 +47,7 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
 
     Context c1;
 
-    TextView log;
+    //TextView log;
 
 
 
@@ -70,7 +70,7 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
         count = (TextView) findViewById(R.id.timer_text);
 
         /*Preguntarle al Luis que es i pk lo mete en fragment_detalle*/
-        log = findViewById(R.id.TxtDetalle);
+        //log = findViewById(R.id.TxtDetalle);
 
 
 

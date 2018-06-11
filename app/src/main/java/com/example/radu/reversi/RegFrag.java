@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class RegFrag extends Fragment {
@@ -26,6 +27,8 @@ public class RegFrag extends Fragment {
     TextView empleado_title;
     TextView resultado;
     TextView title;
+    TextView result;
+    ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -54,6 +57,8 @@ public class RegFrag extends Fragment {
         negras_title = (TextView) getView().findViewById(R.id.negras_title);
         blancas_title = (TextView) getView().findViewById(R.id.blancas_title);
         empleado_title = (TextView) getView().findViewById(R.id.empleado_title);
+        result = (TextView) getView().findViewById(R.id.resultado_title);
+        imageView = (ImageView) getView().findViewById(R.id.image_state);
     }
 
     public void  setVisibility(String control){
@@ -64,6 +69,7 @@ public class RegFrag extends Fragment {
         control_title.setVisibility(View.VISIBLE);
         negras_title.setVisibility(View.VISIBLE);
         blancas_title.setVisibility(View.VISIBLE);
+        result.setVisibility(View.VISIBLE);
         if (control.equals("Activado"))
             empleado_title.setVisibility(View.VISIBLE);
 
@@ -86,6 +92,8 @@ public class RegFrag extends Fragment {
             tiempo_empleado.setVisibility(View.INVISIBLE);
         }
         resultado.setText(b.get("resultado").toString());
+
+        imageView.setImageResource(R.drawable.like_icon);
 
 
 
