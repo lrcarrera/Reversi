@@ -26,8 +26,6 @@
         <activity android:name=".ConfiguracioActivity" />
         <activity android:name=".DesarrolloJuegoActivity" />
         <activity android:name=".ResultadosActivity" />
-        <activity android:name=".PlayModeActivity" />
-        <activity android:name=".LevelsActivity" />
         <activity android:name=".OpcionesActivity" />
         <activity android:name=".GameRegisters.AccessBDActivity" />
         <activity android:name=".GameRegisters.DetailRegActivity"></activity>

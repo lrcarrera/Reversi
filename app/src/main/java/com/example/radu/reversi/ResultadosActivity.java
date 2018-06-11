@@ -151,7 +151,7 @@ public class ResultadosActivity extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-        Intent i = new Intent(this, PlayModeActivity.class);
+        Intent i = new Intent(this, DesarrolloJuegoActivity.class);
         startActivity(i);
         finish();
     }
