@@ -7,18 +7,15 @@ import android.os.Bundle;
 
 import com.example.radu.reversi.R;
 
-public class AccessBDActivity extends FragmentActivity implements QueryFrag.ScoreListener {
+public class AccessBDActivity extends FragmentActivity implements QueryFrag.ScoreListener,
+        BddStrings {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceso_bd);
-
         QueryFrag frgListado = (QueryFrag)getFragmentManager().findFragmentById(R.id.FrgListado);
         frgListado.setScoreListener(this);
-
-
-
     }
 
 
@@ -36,7 +33,7 @@ public class AccessBDActivity extends FragmentActivity implements QueryFrag.Scor
         else {
             Intent i = new Intent(this, DetailRegActivity.class);
             //i.putExtra("Score", score);
-            i.putExtra("Score", score);
+            i.putExtra(STRING_SCORE, score);
             startActivity(i);
         }
 

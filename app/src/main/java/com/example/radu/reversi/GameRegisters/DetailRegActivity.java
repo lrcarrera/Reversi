@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.example.radu.reversi.GameRegisters.RegFrag;
 import com.example.radu.reversi.R;
 
-public class DetailRegActivity extends AppCompatActivity {
+public class DetailRegActivity extends AppCompatActivity implements BddStrings {
 
     public static final String EXTRA_TEXTO =
             "cat.udl.eps.fragments.ejmoreflexible.EXTRA_TEXTO";
@@ -20,7 +20,7 @@ public class DetailRegActivity extends AppCompatActivity {
 
 
        // String name = i.getStringExtra("value");
-        Score score = getIntent().getParcelableExtra("Score");
+        Score score = getIntent().getParcelableExtra(STRING_SCORE);
         RegFrag frag = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalleQuery);
         frag.mostrarDetalle(score);
 

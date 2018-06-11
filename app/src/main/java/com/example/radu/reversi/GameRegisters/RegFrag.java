@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.radu.reversi.R;
 
-public class RegFrag extends Fragment {
+public class RegFrag extends Fragment implements BddStrings {
 
     TextView alias;
     TextView alias_title;
@@ -118,7 +118,7 @@ public class RegFrag extends Fragment {
 
         if (savedInstanceState != null) {
 
-            mostrarDetalle((Score) savedInstanceState.getParcelable("Score"));
+            mostrarDetalle((Score) savedInstanceState.getParcelable(STRING_SCORE));
             //txtDetalle.setText(savedInstanceState.getString(getString(R.string.key_log)));
         }
 
@@ -129,7 +129,7 @@ public class RegFrag extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable("Score", score);
+        outState.putParcelable(STRING_SCORE, score);
         //outState.putString(getString(R.string.key_log), txtDetalle.getText().toString());
     }
 

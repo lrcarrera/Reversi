@@ -16,12 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.GameRegisters.PartidasSQLiteHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ResultadosActivity extends AppCompatActivity {
+public class ResultadosActivity extends AppCompatActivity  implements BddStrings{
 
     EditText txtResultats;
     EditText txtMail;
@@ -66,22 +67,22 @@ public class ResultadosActivity extends AppCompatActivity {
         int diferencia = b.getInt(getString(R.string.diferencia_key));
 
         ContentValues values = new ContentValues();
-        values.put("alias", alias);
-        values.put("fecha",  format.format(ca.getTime()));
-        values.put("tamany", size);
+        values.put(STRING_ALIAS, alias);
+        values.put(STRING_FECHA,  format.format(ca.getTime()));
+        values.put(STRING_TAMANY, size);
         if (!haveTimer){
-            values.put("tiempo", "Activado");
+            values.put(STRING_TIEMPO, STRING_ACTIVADO);
         }else{
-            values.put("tiempo", "Desactivado");
+            values.put(STRING_TIEMPO, STRING_DESACTIVADO);
         }
-        values.put("negras", black);
-        values.put("blancas", white);
+        values.put(STRING_BLANCAS, black);
+        values.put(STRING_NEGRAS, white);
         if (!haveTimer){
-            values.put("empleado", duration);
+            values.put(STRING_EMPLEADO, duration);
         } else {
-            values.put("empleado", 25-duration);
+            values.put(STRING_EMPLEADO, 25-duration);
         }
-        values.put("resultado", "victoria");
+        //values.put("resultado", "victoria");
 
         String controlTiempo = "";
         if(haveTimer){
@@ -99,30 +100,30 @@ public class ResultadosActivity extends AppCompatActivity {
 
         switch(win){
             case 1://VICTORIA
-                values.put("resultado", "Victoria");
+                values.put(STRING_RESULTADO, STRING_VICTORIA);
                 txtResultats.setText(String.format(getString(R.string.victory_log), alias, String.valueOf(size)
                 , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), controlTiempo));
                 break;
 
             case -1://EMPATE
-                values.put("resultado", "Empate");
+                values.put(STRING_RESULTADO, STRING_EMPATE);
                 txtResultats.setText(String.format(getString(R.string.draw_log), alias, String.valueOf(size)
                         , String.valueOf(duration), controlTiempo));
                 break;
             case 2://BLOQUEO INTRINSECO
-                values.put("resultado", "Bloqueig");
+                values.put(STRING_RESULTADO, STRING_BLOAQUEIG);
                 txtResultats.setText(String.format(getString(R.string.block_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black)) ,controlTiempo));
 
                 break;
             case 3://TEMPS ESGOTAT
-                values.put("resultado", "Temps Esgotat");
+                values.put(STRING_RESULTADO, STRING_TEMPS);
                 txtResultats.setText(String.format(getString(R.string.time_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black))));
 
                 break;
             default://DERROTA
-                values.put("resultado", "Derrota");
+                values.put(STRING_RESULTADO, STRING_DERROTA);
                 txtResultats.setText(String.format(getString(R.string.lose_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(white), String.valueOf(black), String.valueOf(diferencia), controlTiempo));
                 break;

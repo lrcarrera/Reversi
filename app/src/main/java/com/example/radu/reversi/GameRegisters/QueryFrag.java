@@ -15,7 +15,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.example.radu.reversi.R;
 
-public class QueryFrag extends Fragment {
+public class QueryFrag extends Fragment implements BddStrings {
 
 
     private ListView lstListado;
@@ -37,13 +37,13 @@ public class QueryFrag extends Fragment {
 
 
         //datos
-        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(getContext(),"DBPartidas", null, 1);
+        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(getContext(),STRING_DBNAME, null, 1);
         SQLiteDatabase db = udb.getWritableDatabase();
         if (db != null) {
             //long oid = db.insert("Partidas", null, values);
             //System.out.println(oid);
-            final String[] campos = new String[]{"_id", "alias", "fecha", "tamany",
-                                           "tiempo", "negras", "blancas", "empleado", "resultado","resultado"};
+            final String[] campos = new String[]{STRING_ID, STRING_ALIAS, STRING_FECHA, STRING_TAMANY,
+                                           STRING_TIEMPO, STRING_NEGRAS, STRING_BLANCAS, STRING_EMPLEADO, STRING_RESULTADO};
            /* "CREATE table Partidas"+
                     "(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "alias TEXT,"+
@@ -56,12 +56,12 @@ public class QueryFrag extends Fragment {
                     "resultado TEXT)";*/
 
 
-            final Cursor cursor = db.query("Partidas", campos, null, null, null, null, null);
+            final Cursor cursor = db.query(STRING_TABLE_NAME, campos, null, null, null, null, null);
 
 
 
             SimpleCursorAdapter adt = new SimpleCursorAdapter(getContext(), R.layout.list_query,
-                    cursor, new String[]{"alias", "fecha","resultado"}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
+                    cursor, new String[]{STRING_ALIAS, STRING_FECHA, STRING_RESULTADO}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
             lstListado = (ListView) getView().findViewById(R.id.LstListado);
             lstListado.setAdapter(adt);
             //lstListado.setAdapter(new CustomAdapterScores(this, datos));
@@ -80,6 +80,7 @@ public class QueryFrag extends Fragment {
                 }
 
             });
+
         }
     }
 
