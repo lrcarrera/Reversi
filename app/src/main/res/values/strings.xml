@@ -142,7 +142,16 @@
 
     <string name="temp_onclick">Casella seleccionada: (%s,%s)\nNº Caselles pendents = %s\nTemps in.tirada = %s secs; Temps %s secs.\n</string>
     <string name="key_log">key_log</string>
-
+    <string name="borrar_item">Borrar item</string>
+    <string name="share">Share</string>
+    <string name="modificar_item">Modificar</string>
+    <string name="new_alias">Nuevo alias:</string>
+    <string name="intro_new_alias">Introdueix el nou alias</string>
+    <string name="aceptardialog">Aceptar</string>
+    <string name="cancelardialog">Cancelar</string>
+    <string name="modificar_email">Modificar Email</string>
+    <string name="resultat_partida_correo">Resultat Partida</string>
+    <string name="resultat_partida_email">Resultat Partida:</string>
 
 
 </resources>

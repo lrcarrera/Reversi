@@ -27,7 +27,17 @@
         <activity android:name=".DesarrolloJuegoActivity" />
         <activity android:name=".ResultadosActivity" />
         <activity android:name=".OpcionesActivity" />
-        <activity android:name=".GameRegisters.AccessBDActivity" />
+        <activity android:name=".GameRegisters.AccessBDActivity">
+
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+
+        </activity>
+
+
+
         <activity android:name=".GameRegisters.DetailRegActivity"></activity>
     </application>
 
