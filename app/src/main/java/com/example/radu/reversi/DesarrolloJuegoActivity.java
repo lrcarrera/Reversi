@@ -83,13 +83,14 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
         alias = prefs.getString(getString(R.string.pref_alias_key), getString(R.string.pref_alias_default));
         grid_dimension = Integer.valueOf(prefs.getString(getString(R.string.pref_size_key), getString(R.string.pref_size_default)));
 
-        playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
+        playModeDecide(prefs.getString(getString(R.string.pref_playmode_key), getString(R.string.pref_playmode_default) ));
+       // playModeDecide(in.getStringExtra(getString(R.string.playmode_key)));
         gv.setNumColumns(grid_dimension);
 
 
         Board board = new Board(grid_dimension);
         game = new Game(board, gameType, 0);
-        State state = State.BLACK;
+        //State state = State.BLACK;
 
         adapter = new CustomAdapter(this, game, timer, alias);
 

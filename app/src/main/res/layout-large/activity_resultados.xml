@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultadosActivity">
-
     <!-- Header aligned to top -->
 
     <LinearLayout
@@ -42,7 +41,8 @@
         android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_top"
-        android:text="@string/resultados_partida"/>
+        android:text="@string/resultados_partida"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/text_dia"
@@ -51,7 +51,8 @@
         android:layout_alignBaseline="@+id/edit_dia"
         android:layout_alignParentStart="true"
         android:layout_marginStart="@dimen/margin_top"
-        android:text="@string/dia_hora" />
+        android:text="@string/dia_hora"
+        android:textSize="20dp"/>
 
     <EditText
         android:id="@+id/edit_dia"
@@ -59,46 +60,46 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/text_resultados"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="111dp"
         android:hint="@string/dia_hora" />
 
     <TextView
         android:id="@+id/text_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/text_resultados"
-        android:layout_marginEnd="131dp"
-        android:text="@string/valores_log" />
+        android:layout_alignStart="@+id/text_resultados"
+        android:layout_alignTop="@+id/text_dia"
+        android:text="@string/valores_log"/>
 
     <EditText
         android:id="@+id/edit_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/text_log"
-        android:layout_below="@+id/text_resultados"
+        android:layout_below="@+id/text_dia"
         android:background="@drawable/back"
         android:hint="@string/valores_log"
-        android:textSize="12dp" />
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/text_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/text_dia"
-        android:layout_marginBottom="110dp"
-        android:text="@string/email" />
+        android:layout_centerVertical="true"
+        android:text="@string/email"
+        android:textSize="20dp"/>
+
 
     <EditText
         android:id="@+id/edit_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/text_email"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_dia"
+        android:layout_marginBottom="150dp"
         android:hint="@string/email_defecto"
-        android:textSize="14dp" />
+        android:textSize="18dp"/>
 
     <!-- Buttom aligned to top -->
 

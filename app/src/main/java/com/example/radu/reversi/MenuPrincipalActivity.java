@@ -40,7 +40,6 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         //this.deleteDatabase("DBPartidas");
 
         final Intent ajuda_in = new Intent(this, AyudaActivity.class);
-        final Intent partida_in = new Intent(this, PlayModeActivity.class);
 
         ajuda = (Button) findViewById(R.id.button_ajuda);
         ajuda.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +106,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                 startActivity(ajuda_in);
                 break;
             case START:
-                final Intent partida_in = new Intent(this, PlayModeActivity.class);
+                final Intent partida_in = new Intent(this, DesarrolloJuegoActivity.class);
                 startActivity(partida_in);
                 finish();
                 break;

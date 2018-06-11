@@ -16,4 +16,6 @@
     <dimen name="m2">76dp</dimen>
     <dimen name="m3">280dp</dimen>
     <dimen name="m4">42dp</dimen>
+    <dimen name="layout_botonera">820dp</dimen>
+    <dimen name="layout_botonera2">400dp</dimen>
 </resources>

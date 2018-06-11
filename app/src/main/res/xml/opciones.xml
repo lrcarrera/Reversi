@@ -24,5 +24,13 @@
             android:entries="@array/size"
             android:entryValues="@array/size"/>
 
+        <ListPreference
+            android:defaultValue="@string/pref_playmode_default"
+            android:key="@string/pref_playmode_key"
+            android:title="@string/pref_playmode"
+            android:dialogTitle="@string/pref_playmode_intro"
+            android:entries="@array/level"
+            android:entryValues="@array/level"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

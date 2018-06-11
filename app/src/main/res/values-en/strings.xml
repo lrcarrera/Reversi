@@ -113,6 +113,11 @@
     <string name="pref_size_key">size_key</string>
     <string name="pref_size_intro">Introdueix un Tamany</string>
 
+    <string name="pref_playmode">Modalitat de joc</string>
+    <string name="pref_playmode_default">easy</string>
+    <string name="pref_playmode_key">playmode_key</string>
+    <string name="pref_playmode_intro">Introdueix la modalitat</string>
+
     <!--- Times for fragment game -->
 
     <string name="temp_init">LOG...\n Alias= %s  Mida graella= %s\n %s\n</string>
