@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/DarkSeaGreen">
 
-    <fragment class="com.example.radu.reversi.ParrillaFrag"
+    <fragment class="com.example.radu.reversi.GameDevelopment.ParrillaFrag"
         android:layout_height="0px"
         android:layout_width="match_parent"
         android:layout_weight="75"
         android:id="@+id/FrgParrilla"  />
 
-    <fragment class="com.example.radu.reversi.LogFrag"
+    <fragment class="com.example.radu.reversi.GameDevelopment.LogFrag"
         android:layout_height="0px"
         android:layout_width="match_parent"
         android:layout_weight="25"

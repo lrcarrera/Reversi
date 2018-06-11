@@ -1,10 +1,9 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameLogic;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.concurrent.ThreadLocalRandom;
 
-import javax.xml.transform.Source;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game implements Parcelable {
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.radu.reversi.AyudaActivity">
+    android:background="@color/DarkSeaGreen"
+    tools:context="com.example.radu.reversi.GameHelp.AyudaActivity">
 
 
     <!-- Header aligned to top -->
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/DarkSeaGreen"
+        android:background="@drawable/customer"
         android:orientation="horizontal">
 
         <ImageView

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/DarkSeaGreen">
 
 
 
@@ -13,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/DarkSeaGreen">
+        android:layout_alignParentTop="true">
 
         <ImageView
             android:id="@+id/image_game"

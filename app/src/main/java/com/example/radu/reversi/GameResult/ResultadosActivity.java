@@ -1,4 +1,4 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameResult;
 
 
 import android.content.ContentValues;
@@ -16,8 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.radu.reversi.GameDevelopment.DesarrolloJuegoActivity;
+import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.GameRegisters.PartidasSQLiteHelper;
+import com.example.radu.reversi.GamePreferences.OpcionesActivity;
+import com.example.radu.reversi.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +31,7 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     EditText txtResultats;
     EditText txtMail;
     EditText txtDia;
+    private static final int SCORE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +178,7 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_menu, menu);
+        menu.add (Menu.NONE, SCORE, Menu.NONE, "Scores");
         return true;
     }
 
@@ -183,6 +189,10 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
             //startActivities(CONFIG);
             final Intent config = new Intent(this, OpcionesActivity.class);
             startActivity(config);
+            return true;
+        } else if (item.getItemId() == SCORE) {
+            final Intent score = new Intent(this, AccessBDActivity.class);
+            startActivity(score);
             return true;
         }
         return false;

@@ -1,4 +1,4 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameLogic;
 
 import android.os.Parcel;
 import android.os.Parcelable;

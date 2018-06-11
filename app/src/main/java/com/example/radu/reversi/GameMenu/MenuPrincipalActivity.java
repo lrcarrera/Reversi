@@ -1,4 +1,4 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameMenu;
 
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.radu.reversi.GameDevelopment.DesarrolloJuegoActivity;
+import com.example.radu.reversi.GameHelp.AyudaActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
+import com.example.radu.reversi.GamePreferences.OpcionesActivity;
+import com.example.radu.reversi.R;
 
 
 public class MenuPrincipalActivity extends AppCompatActivity {

@@ -230,6 +230,7 @@
             android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/customer_wit_radius"
             android:layout_margin="16dp"
             android:visibility="invisible">
 

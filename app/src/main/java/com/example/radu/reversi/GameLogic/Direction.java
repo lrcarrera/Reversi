@@ -1,4 +1,4 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameLogic;
 
 public class Direction {
 

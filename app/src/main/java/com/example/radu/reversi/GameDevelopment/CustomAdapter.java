@@ -1,4 +1,4 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameDevelopment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
+import com.example.radu.reversi.GameLogic.Game;
+import com.example.radu.reversi.GameLogic.GameType;
+import com.example.radu.reversi.GameLogic.Position;
+import com.example.radu.reversi.GameLogic.State;
+import com.example.radu.reversi.GameResult.ResultadosActivity;
+import com.example.radu.reversi.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
@@ -194,7 +198,7 @@ public class CustomAdapter extends BaseAdapter {
         }
 
         /*User Turn*/
-        if(game.getState()==State.BLACK){
+        if(game.getState()== State.BLACK){
             game.move(p);
             /* Mobile objectives set*/
             game.setObjectives(size);

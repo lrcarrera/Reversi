@@ -15,18 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuPrincipalActivity">
+        <activity android:name=".GameMenu.MenuPrincipalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AyudaActivity" />
-        <activity android:name=".ConfiguracioActivity" />
-        <activity android:name=".DesarrolloJuegoActivity" />
-        <activity android:name=".ResultadosActivity" />
-        <activity android:name=".OpcionesActivity" />
+        <activity android:name=".GameHelp.AyudaActivity" />
+        <activity android:name=".GameDevelopment.DesarrolloJuegoActivity" />
+        <activity android:name=".GameResult.ResultadosActivity" />
+        <activity android:name=".GamePreferences.OpcionesActivity" />
         <activity android:name=".GameRegisters.AccessBDActivity">
 
         <intent-filter>
