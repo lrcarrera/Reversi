@@ -46,7 +46,8 @@
             android:layout_below="@+id/header"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_top"
-            android:text="@string/resultados_partida"/>
+            android:text="@string/resultados_partida"
+            android:textSize="20dp"/>
 
         <TextView
             android:id="@+id/text_dia"
@@ -55,7 +56,8 @@
             android:layout_marginLeft="@dimen/margin_left"
             android:layout_below="@+id/text_resultados"
             android:layout_marginTop="@dimen/margin_left"
-            android:text="@string/dia_hora" />
+            android:text="@string/dia_hora"
+            android:textSize="20dp"/>
 
         <EditText
             android:id="@+id/edit_dia"
@@ -73,7 +75,8 @@
             android:layout_marginLeft="@dimen/margin_left"
             android:layout_below="@+id/edit_dia"
             android:layout_marginTop="@dimen/margin_left"
-            android:text="@string/valores_log" />
+            android:text="@string/valores_log"
+            android:textSize="20dp"/>
 
         <EditText
             android:id="@+id/edit_log"
@@ -84,7 +87,7 @@
             android:layout_marginTop="@dimen/margin_left"
             android:hint="@string/valores_log"
             android:background="@drawable/back"
-            android:textSize="12dp"/>
+            android:textSize="25dp"/>
 
         <TextView
             android:id="@+id/text_email"
@@ -93,7 +96,8 @@
             android:layout_marginLeft="@dimen/margin_left"
             android:layout_below="@+id/edit_log"
             android:layout_marginTop="@dimen/margin_left"
-            android:text="@string/email" />
+            android:text="@string/email"
+            android:textSize="20dp"/>
 
         <EditText
             android:id="@+id/edit_email"
@@ -102,7 +106,8 @@
             android:layout_marginLeft="@dimen/margin_left"
             android:layout_below="@+id/text_email"
             android:layout_marginTop="@dimen/margin_left"
-            android:hint="@string/email_defecto"/>
+            android:hint="@string/email_defecto"
+            />
 
         <!-- Buttom aligned to top -->
 
@@ -111,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/layout_botonera2"
+            android:layout_marginTop="@dimen/layout_botonera"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -139,9 +144,9 @@
                 android:drawableLeft="@drawable/exit_icon"
                 android:gravity="center"
                 android:onClick="exitGame"
-                android:text="@string/sortir"
-                android:textSize="10dp"/>
+                android:text="@string/sortir" />
 
         </LinearLayout>
+
     </RelativeLayout>
 </ScrollView>

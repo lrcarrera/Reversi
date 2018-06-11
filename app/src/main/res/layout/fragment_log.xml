@@ -8,9 +8,31 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <LinearLayout
+        android:id="@+id/header_desarrollo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/DarkSeaGreen">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="@dimen/image_reverse_size"
+            android:layout_height="@dimen/image_reverse_size"
+            android:layout_alignRight="@+id/image_game"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:text=""
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
 
         <TextView
             android:id="@+id/TxtDetalleLog"
@@ -18,5 +40,7 @@
             android:layout_height="match_parent"
             android:text="" />
     </ScrollView>
+
+
 
 </FrameLayout>
