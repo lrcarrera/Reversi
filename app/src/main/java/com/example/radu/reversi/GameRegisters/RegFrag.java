@@ -3,6 +3,7 @@ package com.example.radu.reversi.GameRegisters;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ public class RegFrag extends Fragment implements BddStrings {
     TextView title;
     TextView result;
     ImageView imageView;
+    CardView card1;
+    CardView card2;
     Score score;
 
     @Override
@@ -62,6 +65,8 @@ public class RegFrag extends Fragment implements BddStrings {
         empleado_title = (TextView) getView().findViewById(R.id.empleado_title);
         result = (TextView) getView().findViewById(R.id.resultado_title);
         imageView = (ImageView) getView().findViewById(R.id.image_state);
+        card1 = (CardView) getView().findViewById(R.id.car1);
+        card2 = (CardView) getView().findViewById(R.id.card2);
     }
 
     public void  setVisibility(String control){
@@ -73,9 +78,25 @@ public class RegFrag extends Fragment implements BddStrings {
         negras_title.setVisibility(View.VISIBLE);
         blancas_title.setVisibility(View.VISIBLE);
         result.setVisibility(View.VISIBLE);
-        if (control.equals("Activado"))
+        setCardViews();
+        card2.setVisibility(View.VISIBLE);
+        card1.setVisibility(View.VISIBLE);
+        if (control.equals(STRING_ACTIVADO)){
             empleado_title.setVisibility(View.VISIBLE);
+        } else {
+            empleado_title.setVisibility(View.INVISIBLE);
+        }
+        tiempo_empleado.setVisibility(View.VISIBLE);
 
+
+    }
+
+    public void setCardViews(){
+        card2.setVisibility(View.VISIBLE);
+        card1.setVisibility(View.VISIBLE);
+        card1.setCardBackgroundColor(getResources().getColor(R.color.DarkSeaGreen, null));
+        card2.setCardBackgroundColor(getResources().getColor(R.color.DarkSeaGreen, null));
+        card2.setCardElevation(3);
     }
     public void mostrarDetalle(Score score) {
         this.score = score;
@@ -90,25 +111,40 @@ public class RegFrag extends Fragment implements BddStrings {
         control_tiempo.setText(control);
         negras.setText(String.valueOf(score.getNegras()));
         blancas.setText(String.valueOf(score.getBlancas()));
-        if (control.equals("Activado")) {
+        System.out.println(control);
+        System.out.println(STRING_ACTIVADO);
+        if (control.equals(STRING_ACTIVADO)){
             tiempo_empleado.setText(String.valueOf(score.getEmpleado()));
         } else {
+            empleado_title.setVisibility(View.INVISIBLE);
             tiempo_empleado.setVisibility(View.INVISIBLE);
+
         }
         resultado.setText(score.getResultado());
+        setImage(score.getResultado());
 
-        imageView.setImageResource(R.drawable.like_icon);
+    }
 
-
-
-       /* bundle.putString("alias", c.getString(0));
-        bundle.putString("fecha", c.getString(1));
-        bundle.putInt("tamany", c.getInt(2));
-        bundle.putString("control_tiempo", c.getString(3));
-        bundle.putInt("negras", c.getInt(4));
-        bundle.putInt("blancas", c.getInt(5));
-        bundle.putInt("empleado", c.getInt(6));
-        bundle.putInt("resultado", c.getInt(7));*/
+    public void setImage(String resultado){
+        switch (resultado){
+            case STRING_DERROTA:
+                imageView.setImageResource(R.drawable.dislike_icon);
+                break;
+            case STRING_EMPATE:
+                imageView.setImageResource(R.drawable.balance_icon);
+                break;
+            case STRING_VICTORIA:
+                imageView.setImageResource(R.drawable.like_icon);
+                break;
+            case STRING_BLOAQUEIG:
+                imageView.setImageResource(R.drawable.block_icon);
+                break;
+            case STRING_TEMPS:
+                imageView.setImageResource(R.drawable.chrono_icon);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

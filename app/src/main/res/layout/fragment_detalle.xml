@@ -4,303 +4,300 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent" >
 
-    <TextView
-        android:id="@+id/TxtDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/car1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="invisible">
 
-    <LinearLayout
-        android:id="@+id/title_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/title_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Detalls Partida"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/alias_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/alias_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Alias:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/alias"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/title"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/date_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/date_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Fecha:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/dia_hora"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/date_title"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/tamany_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tamany_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Tamany Graella:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/tamany"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/tamany_title"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/control_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/control_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Control Temps:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/control_tiempo"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/control_title"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/negras_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/negras_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Fitxes Negres:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/negras"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/negras_title"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/blancas_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/blancas_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Fitxes Blanques:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/blancas"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/blancas_title"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
-
-    <!-- Solo si control de tiempo -->
-
-    <LinearLayout
-        android:id="@+id/empleado_lay"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/empleado_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:text="Tiempo empleado:"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:id="@+id/tiempo_empleado"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignRight="@+id/empleado_lay"
-            android:layout_marginLeft="@dimen/margin_left"
-            />
-
-    </LinearLayout>
+            <!--<ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/like_icon" /-->
 
 
     <LinearLayout
-        android:id="@+id/resultado_lay"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/title_lay"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/resultado_title"
+                android:id="@+id/title_title"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textStyle="bold"
-                android:text="Resultat:"
+                android:text="Detalls Partida"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:visibility="invisible"
                 />
 
         </LinearLayout>
 
-
         <LinearLayout
-            android:id="@+id/result_lay"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/image_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:id="@+id/alias_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_gravity="center"
-                android:id="@+id/resultado"
+                android:id="@+id/alias_title"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Alias:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/alias"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/title"
+                android:layout_marginLeft="@dimen/margin_left"
                 />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/date_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/date_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Fecha:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
 
+            <TextView
+                android:id="@+id/dia_hora"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/date_title"
+                android:layout_marginLeft="@dimen/margin_left"
+                />
 
-    </LinearLayout>
-<!--
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tamany_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tamany_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Tamany Graella:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/tamany"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/tamany_title"
+                android:layout_marginLeft="@dimen/margin_left"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/control_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/control_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Control Temps:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/control_tiempo"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/control_title"
+                android:layout_marginLeft="@dimen/margin_left"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/negras_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/negras_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Fitxes Negres:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/negras"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/negras_title"
+                android:layout_marginLeft="@dimen/margin_left"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/blancas_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/blancas_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Fitxes Blanques:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/blancas"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/blancas_title"
+                android:layout_marginLeft="@dimen/margin_left"
+                />
+
+        </LinearLayout>
+
+        <!-- Solo si control de tiempo -->
+
+        <LinearLayout
+            android:id="@+id/empleado_lay"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/empleado_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="Tiempo empleado:"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/tiempo_empleado"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignRight="@+id/empleado_lay"
+                android:layout_marginLeft="@dimen/margin_left"
+                />
+
+        </LinearLayout>
 
         <android.support.v7.widget.CardView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:elevation="12dp"
-            android:id="@+id/view2"
-            android:cardCornerRadius="40dp"
-            android:layout_centerHorizontal="true"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            android:thicknessRatio="1.9">
-            <ImageView
-                android:layout_height="80dp"
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:id="@+id/resultado_lay"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/resultado_title"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Resultat:"
+                    android:layout_marginLeft="@dimen/margin_left"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/result_lay"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:id="@+id/imageView1"
-                android:src="@drawable/Your_image"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true">
-            </ImageView>
+                android:layout_gravity="center"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/image_state"
+                    android:layout_width="@dimen/image_reverse_size"
+                    android:layout_height="@dimen/image_reverse_size"/>
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/resultado"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
-    </LinearLayout>-->
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 
 
 
 
-    <!--- Alias del usuario
-      Día y hora de finalización de la partida
-      Tamaño parrilla
-      Flag de si control del tiempo
-      Nº de fichas negras colocadas
-      Nº de fichas blancas colocadas
-      Si control del tiempo: tiempo total empleado
-      Resultado de la partida (Victoria, Derrota, Empate, Bloqueo, Tiempo
-    agotado) -->
 
-</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

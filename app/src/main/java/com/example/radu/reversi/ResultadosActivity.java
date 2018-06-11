@@ -70,7 +70,7 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         values.put(STRING_ALIAS, alias);
         values.put(STRING_FECHA,  format.format(ca.getTime()));
         values.put(STRING_TAMANY, size);
-        if (!haveTimer){
+        if (haveTimer){
             values.put(STRING_TIEMPO, STRING_ACTIVADO);
         }else{
             values.put(STRING_TIEMPO, STRING_DESACTIVADO);
@@ -78,9 +78,9 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         values.put(STRING_BLANCAS, black);
         values.put(STRING_NEGRAS, white);
         if (!haveTimer){
-            values.put(STRING_EMPLEADO, duration);
-        } else {
             values.put(STRING_EMPLEADO, 25-duration);
+        } else {
+            values.put(STRING_EMPLEADO, duration);
         }
         //values.put("resultado", "victoria");
 
