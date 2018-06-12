@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.radu.reversi.DataAsynctask;
 import com.example.radu.reversi.GameDevelopment.DesarrolloJuegoActivity;
 import com.example.radu.reversi.GameMenu.MenuPrincipalActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
@@ -33,24 +34,23 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     EditText txtMail;
     EditText txtDia;
     private static final int SCORE = 0;
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy h:mm a");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //this.getSupportActionBar().hide();
         setContentView(R.layout.activity_resultados);
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy h:mm a");
         Calendar ca = Calendar.getInstance();
         ContentValues values = new ContentValues();
         showActionBar();
         findTexts(format, ca);
-        getInformation(values, ca, format);
-        add_game_to_bd(values);
+        dataTreatment(values, ca, format);
+        //add_game_to_bd(values);
         txtMail.requestFocus();
     }
 
-    private void getInformation(ContentValues values, Calendar ca, SimpleDateFormat format){
+    private void dataTreatment(ContentValues values, Calendar ca, SimpleDateFormat format){
         Bundle b = getIntent().getExtras();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ResultadosActivity.this);
         String alias = sharedPreferences.getString(getString(R.string.pref_alias_key), STRING_DEFAULT_NAME);
@@ -61,7 +61,21 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         int black = b.getInt(getString(R.string.black_key));
         int white = b.getInt(getString(R.string.white_key));
         int diferencia = b.getInt(getString(R.string.diferencia_key));
+        String timer;
+        String win_to_string;
 
+
+        if (haveTimer){
+            timer = STRING_ACTIVADO;
+            //values.put(STRING_TIEMPO, STRING_ACTIVADO);
+        }else{
+            duration = 25-duration;
+            timer = STRING_DESACTIVADO;
+            //values.put(STRING_TIEMPO, STRING_DESACTIVADO);
+        }
+
+
+/*
         values.put(STRING_ALIAS, alias);
         values.put(STRING_FECHA,  format.format(ca.getTime()));
         values.put(STRING_TAMANY, size);
@@ -78,6 +92,10 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
             values.put(STRING_EMPLEADO, duration);
         }
 
+
+
+*/
+
         String controlTiempo = "";
         if(haveTimer){
             if (25-duration == 0 ){
@@ -90,36 +108,56 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         }
 
 
+
+
         switch(win){
             case 1://VICTORIA
-                values.put(STRING_RESULTADO, STRING_VICTORIA);
+
+                win_to_string = STRING_VICTORIA;
+                //values.put(STRING_RESULTADO, STRING_VICTORIA);
                 txtResultats.setText(String.format(getString(R.string.victory_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), controlTiempo));
                 break;
 
             case -1://EMPATE
-                values.put(STRING_RESULTADO, STRING_EMPATE);
+                win_to_string = STRING_EMPATE;
+                //values.put(STRING_RESULTADO, STRING_EMPATE);
                 txtResultats.setText(String.format(getString(R.string.draw_log), alias, String.valueOf(size)
                         , String.valueOf(duration), controlTiempo));
                 break;
             case 2://BLOQUEO INTRINSECO
-                values.put(STRING_RESULTADO, STRING_BLOAQUEIG);
+                win_to_string = STRING_BLOAQUEIG;
+                //values.put(STRING_RESULTADO, STRING_BLOAQUEIG);
                 txtResultats.setText(String.format(getString(R.string.block_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black)) ,controlTiempo));
 
                 break;
             case 3://TEMPS ESGOTAT
-                values.put(STRING_RESULTADO, STRING_TEMPS);
+                win_to_string = STRING_TEMPS;
+                //values.put(STRING_RESULTADO, STRING_TEMPS);
                 txtResultats.setText(String.format(getString(R.string.time_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black))));
 
                 break;
             default://DERROTA
-                values.put(STRING_RESULTADO, STRING_DERROTA);
+                win_to_string = STRING_DERROTA;
+
+                //values.put(STRING_RESULTADO, STRING_DERROTA);
                 txtResultats.setText(String.format(getString(R.string.lose_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(white), String.valueOf(black), String.valueOf(diferencia), controlTiempo));
                 break;
         }
+
+
+
+        insertionBdBackground(alias, ca, size, duration, win_to_string, black, white, timer );
+    }
+
+    private void insertionBdBackground(String alias, Calendar ca, int size, int duration, String win_to_string, int black, int white, String timer) {
+        DataAsynctask background = new DataAsynctask(this);
+
+        background.execute(getString(R.string.key_add_bd),alias, format.format(ca.getTime()), String.valueOf(size),
+                String.valueOf(duration), win_to_string, String.valueOf(black), String.valueOf(white), timer);
     }
 
     private void findTexts(SimpleDateFormat format,  Calendar ca){
@@ -130,7 +168,17 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         txtMail.setText(R.string.email_defecto);
     }
 
-    public void add_game_to_bd(ContentValues values){
+   /* public void add_game_to_bd(ContentValues values){
+
+
+
+
+
+
+
+
+
+
         PartidasSQLiteHelper udb = new PartidasSQLiteHelper(this,STRING_DBNAME,
                 null, 1);
         SQLiteDatabase db = udb.getWritableDatabase();
@@ -138,7 +186,7 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
             long oid = db.insert(STRING_TABLE_NAME, null, values);
             db.close();
         }
-    }
+    }*/
 
     public void sendEmail(View view) {
         Intent i = new Intent(Intent.ACTION_SEND);

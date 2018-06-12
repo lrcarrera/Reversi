@@ -215,11 +215,12 @@ public class QueryFrag extends Fragment implements BddStrings {
             //System.out.println(oid);
 
             cursor = db.query(STRING_TABLE_NAME, campos, null, null, null, null, null);
+
+
             adt = new SimpleCursorAdapter(getContext(), R.layout.list_query,
                     cursor, new String[]{STRING_ALIAS, STRING_FECHA, STRING_RESULTADO}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
             lstListado = (ListView) getView().findViewById(R.id.LstListado);
             lstListado.setAdapter(adt);
-            //lstListado.setAdapter(new CustomAdapterScores(this, datos));
 
             lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

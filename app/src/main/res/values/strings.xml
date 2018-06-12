@@ -152,6 +152,9 @@
     <string name="modificar_email">Modificar Email</string>
     <string name="resultat_partida_correo">Resultat Partida</string>
     <string name="resultat_partida_email">Resultat Partida:</string>
+    <string name="key_add_bd">add_info</string>
+    <string name="insert_database">Inserting, Please Wait!</string>
+    <string name="connect_bd">Connected to Database</string>
 
 
 </resources>
