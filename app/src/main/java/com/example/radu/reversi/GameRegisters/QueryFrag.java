@@ -220,10 +220,18 @@ public class QueryFrag extends Fragment implements BddStrings {
             cursor = db.query(STRING_TABLE_NAME, campos, null, null, null, null, null);
 
 
+
             adt = new SimpleCursorAdapter(getContext(), R.layout.list_query,
                     cursor, new String[]{STRING_ALIAS, STRING_FECHA, STRING_RESULTADO}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
             lstListado = (ListView) getView().findViewById(R.id.LstListado);
             lstListado.setAdapter(adt);
+
+
+
+
+
+
+
 
             lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -282,27 +290,9 @@ public class QueryFrag extends Fragment implements BddStrings {
         this.listener=listener;
     }
 
-    /*public void showActionBar(){
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle (STRING_REVERSI);
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
-        actionBar.show();
-    }*/
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.action_bar_menu, menu);
-        return true;
+    public SimpleCursorAdapter getAdapterFromFragment(){
+        return this.adt;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //Handle item selection
-        if (item.getItemId() == R.id.config_item) {
-            startActivities(CONFIG);
-            return true;
-        }
-        return false;
-    }*/
 }

@@ -155,6 +155,9 @@
     <string name="key_add_bd">add_info</string>
     <string name="insert_database">Inserting, Please Wait!</string>
     <string name="connect_bd">Connected to Database</string>
+    <string name="cerca_partida">Cerca partida</string>
+    <string name="case_sensitive">La cerca és sensible a majúscules</string>
+    <string name="cerca_alias">Cerca per Alias</string>
 
 
 </resources>
