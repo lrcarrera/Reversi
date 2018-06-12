@@ -2,6 +2,8 @@ package com.example.radu.reversi.GameMenu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,7 +43,6 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
 
         setContentView(R.layout.activity_menu_principal);
         MyActionBar.showActionBar(this, getSupportActionBar(), 0);
-
 
         findViews();
         ajuda.setOnClickListener(new View.OnClickListener() {

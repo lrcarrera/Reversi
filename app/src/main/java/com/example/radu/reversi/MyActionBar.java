@@ -13,7 +13,7 @@ public class MyActionBar implements BddStrings {
         switch (num){
             case 0:
                 actionBar.setTitle (STRING_REVERSI);
-                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
+                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.GreenActionBar, context.getTheme())));
                 actionBar.show();
                 break;
             case 1:
@@ -22,19 +22,19 @@ public class MyActionBar implements BddStrings {
                 break;
             case 2:
                 actionBar.setTitle (STRING_REVERSI);
-                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
+                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.GreenActionBar, context.getTheme())));
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.show();
                 break;
             case 3:
                 actionBar.setTitle (STRING_ACCESS);
-                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
+                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.GreenActionBar, context.getTheme())));
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.show();
                 break;
             case 4:
                 actionBar.setTitle(STRING_DETALL);
-                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
+                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.GreenActionBar, context.getTheme())));
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.show();
                 break;

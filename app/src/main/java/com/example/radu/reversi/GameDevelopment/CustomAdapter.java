@@ -287,8 +287,6 @@ public class CustomAdapter extends BaseAdapter {
     public void stopTimerTask(View v) {
 
         if (time != null) {
-
-
             time.cancel();
             time = null;
         }

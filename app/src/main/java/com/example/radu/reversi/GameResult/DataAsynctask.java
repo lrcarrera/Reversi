@@ -1,4 +1,4 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameResult;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 
 import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.GameRegisters.PartidasSQLiteHelper;
+import com.example.radu.reversi.R;
 
 public class DataAsynctask extends AsyncTask<String, Integer, Void> implements BddStrings {
 

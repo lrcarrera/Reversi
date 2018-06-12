@@ -17,9 +17,7 @@ import com.example.radu.reversi.R;
 
 public class DesarrolloJuegoActivity extends FragmentActivity implements ParrillaFrag.MyOnClickListener {
 
-
     ParrillaFrag frgParrilla;
-
     GameType gameType;
     Game game;
     int grid_dimension;
@@ -31,9 +29,6 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
     TextView et;
     TextView tv;
     Context c1;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +89,6 @@ public class DesarrolloJuegoActivity extends FragmentActivity implements Parrill
             f1.mostrarLog(info);
         }
     }
-
 
     public void playModeDecide(String playMode){
         if (playMode.equals(getString(R.string.multiplayer))){

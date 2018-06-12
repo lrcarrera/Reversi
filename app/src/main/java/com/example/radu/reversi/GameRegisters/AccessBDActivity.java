@@ -34,7 +34,6 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceso_bd);
-      // get
         MyActionBar.showActionBar(this, getSupportActionBar(), 3);
         frgListado = (QueryFrag)getFragmentManager().findFragmentById(R.id.FrgListado);
         frgListado.setScoreListener(this);
