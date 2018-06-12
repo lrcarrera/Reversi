@@ -87,16 +87,14 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
 
     private void searchViewCustomListener(SearchView sv) {
 
-
-
-        data = frgListado.getAdapterFromFragment().getCursor();
-
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             boolean pressed = false;
                                       @Override
                                       public boolean onQueryTextSubmit(String query) {
 
+                                          data = frgListado.getAdapterFromFragment().getCursor();
+                                          
                                           if(!pressed) {
                                               Toast t1 = Toast.makeText(getApplicationContext(), R.string.case_sensitive, Toast.LENGTH_LONG);
                                               t1.setGravity(Gravity.CENTER, 0, 0);
