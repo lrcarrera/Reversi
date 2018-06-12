@@ -8,10 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ActionProvider;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.view.MenuInflater;
 import android.widget.EditText;
 import android.widget.ShareActionProvider;
 import android.util.Log;
@@ -33,9 +36,9 @@ import java.sql.SQLOutput;
 public class QueryFrag extends Fragment implements BddStrings {
 
     String auxPosition, auxFecha;
-     ListView lstListado;
+    ListView lstListado;
     ScoreListener listener;
-   ActionMode mActionMode;
+    ActionMode mActionMode;
     ShareActionProvider mShareActionProvider;
     SimpleCursorAdapter adt;
     SQLiteDatabase db;
@@ -278,4 +281,28 @@ public class QueryFrag extends Fragment implements BddStrings {
     public void setScoreListener(ScoreListener listener) {
         this.listener=listener;
     }
+
+    /*public void showActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle (STRING_REVERSI);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
+        actionBar.show();
+    }*/
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.action_bar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Handle item selection
+        if (item.getItemId() == R.id.config_item) {
+            startActivities(CONFIG);
+            return true;
+        }
+        return false;
+    }*/
 }

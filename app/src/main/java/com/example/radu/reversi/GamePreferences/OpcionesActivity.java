@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.radu.reversi.MyActionBar;
 import com.example.radu.reversi.R;
 
 public class OpcionesActivity extends AppCompatActivity {
@@ -20,8 +21,10 @@ public class OpcionesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new OpcionesFragment()).commit();
+        MyActionBar.showActionBar(this, getSupportActionBar(), 1);
+
         //showActionBar();
-        ActionBar ac= getSupportActionBar();
+        /*ActionBar ac= getSupportActionBar();
         ac.setDisplayHomeAsUpEnabled(true);
         ac.setTitle("Configuració");
         /*ac.setTitle("Configuració");

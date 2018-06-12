@@ -23,6 +23,7 @@ import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.GameRegisters.PartidasSQLiteHelper;
 import com.example.radu.reversi.GamePreferences.OpcionesActivity;
+import com.example.radu.reversi.MyActionBar;
 import com.example.radu.reversi.R;
 
 import java.text.SimpleDateFormat;
@@ -43,7 +44,8 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         setContentView(R.layout.activity_resultados);
         Calendar ca = Calendar.getInstance();
         ContentValues values = new ContentValues();
-        showActionBar();
+        MyActionBar.showActionBar(this, getSupportActionBar(), 2);
+        //showActionBar();
         findTexts(format, ca);
         dataTreatment(values, ca, format);
         //add_game_to_bd(values);
@@ -207,13 +209,13 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         finish();
     }
 
-    public void showActionBar(){
+    /*public void showActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle (STRING_REVERSI);
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.show();
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

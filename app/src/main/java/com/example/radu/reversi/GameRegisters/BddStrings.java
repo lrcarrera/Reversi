@@ -24,6 +24,8 @@ public interface BddStrings {
     String STRING_DEFAULT_GRID ="4";
     String STRING_SCORES = "SCORES";
     String STRING_REVERSI = "Reversi";
+    String STRING_CONFIGURACIO = "Configuració";
+    String STRING_ACCESS = "Acces Partides";
 
 
 

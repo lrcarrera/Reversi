@@ -17,9 +17,6 @@ public class PartidasSQLiteHelper extends SQLiteOpenHelper {
                                       "resultado TEXT)";
 
 
- /*Si control del tiempo: tiempo total empleado
- Resultado de la partida (Victoria, Derrota, Empate, Bloqueo, Tiempo
-            agotado)*/
 
     public PartidasSQLiteHelper(Context context, String name,
                                 SQLiteDatabase.CursorFactory factory, int version){

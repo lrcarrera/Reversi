@@ -1,7 +1,6 @@
 package com.example.radu.reversi.GameMenu;
 
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +16,11 @@ import com.example.radu.reversi.GameHelp.AyudaActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GamePreferences.OpcionesActivity;
 import com.example.radu.reversi.GameRegisters.BddStrings;
+import com.example.radu.reversi.MyActionBar;
 import com.example.radu.reversi.R;
 
 
-public class MenuPrincipalActivity extends AppCompatActivity implements BddStrings {
+public class MenuPrincipalActivity extends AppCompatActivity implements BddStrings{
 
     private Button ajuda;
     private Button comenca_partida;
@@ -40,7 +40,8 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
         this.getSupportActionBar().hide();
 
         setContentView(R.layout.activity_menu_principal);
-        showActionBar();
+        MyActionBar.showActionBar(this, getSupportActionBar(), 0);
+
 
         //this.deleteDatabase("DBPartidas");
 
@@ -79,12 +80,12 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
         });
     }
 
-    public void showActionBar(){
+    /*public void showActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle (STRING_REVERSI);
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
         actionBar.show();
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -131,7 +132,6 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
 
         }
     }
-
 
 
 }
