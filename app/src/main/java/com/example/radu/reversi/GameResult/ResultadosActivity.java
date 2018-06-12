@@ -35,17 +35,15 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this.getSupportActionBar().hide();
         setContentView(R.layout.activity_resultados);
         Calendar ca = Calendar.getInstance();
-        ContentValues values = new ContentValues();
         MyActionBar.showActionBar(this, getSupportActionBar(), 2);
         findTexts(format, ca);
-        dataTreatment(values, ca, format);
+        dataTreatment( ca, format);
         txtMail.requestFocus();
     }
 
-    private void dataTreatment(ContentValues values, Calendar ca, SimpleDateFormat format){
+    private void dataTreatment( Calendar ca, SimpleDateFormat format){
         Bundle b = getIntent().getExtras();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ResultadosActivity.this);
         String alias = sharedPreferences.getString(getString(R.string.pref_alias_key), STRING_DEFAULT_NAME);
@@ -59,15 +57,12 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         String timer;
         String win_to_string;
 
-
         if (haveTimer){
             timer = STRING_ACTIVADO;
         }else{
             duration = 25-duration;
             timer = STRING_DESACTIVADO;
         }
-
-
 
         String controlTiempo = "";
         if(haveTimer){
@@ -110,8 +105,6 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
                         , String.valueOf(duration), String.valueOf(white), String.valueOf(black), String.valueOf(diferencia), controlTiempo));
                 break;
         }
-
-
 
         insertionBdBackground(alias, ca, size, duration, win_to_string, black, white, timer );
     }

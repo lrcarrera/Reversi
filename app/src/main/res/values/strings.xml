@@ -2,7 +2,7 @@
 
     <string name="empty"></string>
     <!-- Menu Principal strings -->
-    <string name="app_name">Reversi</string>
+    <string name="app_name">ReversiMania</string>
     <string name="comenca_partida">Començar Partida</string>
     <string name="sortir">Sortir</string>
     <string name="menu_principal">Menu Principal</string>

@@ -50,7 +50,6 @@ public class DataAsynctask extends AsyncTask<String, Integer, Void> implements B
         return null;
     }
 
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
