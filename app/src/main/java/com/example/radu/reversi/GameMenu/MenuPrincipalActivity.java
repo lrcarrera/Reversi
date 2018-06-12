@@ -122,7 +122,6 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                 final Intent config = new Intent(this, OpcionesActivity.class);
                 startActivity(config);
                 break;
-
             case SCORE:
                 final Intent score = new Intent(this, AccessBDActivity.class);
                 startActivity(score);

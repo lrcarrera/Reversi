@@ -20,6 +20,10 @@ public interface BddStrings {
     String STRING_ID="_id";
     String STRING_TABLE_NAME ="Partidas";
     String STRING_SCORE ="SCORE";
+    String STRING_DEFAULT_NAME ="Juanjo";
+    String STRING_DEFAULT_GRID ="4";
+    String STRING_SCORES = "SCORES";
+    String STRING_REVERSI = "Reversi";
 
 
 

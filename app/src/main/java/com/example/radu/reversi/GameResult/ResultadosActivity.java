@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.radu.reversi.GameDevelopment.DesarrolloJuegoActivity;
+import com.example.radu.reversi.GameMenu.MenuPrincipalActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.GameRegisters.PartidasSQLiteHelper;
@@ -36,42 +37,31 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
         setContentView(R.layout.activity_resultados);
 
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy h:mm a");
         Calendar ca = Calendar.getInstance();
+        ContentValues values = new ContentValues();
         showActionBar();
+        findTexts(format, ca);
+        getInformation(values, ca, format);
+        add_game_to_bd(values);
+        txtMail.requestFocus();
+    }
 
-
-        txtResultats = (EditText) findViewById(R.id.edit_log);
-
-        txtMail = (EditText) findViewById(R.id.edit_email);
-
-        txtDia = (EditText) findViewById(R.id.edit_dia);
-
-
-        txtDia.setText(format.format(ca.getTime()));
-
-        txtMail.setText(R.string.email_defecto);
-
-
-        Intent i = getIntent();
-        Bundle b = i.getExtras();
+    private void getInformation(ContentValues values, Calendar ca, SimpleDateFormat format){
+        Bundle b = getIntent().getExtras();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ResultadosActivity.this);
-        String alias = sharedPreferences.getString(getString(R.string.pref_alias_key), "Juanjo");
+        String alias = sharedPreferences.getString(getString(R.string.pref_alias_key), STRING_DEFAULT_NAME);
         boolean haveTimer = sharedPreferences.getBoolean(getString(R.string.pref_timer_key), false);
-        int size = Integer.parseInt(sharedPreferences.getString(getString(R.string.pref_size_key), "4"));
-        //String alias = b.getString(getString(R.string.alias_key));
-        //int size = b.getInt(getString(R.string.size_key));
+        int size = Integer.parseInt(sharedPreferences.getString(getString(R.string.pref_size_key), STRING_DEFAULT_GRID));
         int duration = b.getInt(getString(R.string.duration_key));
-        //int haveTimer = b.getInt(getString(R.string.hastimer_key));
         int win = b.getInt(getString(R.string.win_key));
         int black = b.getInt(getString(R.string.black_key));
         int white = b.getInt(getString(R.string.white_key));
         int diferencia = b.getInt(getString(R.string.diferencia_key));
 
-        ContentValues values = new ContentValues();
         values.put(STRING_ALIAS, alias);
         values.put(STRING_FECHA,  format.format(ca.getTime()));
         values.put(STRING_TAMANY, size);
@@ -87,12 +77,11 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         } else {
             values.put(STRING_EMPLEADO, duration);
         }
-        //values.put("resultado", "victoria");
 
         String controlTiempo = "";
         if(haveTimer){
             if (25-duration == 0 ){
-            controlTiempo = getString(R.string.temps_esgotat);
+                controlTiempo = getString(R.string.temps_esgotat);
             }else{
                 controlTiempo = String.format(getString(R.string.temps_restant),
                         String.valueOf(25-duration));
@@ -101,13 +90,11 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         }
 
 
-
-
         switch(win){
             case 1://VICTORIA
                 values.put(STRING_RESULTADO, STRING_VICTORIA);
                 txtResultats.setText(String.format(getString(R.string.victory_log), alias, String.valueOf(size)
-                , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), controlTiempo));
+                        , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), controlTiempo));
                 break;
 
             case -1://EMPATE
@@ -133,16 +120,22 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
                         , String.valueOf(duration), String.valueOf(white), String.valueOf(black), String.valueOf(diferencia), controlTiempo));
                 break;
         }
-        add_game_to_bd(values);
-        txtMail.requestFocus();
+    }
+
+    private void findTexts(SimpleDateFormat format,  Calendar ca){
+        txtResultats = (EditText) findViewById(R.id.edit_log);
+        txtMail = (EditText) findViewById(R.id.edit_email);
+        txtDia = (EditText) findViewById(R.id.edit_dia);
+        txtDia.setText(format.format(ca.getTime()));
+        txtMail.setText(R.string.email_defecto);
     }
 
     public void add_game_to_bd(ContentValues values){
-        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(this,"DBPartidas",
+        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(this,STRING_DBNAME,
                 null, 1);
         SQLiteDatabase db = udb.getWritableDatabase();
         if (db != null){
-            long oid = db.insert("Partidas", null, values);
+            long oid = db.insert(STRING_TABLE_NAME, null, values);
             db.close();
         }
     }
@@ -168,9 +161,9 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
 
     public void showActionBar(){
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle ("Reversi");
-        //R.color.DarkSeaGreen
+        actionBar.setTitle (STRING_REVERSI);
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.show();
     }
 
@@ -178,7 +171,7 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_menu, menu);
-        menu.add (Menu.NONE, SCORE, Menu.NONE, "Scores");
+        menu.add (Menu.NONE, SCORE, Menu.NONE, STRING_SCORES);
         return true;
     }
 
@@ -186,7 +179,6 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
     public boolean onOptionsItemSelected(MenuItem item) {
         //Handle item selection
         if (item.getItemId() == R.id.config_item) {
-            //startActivities(CONFIG);
             final Intent config = new Intent(this, OpcionesActivity.class);
             startActivity(config);
             return true;
@@ -194,7 +186,17 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
             final Intent score = new Intent(this, AccessBDActivity.class);
             startActivity(score);
             return true;
+        } else if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        final Intent menuPrincipal = new Intent(this, MenuPrincipalActivity.class);
+        startActivity(menuPrincipal);
+        finish();
     }
 }
