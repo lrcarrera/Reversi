@@ -43,11 +43,7 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
         MyActionBar.showActionBar(this, getSupportActionBar(), 0);
 
 
-        //this.deleteDatabase("DBPartidas");
-
-        final Intent ajuda_in = new Intent(this, AyudaActivity.class);
-
-        ajuda = (Button) findViewById(R.id.button_ajuda);
+        findViews();
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +51,6 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
             }
         });
 
-        comenca_partida = (Button) findViewById(R.id.button_comenca_partida);
         comenca_partida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +58,6 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
             }
         });
 
-        sortir = (Button) findViewById(R.id.button_sortida);
         sortir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +65,6 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
             }
         });
 
-        score = (Button) findViewById(R.id.button_score);
         score.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,12 +73,13 @@ public class MenuPrincipalActivity extends AppCompatActivity implements BddStrin
         });
     }
 
-    /*public void showActionBar(){
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle (STRING_REVERSI);
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
-        actionBar.show();
-    }*/
+    private void findViews(){
+        ajuda = (Button) findViewById(R.id.button_ajuda);
+        comenca_partida = (Button) findViewById(R.id.button_comenca_partida);
+        sortir = (Button) findViewById(R.id.button_sortida);
+        score = (Button) findViewById(R.id.button_score);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

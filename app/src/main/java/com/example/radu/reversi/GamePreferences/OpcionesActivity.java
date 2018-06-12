@@ -22,24 +22,7 @@ public class OpcionesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new OpcionesFragment()).commit();
         MyActionBar.showActionBar(this, getSupportActionBar(), 1);
-
-        //showActionBar();
-        /*ActionBar ac= getSupportActionBar();
-        ac.setDisplayHomeAsUpEnabled(true);
-        ac.setTitle("Configuració");
-        /*ac.setTitle("Configuració");
-        this.invalidateOptionsMenu();*/
-
-
     }
-
-    /*public void showActionBar(){
-        ActionBar actionBar = this.getSupportActionBar();
-        actionBar.setTitle ("Reversi");
-        //R.color.DarkSeaGreen
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
-        actionBar.show();
-    */
 
     public static class OpcionesFragment extends PreferenceFragment{
 
@@ -50,15 +33,6 @@ public class OpcionesActivity extends AppCompatActivity {
 
         }
     }
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.action_bar_menu, menu);
-        MenuItem item = (MenuItem) findViewById(R.id.config_item);
-        item.setVisible(false);
-        return true;
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

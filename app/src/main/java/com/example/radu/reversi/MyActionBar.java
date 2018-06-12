@@ -12,18 +12,15 @@ public class MyActionBar implements BddStrings {
     public static void showActionBar(Context context, ActionBar actionBar, int num) {
         switch (num){
             case 0:
-                //ActionBar actionBar = getSupportActionBar();
                 actionBar.setTitle (STRING_REVERSI);
                 actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
                 actionBar.show();
                 break;
             case 1:
-                //ActionBar ac= getSupportActionBar();
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setTitle(STRING_CONFIGURACIO);
                 break;
             case 2:
-                //ActionBar actionBar = getSupportActionBar();
                 actionBar.setTitle (STRING_REVERSI);
                 actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
                 actionBar.setDisplayHomeAsUpEnabled(true);
@@ -34,6 +31,13 @@ public class MyActionBar implements BddStrings {
                 actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.show();
+                break;
+            case 4:
+                actionBar.setTitle(STRING_DETALL);
+                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.show();
+                break;
 
 
         }

@@ -18,7 +18,7 @@ public class DataAsynctask extends AsyncTask<String, Integer, Void> implements B
         this.c1 = c1;
     }
 
-    ProgressDialog  mProgressDialog;;
+    ProgressDialog  mProgressDialog;
 
     @Override
     protected Void doInBackground(String... params) {
