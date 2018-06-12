@@ -41,6 +41,12 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
 
     }
 
+    @Override
+    protected void onDestroy() {
+        data.close();
+        super.onDestroy();
+    }
+
 
     @Override
     public void onScoreSeleccionado(Score score) {
@@ -85,7 +91,22 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    public Cursor getDataBaseState() {
+        //datos
+        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(getApplicationContext(),STRING_DBNAME, null, 1);
+        SQLiteDatabase db = udb.getWritableDatabase();
+
+        Cursor cursor = db.query(STRING_TABLE_NAME, campos, null, null, null, null, null);
+
+        return cursor;
+    }
+
+
     private void searchViewCustomListener(SearchView sv) {
+
+        //data = frgListado.getAdapterFromFragment().getCursor();
+        data  = getDataBaseState();
 
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -93,8 +114,6 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
                                       @Override
                                       public boolean onQueryTextSubmit(String query) {
 
-                                          data = frgListado.getAdapterFromFragment().getCursor();
-                                          
                                           if(!pressed) {
                                               Toast t1 = Toast.makeText(getApplicationContext(), R.string.case_sensitive, Toast.LENGTH_LONG);
                                               t1.setGravity(Gravity.CENTER, 0, 0);
@@ -108,6 +127,8 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
                                           Cursor cursor = db.query(STRING_TABLE_NAME, campos, "alias=?", new String[]{query}, null, null, null);
                                           frgListado.getAdapterFromFragment().swapCursor(cursor);
                                           frgListado.getAdapterFromFragment().notifyDataSetChanged();
+
+                                          //cursor.close();
 
                                           return true;
                                       }
@@ -143,7 +164,6 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
         //startActivity(menuPrincipal);
         finish();
     }
-
 
 
 
