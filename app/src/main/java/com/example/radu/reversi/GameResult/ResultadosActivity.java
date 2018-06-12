@@ -18,7 +18,7 @@ import com.example.radu.reversi.GameMenu.MenuPrincipalActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.GamePreferences.OpcionesActivity;
-import com.example.radu.reversi.MyActionBar;
+import com.example.radu.reversi.GameActionBar.MyActionBar;
 import com.example.radu.reversi.R;
 
 import java.text.SimpleDateFormat;

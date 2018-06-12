@@ -1,13 +1,10 @@
 package com.example.radu.reversi.GameRegisters;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.radu.reversi.GameMenu.MenuPrincipalActivity;
-import com.example.radu.reversi.GameRegisters.RegFrag;
-import com.example.radu.reversi.MyActionBar;
+import com.example.radu.reversi.GameActionBar.MyActionBar;
 import com.example.radu.reversi.R;
 
 public class DetailRegActivity extends AppCompatActivity implements BddStrings {
@@ -21,8 +18,6 @@ public class DetailRegActivity extends AppCompatActivity implements BddStrings {
         setContentView(R.layout.activity_acceso_bd_detalle);
         MyActionBar.showActionBar(this, getSupportActionBar(), 4);
 
-
-       // String name = i.getStringExtra("value");
         Score score = getIntent().getParcelableExtra(STRING_SCORE);
         RegFrag frag = (RegFrag) getFragmentManager().findFragmentById(R.id.FrgDetalleQuery);
         frag.mostrarDetalle(score);
@@ -45,8 +40,6 @@ public class DetailRegActivity extends AppCompatActivity implements BddStrings {
 
     @Override
     public void onBackPressed() {
-       // final Intent menuPrincipal = new Intent(this, MenuPrincipalActivity.class);
-       // startActivity(menuPrincipal);
         finish();
     }
 }

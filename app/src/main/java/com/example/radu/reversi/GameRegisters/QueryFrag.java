@@ -210,37 +210,24 @@ public class QueryFrag extends Fragment implements BddStrings {
 
 
 
-        //datos
+
         PartidasSQLiteHelper udb = new PartidasSQLiteHelper(getContext(),STRING_DBNAME, null, 1);
         db = udb.getWritableDatabase();
         if (db != null) {
-            //long oid = db.insert("Partidas", null, values);
-            //System.out.println(oid);
-
             cursor = db.query(STRING_TABLE_NAME, campos, null, null, null, null, null);
 
-
-
             adt = new SimpleCursorAdapter(getContext(), R.layout.list_query,
-                    cursor, new String[]{STRING_ALIAS, STRING_FECHA, STRING_RESULTADO}, new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
+                    cursor, new String[]{STRING_ALIAS, STRING_FECHA, STRING_RESULTADO},
+                    new int[]{R.id.val1,R.id.val2, R.id.val3 }, 0);
             lstListado = (ListView) getView().findViewById(R.id.LstListado);
             lstListado.setAdapter(adt);
-
-
-
-
-
 
 
 
             lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
-                    if (listener != null) {
-                        cursor.moveToPosition(pos);
-                        Score score = new Score(cursor);
-                        listener.onScoreSeleccionado(score);
-                    }
+                   onClick(pos);
                 }
 
             });
@@ -250,22 +237,32 @@ public class QueryFrag extends Fragment implements BddStrings {
 
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Cursor cursor = (Cursor) adt.getItem(position);
-                    auxPosition = cursor.getString(0);
-                    auxFecha = cursor.getString(2);
-
-                    if (mActionMode != null) {
-                        return false;
-                    }
-                    // Start the CAB using the ActionMode.Callback defined above
-                    mActionMode = getActivity().startActionMode(mActionModeCallback);
-                    view.setSelected(true);
-                    return true;
+                    return onLongClick(position, view);
                 }
-
             });
 
+        }
+    }
+
+    private boolean onLongClick(int position, View view){
+        Cursor cursor = (Cursor) adt.getItem(position);
+        auxPosition = cursor.getString(0);
+        auxFecha = cursor.getString(2);
+
+        if (mActionMode != null) {
+            return false;
+        }
+        // Start the CAB using the ActionMode.Callback defined above
+        mActionMode = getActivity().startActionMode(mActionModeCallback);
+        view.setSelected(true);
+        return true;
+    }
+
+    private void onClick(int pos){
+        if (listener != null) {
+            cursor.moveToPosition(pos);
+            Score score = new Score(cursor);
+            listener.onScoreSeleccionado(score);
         }
     }
 
