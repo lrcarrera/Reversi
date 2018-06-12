@@ -6,6 +6,7 @@
     <dimen name="text_size">27dp</dimen>
     <dimen name="text_size2">12dp</dimen>
     <dimen name="text_size3">40dp</dimen>
+    <dimen name="text_size4">14dp</dimen>
     <dimen name="image_reverse_size">40dp</dimen>
     <dimen name="image_reverse_size_big">150dp</dimen>
     <dimen name="little_icon_size">20dp</dimen>
@@ -18,4 +19,12 @@
     <dimen name="m4">42dp</dimen>
     <dimen name="layout_botonera">820dp</dimen>
     <dimen name="layout_botonera2">400dp</dimen>
+    <dimen name="edit_dia">72dp</dimen>
+    <dimen name="margin_dia">25dp</dimen>
+    <dimen name="margin_end">131dp</dimen>
+    <dimen name="margin_botton">110dp</dimen>
+    <dimen name="margin_start">64dp</dimen>
+    <dimen name="luis">15dp</dimen>
+    <dimen name="aux">25dp</dimen>
+    <dimen name="weight">50dp</dimen>
 </resources>

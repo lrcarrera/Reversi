@@ -16,10 +16,11 @@ import com.example.radu.reversi.GameDevelopment.DesarrolloJuegoActivity;
 import com.example.radu.reversi.GameHelp.AyudaActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GamePreferences.OpcionesActivity;
+import com.example.radu.reversi.GameRegisters.BddStrings;
 import com.example.radu.reversi.R;
 
 
-public class MenuPrincipalActivity extends AppCompatActivity {
+public class MenuPrincipalActivity extends AppCompatActivity implements BddStrings {
 
     private Button ajuda;
     private Button comenca_partida;
@@ -80,8 +81,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
 
     public void showActionBar(){
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle ("Reversi");
-        //R.color.DarkSeaGreen
+        actionBar.setTitle (STRING_REVERSI);
         actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
         actionBar.show();
     }

@@ -47,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_top"
             android:text="@string/resultados_partida"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/little_icon_size"/>
 
         <TextView
             android:id="@+id/text_dia"
@@ -57,7 +57,7 @@
             android:layout_below="@+id/text_resultados"
             android:layout_marginTop="@dimen/margin_left"
             android:text="@string/dia_hora"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/little_icon_size"/>
 
         <EditText
             android:id="@+id/edit_dia"
@@ -76,7 +76,7 @@
             android:layout_below="@+id/edit_dia"
             android:layout_marginTop="@dimen/margin_left"
             android:text="@string/valores_log"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/little_icon_size"/>
 
         <EditText
             android:id="@+id/edit_log"
@@ -87,7 +87,7 @@
             android:layout_marginTop="@dimen/margin_left"
             android:hint="@string/valores_log"
             android:background="@drawable/back"
-            android:textSize="25dp"/>
+            android:textSize="@dimen/aux"/>
 
         <TextView
             android:id="@+id/text_email"
@@ -97,7 +97,7 @@
             android:layout_below="@+id/edit_log"
             android:layout_marginTop="@dimen/margin_left"
             android:text="@string/email"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/little_icon_size"/>
 
         <EditText
             android:id="@+id/edit_email"

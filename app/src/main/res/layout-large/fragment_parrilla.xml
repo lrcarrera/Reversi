@@ -78,19 +78,7 @@
 
         </LinearLayout>
 
-        <!---->
-
     </LinearLayout>
-
-    <!--<TextView
-        android:id="@+id/timer_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/timer"
-        android:layout_marginRght="@dimen/margin_left"
-        android:text=""
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold"/>-->
 
 
     <GridView
@@ -102,8 +90,6 @@
         android:verticalSpacing="@dimen/null_spacing"
         android:layout_marginTop="@dimen/margin_left"
         android:layout_below="@+id/sub_layout"/>
-    <!--android:stretchMode="columnWidth"
-    android:scaleType="centerCrop"-->
 
     <TextView
         android:id="@+id/text_fichas"

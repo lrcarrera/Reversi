@@ -132,17 +132,21 @@
                 android:onClick="newGame"
                 android:text="@string/nova_paritda" />
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/buttom"
+            android:gravity="center">
             <Button
                 android:id="@+id/button_sortir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/exit_icon"
-                android:gravity="center"
                 android:onClick="exitGame"
                 android:text="@string/sortir"
                 android:textSize="10dp"/>
-
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/text_resultados"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="@dimen/edit_dia"
         android:hint="@string/dia_hora" />
 
     <TextView
@@ -67,19 +68,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/little_icon_size"
+        android:layout_marginLeft="@dimen/margin_dia"
         android:layout_alignTop="@+id/text_resultados"
-        android:layout_marginEnd="131dp"
+        android:layout_marginEnd="@dimen/margin_end"
         android:text="@string/valores_log" />
 
     <EditText
         android:id="@+id/edit_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/little_icon_size"
+        android:layout_marginLeft="@dimen/little_icon_size"
         android:layout_alignStart="@+id/text_log"
         android:layout_below="@+id/text_resultados"
         android:background="@drawable/back"
         android:hint="@string/valores_log"
-        android:textSize="12dp" />
+        android:textSize="@dimen/text_size2" />
 
     <TextView
         android:id="@+id/text_email"
@@ -87,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/text_dia"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="@dimen/margin_botton"
         android:text="@string/email" />
 
     <EditText
@@ -96,9 +101,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/text_email"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="@dimen/margin_start"
         android:hint="@string/email_defecto"
-        android:textSize="14dp" />
+        android:textSize="@dimen/text_size4" />
 
     <!-- Buttom aligned to top -->
 
@@ -108,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/text_dia"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="@dimen/luis"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -141,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/buttom"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="@dimen/little_icon_size"
         android:drawableLeft="@drawable/exit_icon"
         android:gravity="center"
         android:text="@string/sortir"
