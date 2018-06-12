@@ -26,6 +26,7 @@ public interface BddStrings {
     String STRING_REVERSI = "Reversi";
     String STRING_CONFIGURACIO = "Configuració";
     String STRING_ACCESS = "Acces Partides";
+    String STRING_DETALL = "Detall Partida";
 
 
 

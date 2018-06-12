@@ -34,6 +34,13 @@ public class MyActionBar implements BddStrings {
                 actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.show();
+                break;
+            case 4:
+                actionBar.setTitle(STRING_DETALL);
+                actionBar.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.colorPrimaryDark, context.getTheme())));
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.show();
+                break;
 
 
         }

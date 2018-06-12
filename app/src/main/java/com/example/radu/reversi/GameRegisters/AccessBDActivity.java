@@ -59,8 +59,8 @@ public class AccessBDActivity extends AppCompatActivity implements QueryFrag.Sco
 
     @Override
     public void onBackPressed() {
-        final Intent menuPrincipal = new Intent(this, MenuPrincipalActivity.class);
-        startActivity(menuPrincipal);
+        //final Intent menuPrincipal = new Intent(this, MenuPrincipalActivity.class);
+        //startActivity(menuPrincipal);
         finish();
     }
 
