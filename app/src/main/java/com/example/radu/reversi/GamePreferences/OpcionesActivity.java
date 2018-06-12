@@ -1,18 +1,11 @@
 package com.example.radu.reversi.GamePreferences;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.radu.reversi.MyActionBar;
+import com.example.radu.reversi.GameActionBar.MyActionBar;
 import com.example.radu.reversi.R;
 
 public class OpcionesActivity extends AppCompatActivity {

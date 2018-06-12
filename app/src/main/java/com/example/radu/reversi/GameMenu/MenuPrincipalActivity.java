@@ -1,9 +1,6 @@
 package com.example.radu.reversi.GameMenu;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +15,7 @@ import com.example.radu.reversi.GameHelp.AyudaActivity;
 import com.example.radu.reversi.GameRegisters.AccessBDActivity;
 import com.example.radu.reversi.GamePreferences.OpcionesActivity;
 import com.example.radu.reversi.GameRegisters.BddStrings;
-import com.example.radu.reversi.MyActionBar;
+import com.example.radu.reversi.GameActionBar.MyActionBar;
 import com.example.radu.reversi.R;
 
 

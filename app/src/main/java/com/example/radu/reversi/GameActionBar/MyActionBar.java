@@ -1,10 +1,11 @@
-package com.example.radu.reversi;
+package com.example.radu.reversi.GameActionBar;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 
 
 import com.example.radu.reversi.GameRegisters.BddStrings;
+import com.example.radu.reversi.R;
 
 public class MyActionBar implements BddStrings {
 
