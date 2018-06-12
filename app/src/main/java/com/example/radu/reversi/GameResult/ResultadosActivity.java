@@ -45,10 +45,8 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         Calendar ca = Calendar.getInstance();
         ContentValues values = new ContentValues();
         MyActionBar.showActionBar(this, getSupportActionBar(), 2);
-        //showActionBar();
         findTexts(format, ca);
         dataTreatment(values, ca, format);
-        //add_game_to_bd(values);
         txtMail.requestFocus();
     }
 
@@ -69,34 +67,12 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
 
         if (haveTimer){
             timer = STRING_ACTIVADO;
-            //values.put(STRING_TIEMPO, STRING_ACTIVADO);
         }else{
             duration = 25-duration;
             timer = STRING_DESACTIVADO;
-            //values.put(STRING_TIEMPO, STRING_DESACTIVADO);
         }
 
 
-/*
-        values.put(STRING_ALIAS, alias);
-        values.put(STRING_FECHA,  format.format(ca.getTime()));
-        values.put(STRING_TAMANY, size);
-        if (haveTimer){
-            values.put(STRING_TIEMPO, STRING_ACTIVADO);
-        }else{
-            values.put(STRING_TIEMPO, STRING_DESACTIVADO);
-        }
-        values.put(STRING_BLANCAS, black);
-        values.put(STRING_NEGRAS, white);
-        if (!haveTimer){
-            values.put(STRING_EMPLEADO, 25-duration);
-        } else {
-            values.put(STRING_EMPLEADO, duration);
-        }
-
-
-
-*/
 
         String controlTiempo = "";
         if(haveTimer){
@@ -109,42 +85,32 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
             }
         }
 
-
-
-
         switch(win){
             case 1://VICTORIA
-
                 win_to_string = STRING_VICTORIA;
-                //values.put(STRING_RESULTADO, STRING_VICTORIA);
                 txtResultats.setText(String.format(getString(R.string.victory_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), controlTiempo));
                 break;
 
             case -1://EMPATE
                 win_to_string = STRING_EMPATE;
-                //values.put(STRING_RESULTADO, STRING_EMPATE);
                 txtResultats.setText(String.format(getString(R.string.draw_log), alias, String.valueOf(size)
                         , String.valueOf(duration), controlTiempo));
                 break;
             case 2://BLOQUEO INTRINSECO
                 win_to_string = STRING_BLOAQUEIG;
-                //values.put(STRING_RESULTADO, STRING_BLOAQUEIG);
                 txtResultats.setText(String.format(getString(R.string.block_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black)) ,controlTiempo));
 
                 break;
             case 3://TEMPS ESGOTAT
                 win_to_string = STRING_TEMPS;
-                //values.put(STRING_RESULTADO, STRING_TEMPS);
                 txtResultats.setText(String.format(getString(R.string.time_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(black), String.valueOf(white), String.valueOf(diferencia), String.valueOf(size*size-(white+black))));
 
                 break;
             default://DERROTA
                 win_to_string = STRING_DERROTA;
-
-                //values.put(STRING_RESULTADO, STRING_DERROTA);
                 txtResultats.setText(String.format(getString(R.string.lose_log), alias, String.valueOf(size)
                         , String.valueOf(duration), String.valueOf(white), String.valueOf(black), String.valueOf(diferencia), controlTiempo));
                 break;
@@ -170,26 +136,6 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         txtMail.setText(R.string.email_defecto);
     }
 
-   /* public void add_game_to_bd(ContentValues values){
-
-
-
-
-
-
-
-
-
-
-        PartidasSQLiteHelper udb = new PartidasSQLiteHelper(this,STRING_DBNAME,
-                null, 1);
-        SQLiteDatabase db = udb.getWritableDatabase();
-        if (db != null){
-            long oid = db.insert(STRING_TABLE_NAME, null, values);
-            db.close();
-        }
-    }*/
-
     public void sendEmail(View view) {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType(getString(R.string.type_email));
@@ -209,13 +155,6 @@ public class ResultadosActivity extends AppCompatActivity  implements BddStrings
         finish();
     }
 
-    /*public void showActionBar(){
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle (STRING_REVERSI);
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark, getTheme())));
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.show();
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

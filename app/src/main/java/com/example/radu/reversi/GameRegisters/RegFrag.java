@@ -150,23 +150,16 @@ public class RegFrag extends Fragment implements BddStrings {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
         if (savedInstanceState != null) {
-
             mostrarDetalle((Score) savedInstanceState.getParcelable(STRING_SCORE));
-            //txtDetalle.setText(savedInstanceState.getString(getString(R.string.key_log)));
         }
 
     }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(STRING_SCORE, score);
-        //outState.putString(getString(R.string.key_log), txtDetalle.getText().toString());
     }
 
 }
